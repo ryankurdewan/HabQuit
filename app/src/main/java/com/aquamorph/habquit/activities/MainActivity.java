@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 		switch (item.getItemId()) {
 			case R.id.login:
 				openLogin();
+			case R.id.achievements:
+				openAchievement();
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -87,4 +89,12 @@ public class MainActivity extends AppCompatActivity {
 	public void openLogin() {
 		startActivity(new Intent(this, Login.class));
 	}
+
+
+     /**
+	  * Takes user to achievement page
+	  */
+	  public void openAchievement () {
+		  startActivity(new Intent(this, Achievements.class));
+	  }
 }
