@@ -79,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
 	 * @return count text to be displayed
 	 */
 	public static String decCount(String beginText) {
-		cigaretteCount--;
+        if (cigaretteCount > 0)
+        {
+            cigaretteCount--;
+        }
 		return beginText + cigaretteCount;
 	}
 
