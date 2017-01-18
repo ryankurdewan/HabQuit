@@ -14,7 +14,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.aquamorph.habquit.MainActivity"
+    tools:context="com.aquamorph.habquit.activities.MainActivity"
     android:background="#DBDBDB">
 
     <EditText
@@ -48,7 +48,7 @@
         android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/registerButton"
         android:layout_marginTop="32dp"
         android:background="#C1CAD6"
         android:layout_below="@+id/editText4"
@@ -61,8 +61,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/button3"
         android:background="#C1CAD6"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_alignBaseline="@+id/registerButton"
+        android:layout_alignBottom="@+id/registerButton"
         android:layout_alignRight="@+id/editText4"
         android:layout_alignEnd="@+id/editText4" />
 
@@ -70,11 +70,11 @@
         android:text="Forgot Password?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/registerButton"
         android:layout_marginTop="37dp"
         android:id="@+id/button4"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignStart="@+id/button2"
+        android:layout_alignLeft="@+id/registerButton"
+        android:layout_alignStart="@+id/registerButton"
         android:layout_alignRight="@+id/button3"
         android:layout_alignEnd="@+id/button3"
         android:background="#C1CAD6" />
