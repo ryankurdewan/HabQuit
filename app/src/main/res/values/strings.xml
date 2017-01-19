@@ -2,4 +2,9 @@
     <string name="app_name">Habquit</string>
     <string name="count_text">Count:</string>
     <string name="login">Login</string>
+
+    //Bottom navigation
+    <string name="text_favorites">Favorites</string>
+    <string name="text_schedules">Schedules</string>
+    <string name="text_music">Music</string>
 </resources>
