@@ -53,12 +53,6 @@ public class GraphDisplay extends AppCompatActivity {
         barChart.setTouchEnabled(true);
         barChart.setScaleEnabled(true);
 
-
-
-
-
-
-
     }
 
 }
