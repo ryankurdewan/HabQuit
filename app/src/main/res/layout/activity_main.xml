@@ -63,7 +63,7 @@
             app:cardBackgroundColor="@android:color/holo_green_dark"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:id="@+id/rabbit1">
+            android:id="@+id/habit1">
 
             <LinearLayout
                 android:orientation="vertical"

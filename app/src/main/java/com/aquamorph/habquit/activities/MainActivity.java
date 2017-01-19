@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		CardView cigarette = (CardView) findViewById(R.id.rabbit1);
+		CardView cigarette = (CardView) findViewById(R.id.habit1);
 		final TextView smokingCountText = (TextView) findViewById(R.id.textView2);
 
 		beginText = getResources().getString(R.string.count_text) + " ";
