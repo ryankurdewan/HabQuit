@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.achievements:
 				openAchievement();
 				break;
+			case R.id.motivation:
+				openMotivation();
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -101,4 +104,12 @@ public class MainActivity extends AppCompatActivity {
 	  public void openAchievement () {
 		  startActivity(new Intent(this, Achievements.class));
 	  }
+
+	/**
+	 * Takes user to motivation page
+	 */
+	public void openMotivation () {
+		startActivity(new Intent(this, Motivation.class));
+	}
+
 }

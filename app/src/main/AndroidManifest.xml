@@ -18,6 +18,7 @@
         <activity android:name=".activities.Login"/>
         <activity android:name=".activities.Register"/>
         <activity android:name=".activities.Achievements"/>
+        <activity android:name=".activities.Motivation"/>
     </application>
 
 </manifest>

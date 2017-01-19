@@ -12,4 +12,9 @@
         android:orderInCategory="99"
         android:title="Achievements"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/motivation"
+        android:orderInCategory="98"
+        android:title="Motivational Tips"
+        app:showAsAction="never"/>
 </menu>
