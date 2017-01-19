@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 		switch (item.getItemId()) {
 			case R.id.login:
 				openLogin();
+				break;
 			case R.id.achievements:
 				openAchievement();
 				break;
