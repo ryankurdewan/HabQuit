@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 	 * Takes user to motivation page
 	 */
 	public void openMotivation () {
-		startActivity(new Intent(this, Motivation.class));
+//		startActivity(new Intent(this, Motivation.class));
 	}
 
 }
