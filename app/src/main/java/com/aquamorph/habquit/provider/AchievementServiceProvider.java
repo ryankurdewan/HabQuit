@@ -20,14 +20,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AchievementServiceProvider {
     AchievementService achievementService;
+
+    /**
+     * implementation of service is created here.
+     * base url for service is defined here
+     * basic service configuration is done here
+     */
     public AchievementServiceProvider(){
         achievementService = new Retrofit.Builder()
-    .baseUrl("http://habquit.azurewebsites.net/")
-    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-    .addConverterFactory(GsonConverterFactory.create())
-    .build().create(AchievementService.class);
+        .baseUrl("http://habquit.azurewebsites.net/")
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build().create(AchievementService.class);
     }
 
+    /**
+     * dispatches a GET request to remote server and informs listener of response.  If successful,
+     * a List of Achievement is returned to listener.
+     * @param listener
+     */
     public void  getAchievements(final AchievementService.OnAchievementListener listener){
         Call<List<Achievement>> call = achievementService.getAchievements();
         call.enqueue(new Callback<List<Achievement>>() {

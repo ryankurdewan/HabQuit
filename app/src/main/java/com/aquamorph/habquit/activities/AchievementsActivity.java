@@ -71,12 +71,21 @@ public class AchievementsActivity extends AppCompatActivity implements Achieveme
 
     }
 
+
+    /**
+     *   Calls achievementServiceProvider passing reference of self (implements OnAchivementListener)
+     *   to communicate properly with service
+     */
     private void getAchievement(){
         AchievementServiceProvider achievementServiceProvider = new AchievementServiceProvider();
         achievementServiceProvider.getAchievements(this);
     }
 
-
+    /**
+     * this function is called when the achievementServiceProvider successfully makes a service call
+     * to get a list of achievements from remote server (http status 200)
+     * @param achievements
+     */
     @Override
     public void onSuccess(List<Achievement> achievements) {
         AchievementAdapter achievementAdapter = new AchievementAdapter(achievements);

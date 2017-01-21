@@ -13,9 +13,20 @@ import retrofit2.http.GET;
  */
 
 public interface AchievementService {
-    @GET ("/api/values")
-    public Call<List<Achievement>> getAchievements();
 
+    /**
+     * this maps a service implementation (created in the constructor of AchievementServiceProvider)
+     * to the correct endpoint on a remote server
+     * @return
+     */
+    @GET ("/api/values")
+    Call<List<Achievement>> getAchievements();
+
+    /**
+     * this is an interface designed to allow communication between activity and service provider
+     * it is used to promote loose coupling and reuse of services.  AchievemntActivity implents this
+     * so AchievementServiceProvider knows what properties are available
+     */
     interface OnAchievementListener {
         void onSuccess(List<Achievement> achievements);
         void onError();
