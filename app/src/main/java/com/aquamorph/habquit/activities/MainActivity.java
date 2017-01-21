@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 	  * Takes user to achievement page
 	  */
 	  public void openAchievement () {
-		  startActivity(new Intent(this, Achievements.class));
+		  startActivity(new Intent(this, AchievementsActivity.class));
 	  }
 
 	/**

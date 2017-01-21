@@ -11,8 +11,11 @@ import android.widget.Toast;
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.AchievementAdapter;
 import com.aquamorph.habquit.model.Achievement;
+import com.aquamorph.habquit.provider.AchievementServiceProvider;
+import com.aquamorph.habquit.service.AchievementService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +29,7 @@ import butterknife.OnClick;
 //won by user.
 
 
-public class Achievements extends AppCompatActivity {
+public class AchievementsActivity extends AppCompatActivity implements AchievementService.OnAchievementListener {
 
     /* The @Bind is part of the butterknife from Jake Horton, It allows
     for allows for more convenince and cuts out boiler plate code.
@@ -45,28 +48,47 @@ public class Achievements extends AppCompatActivity {
         setContentView(R.layout.achievements);
 
         recyclerView = (RecyclerView) findViewById(R.id.achievements);
+        getAchievement();
 
-        //This is for testing of data. Later this will call rest service for data.
+
+
+
+        /* This is for testing of data. Later this will call rest service for data.
 
         ArrayList<Achievement> achievements = new ArrayList<>();
         for(int i=0;i<10;i++){
             Achievement achievements1 = new Achievement();
-            achievements1.setTitle("Title" + i);
-            achievements1.setMessage("Message" + 1);
+            achievements1.setAchievementTitle("Title" + i);
+            achievements1.setMessage("Message" + i);
             achievements1.setPoints(i);
             achievements.add(achievements1);
 
-        }
+        } */
 
         //This instantiates the adapter and sets the data.
 
-        AchievementAdapter achievementAdapter = new AchievementAdapter(achievements);
-          recyclerView.setAdapter(achievementAdapter);
-          recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 
+    private void getAchievement(){
+        AchievementServiceProvider achievementServiceProvider = new AchievementServiceProvider();
+        achievementServiceProvider.getAchievements(this);
+    }
 
+
+    @Override
+    public void onSuccess(List<Achievement> achievements) {
+        AchievementAdapter achievementAdapter = new AchievementAdapter(achievements);
+        recyclerView.setAdapter(achievementAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
+    @Override
+    public void onError() {
+
+    }
 }
 
 
@@ -75,11 +97,11 @@ public class Achievements extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Achievements.this,"I have been clicked",Toast.LENGTH_LONG).show();
+                Toast.makeText(AchievementsActivity.this,"I have been clicked",Toast.LENGTH_LONG).show();
             }
         }); */
 
  /* @OnClick(R.id.button)
     public void onButtonClick(){
-        Toast.makeText(Achievements.this,"Me too",Toast.LENGTH_LONG).show();
+        Toast.makeText(AchievementsActivity.this,"Me too",Toast.LENGTH_LONG).show();
     } */
