@@ -16,5 +16,10 @@
         android:id="@+id/motivation"
         android:orderInCategory="98"
         android:title="Motivational Tips"
-        app:showAsAction="never"/>
-</menu>
+    app:showAsAction="never"/>
+    <item
+        android:id="@+id/graphDisplay"
+        android:orderInCategory="97"
+        android:title="Statistics"
+        app:showAsAction="never" />
+    </menu>

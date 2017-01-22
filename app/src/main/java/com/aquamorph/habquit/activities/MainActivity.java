@@ -99,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.motivation:
 				openMotivation();
 				break;
+			case R.id.graphDisplay:
+				openGraphDisplay();
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -148,6 +151,10 @@ public class MainActivity extends AppCompatActivity {
 	 */
 	public void openMotivation () {
 //		startActivity(new Intent(this, Motivation.class));
+	}
+
+	public void openGraphDisplay(){
+		startActivity(new Intent(this, GraphDisplay.class));
 	}
 
 }
