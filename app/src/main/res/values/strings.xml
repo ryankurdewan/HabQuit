@@ -4,7 +4,14 @@
     <string name="login">Login</string>
 
     //Bottom navigation
-    <string name="text_favorites">Habits</string>
-    <string name="text_schedules">Graphs</string>
-    <string name="text_music">Savings</string>
+    <string name="text_favorites">Favorites</string>
+    <string name="text_schedules">Schedules</string>
+    <string name="text_music">Music</string>
+
+
+    //drop down menu strings
+    <string name="achieve">Achievement</string>
+    <string name="motivate">Motivation</string>
+    <string name="graph">Statistics</string>
+    <string name="main">Main Page</string>
 </resources>

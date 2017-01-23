@@ -3,6 +3,8 @@ package com.aquamorph.habquit.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 /**
  * Created by shawnkelly on 1/20/17.
  */
