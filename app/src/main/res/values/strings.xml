@@ -4,7 +4,7 @@
     <string name="login">Login</string>
 
     //Bottom navigation
-    <string name="text_favorites">Favorites</string>
-    <string name="text_schedules">Schedules</string>
-    <string name="text_music">Music</string>
+    <string name="text_favorites">Habits</string>
+    <string name="text_schedules">Graphs</string>
+    <string name="text_music">Savings</string>
 </resources>
