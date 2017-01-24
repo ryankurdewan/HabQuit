@@ -12,11 +12,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.model.Habit;
 
 public class MainActivity extends AppCompatActivity {
 
-	private static int cigaretteCount = 0;
-	private String beginText = "";
     private TextView textFavorites;
     private TextView textSchedules;
     private TextView textMusic;
@@ -62,20 +61,24 @@ public class MainActivity extends AppCompatActivity {
 		CardView cigarette = (CardView) findViewById(R.id.habit1);
 		final TextView smokingCountText = (TextView) findViewById(R.id.textView2);
 
-		beginText = getResources().getString(R.string.count_text) + " ";
-		smokingCountText.setText(beginText.concat(Integer.toString(cigaretteCount)));
+		final Habit habit1 = new Habit("Cigarettes", getBaseContext());
+		final TextView habit1Name = (TextView) findViewById(R.id.habitName);
+		habit1Name.setText(habit1.getName());
+		smokingCountText.setText(habit1.getText());
 
 		cigarette.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				smokingCountText.setText(incCount(beginText));
+				habit1.incCount();
+				smokingCountText.setText(habit1.getText());
 			}
 		});
 
 		cigarette.setOnLongClickListener(new View.OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View view) {
-				smokingCountText.setText(decCount(beginText));
+				habit1.decCount();
+				smokingCountText.setText(habit1.getText());
 				return true;
 			}
 		});
@@ -104,31 +107,6 @@ public class MainActivity extends AppCompatActivity {
 				break;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	/**
-	 * incCount() increased the habit count
-	 *
-	 * @param beginText
-	 * @return count text to be displayed
-	 */
-	public static String incCount(String beginText) {
-		cigaretteCount++;
-		return beginText + cigaretteCount;
-	}
-
-	/**
-	 * decCount() decreases the habit count
-	 *
-	 * @param beginText
-	 * @return count text to be displayed
-	 */
-	public static String decCount(String beginText) {
-        if (cigaretteCount > 0)
-        {
-            cigaretteCount--;
-        }
-		return beginText + cigaretteCount;
 	}
 
 	/**
