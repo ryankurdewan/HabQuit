@@ -16,18 +16,18 @@ import com.aquamorph.habquit.model.Habit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textFavorites;
-    private TextView textSchedules;
-    private TextView textMusic;
+    private TextView textHabitTab;
+    private TextView textGraphTab;
+    private TextView textSavingsTab;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-        textFavorites = (TextView) findViewById(R.id.text_favorites);
-        textSchedules = (TextView) findViewById(R.id.text_schedules);
-        textMusic = (TextView) findViewById(R.id.text_music);
+        textHabitTab = (TextView) findViewById(R.id.text_favorites);
+        textGraphTab = (TextView) findViewById(R.id.text_schedules);
+        textSavingsTab = (TextView) findViewById(R.id.text_music);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
@@ -38,19 +38,19 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_favorites:
-                                textFavorites.setVisibility(View.VISIBLE);
-                                textSchedules.setVisibility(View.GONE);
-                                textMusic.setVisibility(View.GONE);
+                                textHabitTab.setVisibility(View.VISIBLE);
+                                textGraphTab.setVisibility(View.GONE);
+                                textSavingsTab.setVisibility(View.GONE);
                                 break;
                             case R.id.action_schedules:
-                                textFavorites.setVisibility(View.GONE);
-                                textSchedules.setVisibility(View.VISIBLE);
-                                textMusic.setVisibility(View.GONE);
+                                textHabitTab.setVisibility(View.GONE);
+                                textGraphTab.setVisibility(View.VISIBLE);
+                                textSavingsTab.setVisibility(View.GONE);
                                 break;
                             case R.id.action_music:
-                                textFavorites.setVisibility(View.GONE);
-                                textSchedules.setVisibility(View.GONE);
-                                textMusic.setVisibility(View.VISIBLE);
+                                textHabitTab.setVisibility(View.GONE);
+                                textGraphTab.setVisibility(View.GONE);
+                                textSavingsTab.setVisibility(View.VISIBLE);
                                 break;
                         }
                         return true;
