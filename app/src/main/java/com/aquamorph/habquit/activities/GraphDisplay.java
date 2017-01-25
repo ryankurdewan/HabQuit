@@ -45,8 +45,7 @@ public class GraphDisplay extends AppCompatActivity {
         dates.add("Thursday");
         dates.add("Friday");
         dates.add("Saturday");
-
-        BarData theData = new BarData(barDataSet);
+        BarData theData = new BarData();
         barChart.setData(theData);
 
         barChart.setDragEnabled(true);
