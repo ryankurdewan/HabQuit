@@ -40,6 +40,6 @@ public class BarGraph extends GraphDisplay {
         barChart.setDragEnabled(true);
         barChart.setTouchEnabled(true);
         barChart.setScaleEnabled(true);
-        barChart.animateXY(2000, 3000);
+        barChart.animateXY(2000, 3420);
     }
 }
