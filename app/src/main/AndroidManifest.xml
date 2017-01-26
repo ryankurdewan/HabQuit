@@ -19,6 +19,7 @@
         <activity android:name=".activities.Register"/>
         <activity android:name=".activities.AchievementsActivity"/>
         <activity android:name=".activities.GraphDisplay"/>
+        <activity android:name=".activities.BarGraph"/>
 
     </application>
 
