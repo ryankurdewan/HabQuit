@@ -24,4 +24,16 @@
         android:layout_marginStart="13dp"
         android:layout_marginTop="17dp"
         android:id="@+id/seven_line" />
+
+    <Button
+        android:text="30 Day Tracker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seven_line"
+        android:layout_alignLeft="@+id/seven_line"
+        android:layout_alignStart="@+id/seven_line"
+        android:layout_marginTop="17dp"
+        android:layout_alignRight="@+id/seven_line"
+        android:layout_alignEnd="@+id/seven_line"
+        android:id="@+id/thirty_day" />
 </RelativeLayout>
