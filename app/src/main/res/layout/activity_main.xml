@@ -9,6 +9,12 @@
     android:orientation="vertical"
     tools:context="com.aquamorph.habquit.activities.MainActivity">
 
+    <fragment android:name="com.aquamorph.habquit.fragments.AssistantFragment"
+              android:id="@+id/fragment_assistant"
+              android:layout_weight="0"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

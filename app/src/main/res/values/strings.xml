@@ -14,4 +14,6 @@
     <string name="motivate">Motivation</string>
     <string name="graph">Statistics</string>
     <string name="main">Main Page</string>
+
+    <string name="assistant_default_text">Hello, worthless addict human!</string>
 </resources>

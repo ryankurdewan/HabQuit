@@ -1,5 +1,5 @@
 
-package com.aquamorph.habquit.activities;
+package com.aquamorph.habquit.utils;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.ViewPortHandler;
