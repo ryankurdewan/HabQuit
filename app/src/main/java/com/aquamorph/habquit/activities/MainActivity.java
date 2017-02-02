@@ -4,13 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.fragments.ChartsFragment;
+import com.aquamorph.habquit.fragments.HabitFragment;
+import com.aquamorph.habquit.fragments.SavingsFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+	private Fragment fragment;
+	private FragmentManager fragmentManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,21 +30,32 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
 
+		fragmentManager = getSupportFragmentManager();
+		fragment = new HabitFragment();
+		final FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.add(R.id.fragment, fragment).commit();
+
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.action_favorites:
+                            case R.id.habits_bottom_menu:
+	                            fragment = new HabitFragment();
                                 break;
-                            case R.id.action_schedules:
+                            case R.id.charts_bottom_menu:
+	                            fragment = new ChartsFragment();
                                 break;
-                            case R.id.action_music:
+                            case R.id.savings_bottom_menu:
+	                            fragment = new SavingsFragment();
                                 break;
                         }
+	                    final FragmentTransaction transaction = fragmentManager.beginTransaction();
+	                    transaction.replace(R.id.fragment, fragment).commit();
                         return true;
                     }
                 }
+
         );
 	}
 
