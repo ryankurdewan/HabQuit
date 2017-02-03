@@ -4,59 +4,52 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aquamorph.habquit.R;
-import com.aquamorph.habquit.fragments.ChartsFragment;
-import com.aquamorph.habquit.fragments.HabitFragment;
-import com.aquamorph.habquit.fragments.SavingsFragment;
+import com.aquamorph.habquit.adapter.BottomNavPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-	private Fragment fragment;
-	private FragmentManager fragmentManager;
+	private ViewPager viewPager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		BottomNavigationView bottomNavigationView = (BottomNavigationView)
+				findViewById(R.id.bottom_navigation);
 
+		// Creates fragments and allows switching between them
+		viewPager = (ViewPager) findViewById(R.id.fragment);
+		BottomNavPagerAdapter bottomNavPagerAdapter =
+				new BottomNavPagerAdapter(getSupportFragmentManager());
+		viewPager.setOffscreenPageLimit(bottomNavPagerAdapter.getCount());
+		viewPager.setAdapter(bottomNavPagerAdapter);
+		// Handles bottom navigation click
+		bottomNavigationView.setOnNavigationItemSelectedListener(
+				new BottomNavigationView.OnNavigationItemSelectedListener() {
+					@Override
+					public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+						switch (item.getItemId()) {
+							case R.id.habits_bottom_menu:
+								viewPager.setCurrentItem(0);
+								break;
+							case R.id.charts_bottom_menu:
+								viewPager.setCurrentItem(1);
+								break;
+							case R.id.savings_bottom_menu:
+								viewPager.setCurrentItem(2);
+								break;
+						}
+						return true;
+					}
+				}
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
-
-		fragmentManager = getSupportFragmentManager();
-		fragment = new HabitFragment();
-		final FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.add(R.id.fragment, fragment).commit();
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.habits_bottom_menu:
-	                            fragment = new HabitFragment();
-                                break;
-                            case R.id.charts_bottom_menu:
-	                            fragment = new ChartsFragment();
-                                break;
-                            case R.id.savings_bottom_menu:
-	                            fragment = new SavingsFragment();
-                                break;
-                        }
-	                    final FragmentTransaction transaction = fragmentManager.beginTransaction();
-	                    transaction.replace(R.id.fragment, fragment).commit();
-                        return true;
-                    }
-                }
-
-        );
+		);
 	}
 
 	@Override
@@ -92,21 +85,21 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 
-     /**
-	  * Takes user to achievement page
-	  */
-	  public void openAchievement () {
-		  startActivity(new Intent(this, AchievementsActivity.class));
-	  }
+	/**
+	 * Takes user to achievement page
+	 */
+	public void openAchievement() {
+		startActivity(new Intent(this, AchievementsActivity.class));
+	}
 
 	/**
 	 * Takes user to motivation page
 	 */
-	public void openMotivation () {
+	public void openMotivation() {
 //		startActivity(new Intent(this, Motivation.class));
 	}
 
-	public void openGraphDisplay(){
+	public void openGraphDisplay() {
 		startActivity(new Intent(this, GraphDisplay.class));
 	}
 
