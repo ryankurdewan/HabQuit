@@ -22,4 +22,9 @@
         android:orderInCategory="97"
         android:title="Statistics"
         app:showAsAction="never" />
+    <item
+        android:title="Habit Selection"
+        android:id="@id/select_habits"
+        android:orderInCategory="80"
+        app:showAsAction="never" />
     </menu>

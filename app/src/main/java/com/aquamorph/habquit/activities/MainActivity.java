@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.graphDisplay:
 				openGraphDisplay();
 				break;
+			case R.id.select_habits:
+				openHabitSelectActivity();
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -102,5 +105,7 @@ public class MainActivity extends AppCompatActivity {
 	public void openGraphDisplay() {
 		startActivity(new Intent(this, GraphDisplay.class));
 	}
+
+	public void openHabitSelectActivity() {startActivity(new Intent(this, HabitSelectActivity.class));}
 
 }

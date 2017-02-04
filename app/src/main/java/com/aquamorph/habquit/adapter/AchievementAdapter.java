@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
-import com.aquamorph.habquit.model.Achievement;
+
 import com.aquamorph.habquit.model.UserAchievement;
 
 import java.util.List;
