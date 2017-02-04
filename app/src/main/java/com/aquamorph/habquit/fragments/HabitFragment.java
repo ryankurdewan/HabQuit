@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.model.Habit;
+import com.aquamorph.habquit.model.TrackHabit;
+import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 
 /**
  * <p></p>
@@ -28,14 +30,19 @@ public class HabitFragment extends Fragment {
 		CardView cigarette = (CardView) view.findViewById(R.id.habit1);
 		final TextView smokingCountText = (TextView) view.findViewById(R.id.textView2);
 
+
 		final Habit habit1 = new Habit("Cigarettes", view.getContext());
 		final TextView habit1Name = (TextView) view.findViewById(R.id.habitName);
 		habit1Name.setText(habit1.getName());
 		smokingCountText.setText(habit1.getText());
 
+		final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider();
+
 		cigarette.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				//this view should be loading a habit from the dbso we would have a true habit id
+				serviceProvider.postTrackHabit(1);
 				habit1.incCount();
 				smokingCountText.setText(habit1.getText());
 			}

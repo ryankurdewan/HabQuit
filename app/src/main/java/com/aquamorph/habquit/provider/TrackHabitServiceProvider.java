@@ -2,10 +2,16 @@ package com.aquamorph.habquit.provider;
 
 import android.util.Log;
 
+import com.aquamorph.habquit.model.IdResponse;
 import com.aquamorph.habquit.model.TrackHabit;
 import com.aquamorph.habquit.service.TrackHabitService;
+import com.google.gson.Gson;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,6 +60,21 @@ public class TrackHabitServiceProvider {
             public void onFailure(Call<List<TrackHabit>> call, Throwable t) {
                 Log.d("Track Habit failure", t.getMessage());
                 listener.onError();
+            }
+        });
+    }
+
+    public void postTrackHabit(int habitId){
+        Call<TrackHabit> call = trackHabitService.postTrackHabit(LoginServiceProvider.getInstance().getUserId(),habitId);
+        call.enqueue(new Callback<TrackHabit>() {
+            @Override
+            public void onResponse(Call<TrackHabit> call, Response<TrackHabit> response) {
+                TrackHabit trackResponse = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<TrackHabit> call, Throwable t) {
+                String s = t.getMessage();
             }
         });
     }
