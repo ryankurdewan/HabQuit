@@ -68,13 +68,14 @@ public class AchievementsActivity extends AppCompatActivity implements Achieveme
 
 
     /**
-     *   Calls achievementServiceProvider passing reference of self (implements OnAchivementListener)
+     *   Calls achievementServiceProvider passing reference of self (implements OnAchievementListener)
      *   to communicate properly with service
      */
     private void getAchievement(){
         AchievementServiceProvider achievementServiceProvider = new AchievementServiceProvider();
         achievementServiceProvider.getAchievements(this);
     }
+
 
     /**
      * this function is called when the achievementServiceProvider successfully makes a service call
