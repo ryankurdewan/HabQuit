@@ -3,11 +3,19 @@ package com.aquamorph.habquit.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by Shawn on 2/4/2017.
  */
 public class HabitParameter {
     private static HabitParameter ourInstance = new HabitParameter();
+
+    private static final String HABITS_PREFS = "habitPreferences";
+    private static final String HABITS = "habits";
 
     private SharedPreferences sharedPreferences;
 
@@ -22,6 +30,29 @@ public class HabitParameter {
     }
 
     public void init(Context context){
+        sharedPreferences = context.getSharedPreferences(HABITS_PREFS,Context.MODE_PRIVATE);
+    }
 
+    public void addHabit(int habitId){
+        Set<String> habits = sharedPreferences.getStringSet(HABITS, new HashSet<String>());
+        Set<String> in = new HashSet<>(habits);
+        in.add(String.valueOf(habitId));
+        sharedPreferences.edit().putStringSet(HABITS,in).apply();
+    }
+
+    public void removeHabit(int habitId){
+        Set<String> habits = sharedPreferences.getStringSet(HABITS, new HashSet<String>());
+        Set<String> in = new HashSet<>(habits);
+        in.remove(String.valueOf(habitId));
+        sharedPreferences.edit().putStringSet(HABITS,in).apply();
+    }
+
+    public List<Integer> getHabitIds(){
+        List<Integer> ids = new ArrayList<>();
+        Set<String> habits = sharedPreferences.getStringSet(HABITS, new HashSet<String>());
+        for(String habit : habits){
+            ids.add(Integer.parseInt(habit));
+        }
+        return ids;
     }
 }
