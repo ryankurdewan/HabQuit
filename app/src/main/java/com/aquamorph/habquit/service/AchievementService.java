@@ -19,7 +19,7 @@ public interface AchievementService {
      * to the correct endpoint on a remote server
      * @return
      */
-    @GET ("/api/values")
+    @GET ("/api/user_reg")
     Call<List<Achievement>> getAchievements();
 
     /**

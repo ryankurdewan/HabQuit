@@ -4,6 +4,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.List;
+
 /**
  * Created by Shawn on 2/3/2017.
  */
@@ -18,6 +20,8 @@ public class UserAchievement {
     @Expose
     @SerializedName("user_achieve")
     private int userAchieve;
+    @Expose
+    private List<AchieveList> achieveLists;
 
 
     public int getUserId() {
@@ -42,6 +46,14 @@ public class UserAchievement {
 
     public void setUserAchieve(int userAchieve) {
         this.userAchieve = userAchieve;
+    }
+
+    public List<AchieveList> getAchieveLists() {
+        return achieveLists;
+    }
+
+    public void setAchieveLists(List<AchieveList> achieveLists) {
+        this.achieveLists = achieveLists;
     }
 }
 
