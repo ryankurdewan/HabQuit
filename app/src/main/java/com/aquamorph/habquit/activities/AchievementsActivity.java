@@ -7,23 +7,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.AchievementAdapter;
-import com.aquamorph.habquit.model.Achievement;
 import com.aquamorph.habquit.model.UserReg;
-import com.aquamorph.habquit.provider.AchievementServiceProvider;
-import com.aquamorph.habquit.service.AchievementService;
-import com.aquamorph.habquit.activities.MainActivity;
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.aquamorph.habquit.provider.UserServiceProvider;
+import com.aquamorph.habquit.service.UserService;
 
 /**
  * Created by Shawn on 1/17/2017.
@@ -33,7 +22,7 @@ import butterknife.OnClick;
 //won by user.
 
 
-public class AchievementsActivity extends AppCompatActivity implements AchievementService.OnAchievementListener {
+public class AchievementsActivity extends AppCompatActivity implements UserService.OnAchievementListener {
 
     /* The @Bind is part of the butterknife from Jake Horton, It allows
     for allows for more convenience and cuts out boiler plate code.
@@ -73,8 +62,8 @@ public class AchievementsActivity extends AppCompatActivity implements Achieveme
      *   to communicate properly with service
      */
     private void getAchievement(){
-        AchievementServiceProvider achievementServiceProvider = new AchievementServiceProvider();
-        achievementServiceProvider.getUserRegs(this);
+        UserServiceProvider userServiceProvider = new UserServiceProvider();
+        userServiceProvider.getUserRegs(this);
     }
 
 

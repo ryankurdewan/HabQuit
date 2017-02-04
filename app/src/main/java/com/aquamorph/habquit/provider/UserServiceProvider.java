@@ -4,9 +4,7 @@ import android.util.Log;
 
 
 import com.aquamorph.habquit.model.UserReg;
-import com.aquamorph.habquit.service.AchievementService;
-
-import java.util.List;
+import com.aquamorph.habquit.service.UserService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,20 +17,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Shawn on 1/21/2017.
  */
 
-public class AchievementServiceProvider {
-    AchievementService achievementService;
+public class UserServiceProvider {
+    UserService achievementService;
 
     /**
      * implementation of service is created here.
      * base url for service is defined here
      * basic service configuration is done here
      */
-    public AchievementServiceProvider(){
+    public UserServiceProvider(){
         achievementService = new Retrofit.Builder()
         .baseUrl("http://habquit.azurewebsites.net/")
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
-        .build().create(AchievementService.class);
+        .build().create(UserService.class);
     }
 
     /**
@@ -40,7 +38,7 @@ public class AchievementServiceProvider {
      * a List of Achievement is returned to listener.
      * @param listener
      */
-    public void  getUserRegs (final AchievementService.OnAchievementListener listener){
+    public void  getUserRegs (final UserService.OnAchievementListener listener){
         Call<UserReg> call = achievementService.getUserReg(1); //THis is where we'll user id
         call.enqueue(new Callback<UserReg>() {
             @Override
