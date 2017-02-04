@@ -20,8 +20,10 @@ public class HabitSgk {
     @Expose
     private List<AchieveList> achieveLists;
     @Expose
+    @SerializedName("motivation")
     private List<Motivation> motivations;
     @Expose
+    @SerializedName("track_habits")
     private List<TrackHabit> trackHabits;
 
     public int getHabitId() {

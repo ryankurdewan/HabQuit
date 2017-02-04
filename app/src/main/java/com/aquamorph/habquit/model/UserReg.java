@@ -33,8 +33,10 @@ public class UserReg {
     @SerializedName("state")
     private String state;
     @Expose
+    @SerializedName("user_achievements")
     private List<UserAchievement> userAchievements;
     @Expose
+    @SerializedName("track_habits")
     private List<TrackHabit> trackHabits;
 
     public int getUserId() {

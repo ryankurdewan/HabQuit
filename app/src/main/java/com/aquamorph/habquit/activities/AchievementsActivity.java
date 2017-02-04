@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.AchievementAdapter;
 import com.aquamorph.habquit.model.Achievement;
+import com.aquamorph.habquit.model.UserReg;
 import com.aquamorph.habquit.provider.AchievementServiceProvider;
 import com.aquamorph.habquit.service.AchievementService;
 import com.aquamorph.habquit.activities.MainActivity;
@@ -73,7 +74,7 @@ public class AchievementsActivity extends AppCompatActivity implements Achieveme
      */
     private void getAchievement(){
         AchievementServiceProvider achievementServiceProvider = new AchievementServiceProvider();
-        achievementServiceProvider.getAchievements(this);
+        achievementServiceProvider.getUserRegs(this);
     }
 
 
@@ -83,8 +84,8 @@ public class AchievementsActivity extends AppCompatActivity implements Achieveme
      * @param achievements
      */
     @Override
-    public void onSuccess(List<Achievement> achievements) {
-        AchievementAdapter achievementAdapter = new AchievementAdapter(achievements);
+    public void onSuccess(UserReg userReg) {
+        AchievementAdapter achievementAdapter = new AchievementAdapter(userReg.getUserAchievements());
         recyclerView.setAdapter(achievementAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

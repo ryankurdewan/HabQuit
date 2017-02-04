@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.model.Achievement;
+import com.aquamorph.habquit.model.UserAchievement;
 
 import java.util.List;
 
@@ -19,10 +20,10 @@ import java.util.List;
 
 public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.ViewHolder>{
 
-    private List<Achievement> achievements;
+    private List<UserAchievement> userAchievements;
 
-    public AchievementAdapter(List<Achievement> achievements){
-        this.achievements = achievements;
+    public AchievementAdapter(List<UserAchievement> userAchievements){
+        this.userAchievements = userAchievements;
     }
 
     @Override
@@ -34,31 +35,31 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Achievement achievement = achievements.get(position);
-        if(achievement != null){
+        UserAchievement userAchievement = userAchievements.get(position);
+        if(userAchievement != null){
             //load view holder
-            holder.title.setText(achievement.getAchievementTitle());
-            holder.points.setText(String.valueOf(achievement.getPoints()));
-            holder.message.setText(achievement.getMessage());
+            holder.title.setText(userAchievement.getAchieveLists().getTitle());
+            holder.points.setText(String.valueOf(userAchievement.getAchieveLists().getPoints()));
+            holder.description.setText(userAchievement.getAchieveLists().getDescription());
         }
     }
 
     @Override
     public int getItemCount() {
-        return achievements != null ? achievements.size() : 0;
+        return userAchievements != null ? userAchievements.size() : 0;
     }
 
 
     public static final class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView title;
-        TextView message;
+        TextView description;
         TextView points;
 
         public ViewHolder(View v){
             super(v);
             title = (TextView) v.findViewById(R.id.title);
-            message = (TextView) v.findViewById(R.id.message);
+            description = (TextView) v.findViewById(R.id.description);
             points = (TextView) v.findViewById(R.id.points);
         }
     }

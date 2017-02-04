@@ -21,7 +21,8 @@ public class UserAchievement {
     @SerializedName("user_achieve")
     private int userAchieve;
     @Expose
-    private List<AchieveList> achieveLists;
+    @SerializedName("achieve_list")
+    private AchieveList achieveLists;
 
 
     public int getUserId() {
@@ -48,11 +49,11 @@ public class UserAchievement {
         this.userAchieve = userAchieve;
     }
 
-    public List<AchieveList> getAchieveLists() {
+    public AchieveList getAchieveLists() {
         return achieveLists;
     }
 
-    public void setAchieveLists(List<AchieveList> achieveLists) {
+    public void setAchieveLists(AchieveList achieveLists) {
         this.achieveLists = achieveLists;
     }
 }

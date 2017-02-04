@@ -34,6 +34,7 @@ public class AchieveList {
     @SerializedName("habit")
     private HabitSgk habitSgk;
     @Expose
+    @SerializedName("user_achievements")
     private List<UserAchievement> userAchievements;
 
     public int getAchievementId() {

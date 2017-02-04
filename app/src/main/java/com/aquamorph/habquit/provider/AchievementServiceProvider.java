@@ -2,7 +2,8 @@ package com.aquamorph.habquit.provider;
 
 import android.util.Log;
 
-import com.aquamorph.habquit.model.Achievement;
+
+import com.aquamorph.habquit.model.UserReg;
 import com.aquamorph.habquit.service.AchievementService;
 
 import java.util.List;
@@ -39,17 +40,17 @@ public class AchievementServiceProvider {
      * a List of Achievement is returned to listener.
      * @param listener
      */
-    public void  getAchievements(final AchievementService.OnAchievementListener listener){
-        Call<List<Achievement>> call = achievementService.getAchievements();
-        call.enqueue(new Callback<List<Achievement>>() {
+    public void  getUserRegs (final AchievementService.OnAchievementListener listener){
+        Call<UserReg> call = achievementService.getUserReg(1); //THis is where we'll user id
+        call.enqueue(new Callback<UserReg>() {
             @Override
-            public void onResponse(Call<List<Achievement>> call, Response<List<Achievement>> response) {
-                List<Achievement> achievements = response.body();
-                listener.onSuccess(achievements);
+            public void onResponse(Call<UserReg> call, Response<UserReg> response) {
+                UserReg userReg = response.body();
+                listener.onSuccess(userReg);
             }
 
             @Override
-            public void onFailure(Call<List<Achievement>> call, Throwable t) {
+            public void onFailure(Call<UserReg> call, Throwable t) {
                 Log.d("Shit",t.getMessage());
                 listener.onError();
             }
