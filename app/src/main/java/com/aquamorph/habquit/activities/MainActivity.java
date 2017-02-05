@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 	 * openLogin() starts login activity
 	 */
 	public void openLogin() {
-		startActivity(new Intent(this, Login.class));
+		startActivity(new Intent(this, LoginActivity.class));
 	}
 
 
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void openGraphDisplay() {
-		startActivity(new Intent(this, GraphDisplay.class));
+		startActivity(new Intent(this, GraphDisplayActivity.class));
 	}
 
 	public void openHabitSelectActivity() {startActivity(new Intent(this, HabitSelectActivity.class));}

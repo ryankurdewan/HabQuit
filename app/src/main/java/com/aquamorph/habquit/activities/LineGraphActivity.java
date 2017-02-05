@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by JuiceBox1 on 1/26/2017.
  */
 
-public class LineGraph extends GraphDisplay {
+public class LineGraphActivity extends GraphDisplayActivity {
     LineChart lineGraph;
 
     @Override

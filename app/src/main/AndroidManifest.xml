@@ -18,12 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Login" />
-        <activity android:name=".activities.Register" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.AchievementsActivity" />
-        <activity android:name=".activities.GraphDisplay" />
-        <activity android:name=".activities.BarGraph" />
-        <activity android:name=".activities.LineGraph" />
+        <activity android:name=".activities.GraphDisplayActivity" />
+        <activity android:name=".activities.BarGraphActivity" />
+        <activity android:name=".activities.LineGraphActivity" />
         <activity android:name=".activities.HabitSelectActivity"></activity>
     </application>
 

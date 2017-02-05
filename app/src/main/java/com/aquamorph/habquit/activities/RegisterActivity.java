@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.aquamorph.habquit.R;
 
-public class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,6 @@ public class Register extends AppCompatActivity {
      * openLogin() starts login activity
      */
     public void openLogin() {
-        startActivity(new Intent(this, Login.class));
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }

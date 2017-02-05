@@ -8,26 +8,31 @@ import android.widget.Button;
 
 import com.aquamorph.habquit.R;
 
-public class Login extends AppCompatActivity {
+
+/**
+ * Created by JuiceBox1 on 1/18/2017.
+ */
+
+public class GraphDisplayActivity extends AppCompatActivity {
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_page);
-		Button loginButton = (Button) findViewById(R.id.registerButton);
-
-		loginButton.setOnClickListener(new View.OnClickListener() {
+		setContentView(R.layout.graph_display);
+		Button btn = (Button) findViewById(R.id.seven_line);
+		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				openRegister();
+				openSevenDayGraph();
 			}
 		});
 	}
 
-	/**
-	 * openRegister() starts register activity
-	 */
-	public void openRegister() {
-		startActivity(new Intent(this, Register.class));
+	public void openSevenDayGraph() {
+		startActivity(new Intent(this, BarGraphActivity.class));
 	}
+
 }
+
+

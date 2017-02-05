@@ -13,7 +13,7 @@ import java.util.ArrayList;
 //***NOTE*** DB CONNECTION HAS NOT BEEN SETUP***
 //
 
-public class BarGraph extends GraphDisplay {
+public class BarGraphActivity extends GraphDisplayActivity {
     BarChart barChart;
     @Override
     protected void onCreate  (Bundle savedInstanceState)

@@ -89,7 +89,7 @@ public class AchievementsActivity extends AppCompatActivity implements UserServi
     //Creates and sets options menu
 
    public void openGraphDisplay(){
-       startActivity(new Intent(this, GraphDisplay.class));
+       startActivity(new Intent(this, GraphDisplayActivity.class));
    }
 
    public void openMotivation(){
