@@ -16,4 +16,9 @@
     <string name="main">Main Page</string>
 
     <string name="assistant_default_text">Hello, worthless addict human!</string>
+
+    //Widget added by JCW
+    <string name="appwidget_text">Increment Habit Widget</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
 </resources>

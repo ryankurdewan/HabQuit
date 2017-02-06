@@ -24,7 +24,23 @@
         <activity android:name=".activities.GraphDisplayActivity" />
         <activity android:name=".activities.BarGraphActivity" />
         <activity android:name=".activities.LineGraphActivity" />
-        <activity android:name=".activities.HabitSelectActivity"></activity>
+        <activity android:name=".activities.HabitSelectActivity" />
+
+        <receiver android:name="layout.widget_activity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_activity_info" />
+        </receiver>
+
+        <activity android:name="layout.widget_activityConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
