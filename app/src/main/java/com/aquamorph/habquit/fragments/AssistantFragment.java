@@ -111,6 +111,7 @@ public class AssistantFragment extends Fragment {
 			assistantMessageText.postDelayed(new Runnable() {
 				public void run() {
 					assistantMessageText.setVisibility(View.INVISIBLE);
+					assistantMessageText.setText("");
 				}
 			}, 5000);
 		}
