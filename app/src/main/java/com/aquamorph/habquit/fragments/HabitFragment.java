@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.model.Habit;
-import com.aquamorph.habquit.model.TrackHabit;
 import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 
 /**
@@ -44,6 +43,7 @@ public class HabitFragment extends Fragment {
 				//this view should be loading a habit from the dbso we would have a true habit id
 				serviceProvider.postTrackHabit(1);
 				habit1.incCount();
+				AssistantFragment.changeMood(-5);
 				smokingCountText.setText(habit1.getText());
 			}
 		});
@@ -52,6 +52,7 @@ public class HabitFragment extends Fragment {
 			@Override
 			public boolean onLongClick(View view) {
 				habit1.decCount();
+				AssistantFragment.changeMood(5);
 				smokingCountText.setText(habit1.getText());
 				return true;
 			}

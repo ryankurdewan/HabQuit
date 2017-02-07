@@ -2,7 +2,6 @@ package com.aquamorph.habquit.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +23,14 @@ import static com.aquamorph.habquit.fragments.AssistantFragment.Mood.Mad;
 
 public class AssistantFragment extends Fragment {
 
-	private String TAG = "AssistantFragment";
-	TextView assistantMessageText;
-	ImageView assistant;
-	private int mood = 50;
-	private Animation clockwise;
-	private Animation counter;
+	private static String TAG = "AssistantFragment";
+	private static TextView assistantMessageText;
+	private static ImageView assistant;
+	private static int mood = 70;
+	private static Animation happyToNeutral;
+	private static Animation madToNeutral;
+	private static Animation neutralToHappy;
+	private static Animation neutralToMad;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,10 +39,19 @@ public class AssistantFragment extends Fragment {
 		assistantMessageText = (TextView) view.findViewById(R.id.assistant_message);
 		assistant = (ImageView) view.findViewById(R.id.assistant);
 
-		clockwise = AnimationUtils.loadAnimation(getContext().getApplicationContext(),
-				R.anim.rotate_clockwise);
-		counter = AnimationUtils.loadAnimation(getContext().getApplicationContext(),
-				R.anim.rotate_counter_clockwise);
+		happyToNeutral = AnimationUtils.loadAnimation(getContext().getApplicationContext(),
+				R.anim.assistant_happy_to_neutral);
+		madToNeutral = AnimationUtils.loadAnimation(getContext().getApplicationContext(),
+				R.anim.assistant_mad_to_neutral);
+		neutralToHappy = AnimationUtils.loadAnimation(getContext().getApplicationContext(),
+				R.anim.assistant_neutral_to_happy);
+		neutralToMad = AnimationUtils.loadAnimation(getContext().getApplicationContext(),
+				R.anim.assistant_neutral_to_mad);
+
+		happyToNeutral.setAnimationListener(new AssistantAnimationListener());
+		madToNeutral.setAnimationListener(new AssistantAnimationListener());
+		neutralToHappy.setAnimationListener(new AssistantAnimationListener());
+		neutralToMad.setAnimationListener(new AssistantAnimationListener());
 
 		assistant.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -62,6 +72,18 @@ public class AssistantFragment extends Fragment {
 			}
 		});
 		checkMood();
+		switch (getMoodFromValue(getMood())) {
+			case Mad:
+				assistant.setRotation(90);
+				break;
+			case Neutral:
+				assistant.setRotation(45);
+				break;
+			case Happy:
+			default:
+				assistant.setRotation(0);
+				break;
+		}
 		return view;
 	}
 
@@ -70,13 +92,13 @@ public class AssistantFragment extends Fragment {
 	 *
 	 * @param text
 	 */
-	public void sendMessage(String text) {
+	public static void sendMessage(String text) {
 		if (assistantMessageText != null) {
 			assistantMessageText.setText(text);
 		}
 	}
 
-	public int getMood() {
+	public static int getMood() {
 		return mood;
 	}
 
@@ -85,47 +107,49 @@ public class AssistantFragment extends Fragment {
 	 *
 	 * @param changeAmount sets how much you want to adjust the mood.
 	 */
-	public void changeMood(int changeAmount) {
+	public static void changeMood(int changeAmount) {
 		int init = getMood();
 		mood = mood + changeAmount;
 		if (mood > 100) mood = 100;
 		else if (mood < 0) mood = 0;
-		checkMood();
 		// Sets transition animation if needed
 		if (getMoodFromValue(init) != getMoodFromValue(getMood())) {
-			if ((init - getMood()) > 0)
-				assistant.startAnimation(clockwise);
-			else
-				assistant.startAnimation(counter);
-
+			if ((init - getMood()) > 0) {
+				if (getMoodFromValue(getMood()) == Mood.Neutral)
+					assistant.startAnimation(happyToNeutral);
+				else
+					assistant.startAnimation(neutralToMad);
+			}
+			else {
+				if (getMoodFromValue(getMood()) == Mood.Neutral)
+					assistant.startAnimation(madToNeutral);
+				else
+					assistant.startAnimation(neutralToHappy);
+			}
 		}
 	}
 
 	/**
 	 * Checks the mood of the AI and changes the design based on its mood.
 	 */
-	private void checkMood() {
+	public static void checkMood() {
 		if (assistant != null) {
-			Log.i(TAG, "My mood is " + getMoodFromValue(getMood()));
 			switch (getMoodFromValue(getMood())) {
 				case Mad:
-					assistant.setRotation(90);
 					assistant.setImageResource(R.drawable.ai_mad);
 					break;
 				case Neutral:
-					assistant.setRotation(45);
 					assistant.setImageResource(R.drawable.ai_neutral);
 					break;
 				case Happy:
 				default:
-					assistant.setRotation(0);
 					assistant.setImageResource(R.drawable.ai_happy);
 					break;
 			}
 		}
 	}
 
-	private Mood getMoodFromValue(int moodValue) {
+	private static Mood getMoodFromValue(int moodValue) {
 		if (moodValue < 40) return Mad;
 		else if (moodValue < 60) return Mood.Neutral;
 		else return Mood.Happy;
@@ -136,3 +160,4 @@ public class AssistantFragment extends Fragment {
 	}
 
 }
+
