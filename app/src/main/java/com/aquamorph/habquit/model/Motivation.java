@@ -22,6 +22,9 @@ public class Motivation {
     @SerializedName("habit_id")
     private int habitId;
     @Expose
+    @SerializedName("type_id")
+    private int typeId;
+    @Expose
     @SerializedName("habit")
     private HabitSgk habitSgk;
 
@@ -63,5 +66,13 @@ public class Motivation {
 
     public void setHabitSgk(HabitSgk habitSgk) {
         this.habitSgk = habitSgk;
+    }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 }
