@@ -5,7 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,7 +49,6 @@ public class AssistantFragment extends Fragment {
 				R.anim.assistant_neutral_to_happy);
 		neutralToMad = AnimationUtils.loadAnimation(getContext().getApplicationContext(),
 				R.anim.assistant_neutral_to_mad);
-
 		happyToNeutral.setAnimationListener(new AssistantAnimationListener());
 		madToNeutral.setAnimationListener(new AssistantAnimationListener());
 		neutralToHappy.setAnimationListener(new AssistantAnimationListener());
@@ -94,7 +95,24 @@ public class AssistantFragment extends Fragment {
 	 */
 	public static void sendMessage(String text) {
 		if (assistantMessageText != null) {
+			final Animation in = new AlphaAnimation(0.0f, 1.0f);
+			in.setDuration(500);
+			final Animation out = new AlphaAnimation(1.0f, 0.0f);
+			out.setDuration(500);
+
+			AnimationSet as = new AnimationSet(true);
+			as.addAnimation(in);
+			out.setStartOffset(4500);
+			as.addAnimation(out);
+
 			assistantMessageText.setText(text);
+			assistantMessageText.startAnimation(as);
+			assistantMessageText.setVisibility(View.VISIBLE);
+			assistantMessageText.postDelayed(new Runnable() {
+				public void run() {
+					assistantMessageText.setVisibility(View.INVISIBLE);
+				}
+			}, 5000);
 		}
 	}
 

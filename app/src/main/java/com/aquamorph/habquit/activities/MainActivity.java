@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.BottomNavPagerAdapter;
+import com.aquamorph.habquit.fragments.AssistantFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 				}
 
 		);
+		AssistantFragment.sendMessage("Hello, worthless addict human!");
 	}
 
 	@Override

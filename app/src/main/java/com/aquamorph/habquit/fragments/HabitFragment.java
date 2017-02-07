@@ -41,7 +41,7 @@ public class HabitFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				//this view should be loading a habit from the dbso we would have a true habit id
-				serviceProvider.postTrackHabit(1);
+//				serviceProvider.postTrackHabit(1);
 				habit1.incCount();
 				AssistantFragment.changeMood(-5);
 				smokingCountText.setText(habit1.getText());
