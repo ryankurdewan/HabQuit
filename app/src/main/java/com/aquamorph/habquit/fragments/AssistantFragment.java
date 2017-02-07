@@ -2,6 +2,7 @@ package com.aquamorph.habquit.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 import static com.aquamorph.habquit.fragments.AssistantFragment.Mood.Mad;
 
@@ -28,11 +32,13 @@ public class AssistantFragment extends Fragment {
 	private static String TAG = "AssistantFragment";
 	private static TextView assistantMessageText;
 	private static ImageView assistant;
-	private static int mood = 70;
+	private static double mood = 70.0;
 	private static Animation happyToNeutral;
 	private static Animation madToNeutral;
 	private static Animation neutralToHappy;
 	private static Animation neutralToMad;
+	private static Queue<String> messageQueue = new LinkedList<String>();
+	private static Boolean isMessageDisplayed = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,24 +60,6 @@ public class AssistantFragment extends Fragment {
 		neutralToHappy.setAnimationListener(new AssistantAnimationListener());
 		neutralToMad.setAnimationListener(new AssistantAnimationListener());
 
-		assistant.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				changeMood(5);
-				if (getMood() < 60 && getMood() > 45)
-					sendMessage("I see you have a clear wish to die alone by age 40");
-				else
-					sendMessage("My mood is " + getMood());
-			}
-		});
-		assistant.setOnLongClickListener(new View.OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View view) {
-				changeMood(-5);
-				sendMessage("My mood is " + getMood());
-				return true;
-			}
-		});
 		checkMood();
 		switch (getMoodFromValue(getMood())) {
 			case Mad:
@@ -89,12 +77,20 @@ public class AssistantFragment extends Fragment {
 	}
 
 	/**
-	 * Allow to
+	 * Allows the assistant to display massages
 	 *
 	 * @param text
 	 */
 	public static void sendMessage(String text) {
-		if (assistantMessageText != null) {
+		messageQueue.add(text);
+		displayMessage();
+	}
+
+	/**
+	 * Helper function to display messages in a queue
+	 */
+	private static void displayMessage() {
+		if (assistantMessageText != null && !messageQueue.isEmpty() && !isMessageDisplayed) {
 			final Animation in = new AlphaAnimation(0.0f, 1.0f);
 			in.setDuration(500);
 			final Animation out = new AlphaAnimation(1.0f, 0.0f);
@@ -105,19 +101,28 @@ public class AssistantFragment extends Fragment {
 			out.setStartOffset(4500);
 			as.addAnimation(out);
 
-			assistantMessageText.setText(text);
+			isMessageDisplayed = true;
+			assistantMessageText.setText(messageQueue.poll());
 			assistantMessageText.startAnimation(as);
 			assistantMessageText.setVisibility(View.VISIBLE);
 			assistantMessageText.postDelayed(new Runnable() {
 				public void run() {
 					assistantMessageText.setVisibility(View.INVISIBLE);
 					assistantMessageText.setText("");
+					isMessageDisplayed = false;
+					if (!messageQueue.isEmpty())
+						displayMessage();
 				}
 			}, 5000);
 		}
 	}
 
-	public static int getMood() {
+	/**
+	 * Gives the raw value of the assistant.
+	 *
+	 * @return raw mood value
+	 */
+	public static double getMood() {
 		return mood;
 	}
 
@@ -126,11 +131,12 @@ public class AssistantFragment extends Fragment {
 	 *
 	 * @param changeAmount sets how much you want to adjust the mood.
 	 */
-	public static void changeMood(int changeAmount) {
-		int init = getMood();
-		mood = mood + changeAmount;
-		if (mood > 100) mood = 100;
-		else if (mood < 0) mood = 0;
+	public static void changeMood(double changeAmount) {
+		double init = getMood();
+		Log.i(TAG, "Init Mood is " + init);
+		mood = getMood() + changeAmount;
+		if (mood > 100.0) mood = 100.0;
+		else if (mood < 0.0) mood = 0.0;
 		// Sets transition animation if needed
 		if (getMoodFromValue(init) != getMoodFromValue(getMood())) {
 			if ((init - getMood()) > 0) {
@@ -138,8 +144,7 @@ public class AssistantFragment extends Fragment {
 					assistant.startAnimation(happyToNeutral);
 				else
 					assistant.startAnimation(neutralToMad);
-			}
-			else {
+			} else {
 				if (getMoodFromValue(getMood()) == Mood.Neutral)
 					assistant.startAnimation(madToNeutral);
 				else
@@ -153,6 +158,7 @@ public class AssistantFragment extends Fragment {
 	 */
 	public static void checkMood() {
 		if (assistant != null) {
+			Log.i(TAG, "Checking mood " + getMoodFromValue(getMood()));
 			switch (getMoodFromValue(getMood())) {
 				case Mad:
 					assistant.setImageResource(R.drawable.ai_mad);
@@ -168,12 +174,21 @@ public class AssistantFragment extends Fragment {
 		}
 	}
 
-	private static Mood getMoodFromValue(int moodValue) {
-		if (moodValue < 40) return Mad;
-		else if (moodValue < 60) return Mood.Neutral;
+	/**
+	 * Gives the mood of the assistant based on a given value
+	 *
+	 * @param moodValue mood value
+	 * @return assistant mood
+	 */
+	private static Mood getMoodFromValue(double moodValue) {
+		if (moodValue < 40.0) return Mad;
+		else if (moodValue < 60.0) return Mood.Neutral;
 		else return Mood.Happy;
 	}
 
+	/**
+	 * Three state moods for the assistant.
+	 */
 	public enum Mood {
 		Happy, Neutral, Mad
 	}

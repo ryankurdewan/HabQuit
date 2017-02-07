@@ -43,9 +43,9 @@ public class HabitFragment extends Fragment {
 				//this view should be loading a habit from the dbso we would have a true habit id
 				serviceProvider.postTrackHabit(1);
 				habit1.incCount();
-				if (habit1.getCount() == 2)
+				if (habit1.getCount() == 2.0)
 					AssistantFragment.sendMessage("You sure are set on dying young. Sad!");
-				AssistantFragment.changeMood(-5);
+				AssistantFragment.changeMood(-5.0);
 				smokingCountText.setText(habit1.getText());
 			}
 		});
@@ -54,11 +54,11 @@ public class HabitFragment extends Fragment {
 			@Override
 			public boolean onLongClick(View view) {
 				habit1.decCount();
-				if (habit1.getCount() == 5)
+				if (habit1.getCount() == 6.0)
 					AssistantFragment.sendMessage("Nicotine addiction is like an itch. If you" +
 							" itch, it's nice to scratch it. But better to have no itch at all."
 							+ "- Dali Lama");
-				AssistantFragment.changeMood(5);
+				AssistantFragment.changeMood(5.0);
 				smokingCountText.setText(habit1.getText());
 				return true;
 			}
