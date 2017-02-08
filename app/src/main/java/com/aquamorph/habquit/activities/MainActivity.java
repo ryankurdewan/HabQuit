@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.achievements:
 				openAchievement();
 				break;
-			case R.id.motivation:
+			case R.id.motivations:
 				openMotivation();
 				break;
 			case R.id.graphDisplay:
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.select_habits:
 				openHabitSelectActivity();
 				break;
+
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 	 * Takes user to motivation page
 	 */
 	public void openMotivation() {
-//		startActivity(new Intent(this, Motivation.class));
+		startActivity(new Intent(this, MotivationActivity.class));
 	}
 
 	public void openGraphDisplay() {

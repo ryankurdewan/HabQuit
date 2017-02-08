@@ -13,7 +13,7 @@
         android:title="Achievements"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/motivation"
+        android:id="@+id/motivations"
         android:orderInCategory="98"
         android:title="Motivational Tips"
     app:showAsAction="never"/>
@@ -27,4 +27,4 @@
         android:id="@id/select_habits"
         android:orderInCategory="80"
         app:showAsAction="never" />
-    </menu>
+</menu>
