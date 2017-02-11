@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "309646805683",
+    "project_id": "habquit"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309646805683:android:d7ee4b89567b093e",
+        "android_client_info": {
+          "package_name": "com.aquamorph.habquit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309646805683-4tllb34626apv317j7uubr45f5e3lkmu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aquamorph.habquit",
+            "certificate_hash": "FDA0CDAE61A6D1276A14D0FA87562C617338E696"
+          }
+        },
+        {
+          "client_id": "309646805683-5md7ohrj3f0j4bpils344ibk7lhtpoc7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADedh538oQybs2IPcYOhnVyjaecBGYIpQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

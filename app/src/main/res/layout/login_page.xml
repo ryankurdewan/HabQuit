@@ -4,79 +4,51 @@
         TODO not wired up yet it doesn't go anywhere just a layout
 -->
 
-<RelativeLayout
+<LinearLayout
     android:id="@+id/activity_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.aquamorph.habquit.activities.MainActivity"
-    android:background="#DBDBDB">
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="100px"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/editText3"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
-        android:layout_marginTop="46dp"
-        android:id="@+id/editText4"
-        android:text="Password"
-        android:background="@android:color/background_light"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_alignEnd="@+id/editText3" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="100px"
-        android:inputType="textPersonName"
-        android:text="Username"
-        android:ems="10"
-        android:id="@+id/editText3"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:background="@android:color/background_light" />
-
-    <Button
-        android:text="Register"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/registerButton"
-        android:layout_marginTop="32dp"
-        android:background="#C1CAD6"
-        android:layout_below="@+id/editText4"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4" />
+        android:orientation="horizontal"
+        android:id="@+id/profile_section">
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_picture"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/user_name"
+                android:text="John Smith"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/user_email"
+                android:text="john@smith.com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout Google Account"
+                android:id="@+id/user_logout"/>
+        </LinearLayout>
 
-    <Button
-        android:text="Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:background="#C1CAD6"
-        android:layout_alignBaseline="@+id/registerButton"
-        android:layout_alignBottom="@+id/registerButton"
-        android:layout_alignRight="@+id/editText4"
-        android:layout_alignEnd="@+id/editText4" />
+    </LinearLayout>
 
-    <Button
-        android:text="Forgot Password?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/registerButton"
-        android:layout_marginTop="37dp"
-        android:id="@+id/button4"
-        android:layout_alignLeft="@+id/registerButton"
-        android:layout_alignStart="@+id/registerButton"
-        android:layout_alignRight="@+id/button3"
-        android:layout_alignEnd="@+id/button3"
-        android:background="#C1CAD6" />
 
-</RelativeLayout>
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
