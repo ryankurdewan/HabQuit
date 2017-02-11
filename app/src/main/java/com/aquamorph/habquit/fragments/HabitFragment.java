@@ -64,7 +64,8 @@ public class HabitFragment extends Fragment implements HabitSgkService.OnHabitSg
 
 		final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider();
 
-		cigarette.setOnClickListener(new View.OnClickListener() {
+		cigarette.setOnClickListener(
+				new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				//this view should be loading a habit from the dbso we would have a true habit id

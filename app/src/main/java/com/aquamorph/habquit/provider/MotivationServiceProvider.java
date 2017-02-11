@@ -5,6 +5,8 @@ import android.util.Log;
 import com.aquamorph.habquit.model.Motivation;
 import com.aquamorph.habquit.service.MotivationService;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,19 +42,19 @@ public class MotivationServiceProvider {
 	 */
 
 	public void getMotivations (final MotivationService.OnMotivationListener listener) {
-		Call<Motivation> call = motivationService.getMotivation();
-		call.enqueue(new Callback<Motivation>() {
+		Call<List<Motivation>> call = motivationService.getMotivation();
+
+		call.enqueue(new Callback<List<Motivation>>() {
 			@Override
-			public void onResponse(Call<Motivation> call, Response<Motivation> response) {
-				Motivation motivation = response.body();
+			public void onResponse(Call<List<Motivation>> call, Response<List<Motivation>> response) {
+				List<Motivation> motivation = response.body();
 				listener.onSuccess(motivation);
 			}
 
 			@Override
-			public void onFailure(Call<Motivation> call, Throwable t) {
+			public void onFailure(Call<List<Motivation>> call, Throwable t) {
 				Log.d("Motivational Fail", t.getMessage());
 				listener.onError();
-
 			}
 		});
 	}

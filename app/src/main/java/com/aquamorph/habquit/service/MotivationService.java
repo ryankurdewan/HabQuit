@@ -2,6 +2,8 @@ package com.aquamorph.habquit.service;
 
 import com.aquamorph.habquit.model.Motivation;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -17,8 +19,8 @@ public interface MotivationService {
 	 * @return
 	 */
 
-	@GET("api/motivation")
-	Call<Motivation> getMotivation();
+	@GET("api/motivations")
+	Call<List<Motivation>> getMotivation();
 
 	/**
 	 * this is an interface designed to allow communication between activity and service provider
@@ -26,7 +28,7 @@ public interface MotivationService {
 	 * so MotivationServiceProvider knows what properties are available
 	 */
 	interface OnMotivationListener {
-		void onSuccess(Motivation motivation);
+		void onSuccess (List<Motivation> motivation);
 		void onError();
 	}
 }

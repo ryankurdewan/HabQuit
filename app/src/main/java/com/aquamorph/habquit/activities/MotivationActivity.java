@@ -30,11 +30,9 @@ public class MotivationActivity extends AppCompatActivity implements MotivationS
 		setContentView(R.layout.motivations);
 
 		recyclerView = (RecyclerView) findViewById(R.id.motivations);
-		motivationAdapter = new MotivationAdapter(motivations);
-		LinearLayoutManager llm = new LinearLayoutManager(getBaseContext());
-		llm.setOrientation(LinearLayoutManager.VERTICAL);
+		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+		motivationAdapter = new MotivationAdapter(null);
 		recyclerView.setAdapter(motivationAdapter);
-		recyclerView.setLayoutManager(llm);
 		getMotivation();
 	}
 
@@ -59,8 +57,9 @@ public class MotivationActivity extends AppCompatActivity implements MotivationS
 
 
 	@Override
-	public void onSuccess(Motivation motivation) {
-		motivations.add(motivation);
+	public void onSuccess(List<Motivation> motivation) {
+
+		motivationAdapter.setMotivations(motivation);
 		motivationAdapter.notifyDataSetChanged();
 	}
 

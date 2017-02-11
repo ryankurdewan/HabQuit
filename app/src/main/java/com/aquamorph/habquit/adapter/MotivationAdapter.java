@@ -56,6 +56,11 @@ public class MotivationAdapter extends RecyclerView.Adapter<MotivationAdapter.Vi
 			description = (TextView) v.findViewById(R.id.description);
 
 		}
+
+	}
+
+	public void setMotivations(List<Motivation> motivations) {
+		this.motivations = motivations;
 	}
 }
 

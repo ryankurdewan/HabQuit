@@ -52,8 +52,8 @@ public class TrackHabitServiceProvider {
         call.enqueue(new Callback<List<TrackHabit>>() {
             @Override
             public void onResponse(Call<List<TrackHabit>> call, Response<List<TrackHabit>> response) {
-                List<TrackHabit> trackHabits = response.body();
-                listener.onSuccess(trackHabits);
+                List<TrackHabit> trackHabit = response.body();
+                listener.onSuccess(trackHabit);
             }
 
             @Override
