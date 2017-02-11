@@ -23,6 +23,9 @@ import com.aquamorph.habquit.utils.HabitParameter;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * <p></p>
  *
@@ -33,7 +36,7 @@ import java.util.List;
 public class HabitFragment extends Fragment implements HabitSgkService.OnHabitSgkListener {
 
 	private RecyclerView recyclerView;
-
+    @BindView(R.id.empty) View empty;
 
 
 
@@ -44,6 +47,7 @@ public class HabitFragment extends Fragment implements HabitSgkService.OnHabitSg
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.habit_fragment, container, false);
+        ButterKnife.bind(this,view);
 		recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
 
@@ -114,8 +118,8 @@ public class HabitFragment extends Fragment implements HabitSgkService.OnHabitSg
             }
         }
 
-
-
+        empty.setVisibility(filtered.size() == 0 ? View.VISIBLE : View.GONE);
+        
 
         SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(filtered,true);
         recyclerView.setAdapter(selectHabitsAdapter);
