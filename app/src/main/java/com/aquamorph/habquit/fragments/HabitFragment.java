@@ -2,21 +2,16 @@ package com.aquamorph.habquit.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.SelectHabitsAdapter;
-import com.aquamorph.habquit.model.Habit;
 import com.aquamorph.habquit.model.HabitSgk;
 import com.aquamorph.habquit.provider.HabitSgkServiceProvider;
-import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 import com.aquamorph.habquit.service.HabitSgkService;
 import com.aquamorph.habquit.utils.HabitParameter;
 
@@ -46,7 +41,7 @@ public class HabitFragment extends Fragment implements HabitSgkService.OnHabitSg
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.habit_fragment, container, false);
+		View view = inflater.inflate(R.layout.fragment_habit, container, false);
         ButterKnife.bind(this,view);
 		recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));

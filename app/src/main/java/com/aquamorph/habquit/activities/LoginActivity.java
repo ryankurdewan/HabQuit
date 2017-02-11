@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	private LinearLayout profileSection;
 	private Button signOut;
 	private SignInButton signIn;
-	private TextView nameTextView, emailTextView;
+	private TextView nameTextView, emailTextView, givenNameTextView, familyNameTextView, idTextView;
 	private ImageView profilePicture;
 	private GoogleApiClient googleApiClient;
 	private static final int REQ_CODE = 9001;
@@ -43,6 +43,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		signIn = (SignInButton) findViewById(R.id.sign_in_button);
 		nameTextView = (TextView) findViewById(R.id.user_name);
 		emailTextView = (TextView) findViewById(R.id.user_email);
+		givenNameTextView = (TextView) findViewById(R.id.user_given_name);
+		familyNameTextView = (TextView) findViewById(R.id.user_family_name);
+		idTextView = (TextView) findViewById(R.id.user_id);
 		profilePicture = (ImageView) findViewById(R.id.profile_picture);
 		signIn.setOnClickListener(this);
 		signOut.setOnClickListener(this);
@@ -89,12 +92,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	private void handleResult(GoogleSignInResult result) {
 		if(result.isSuccess()) {
 			GoogleSignInAccount account = result.getSignInAccount();
-			String name = account.getDisplayName();
-			String email = account.getEmail();
-			String imgURL = account.getPhotoUrl().toString();
-			nameTextView.setText(name);
-			emailTextView.setText(email);
-			Glide.with(this).load(imgURL).into(profilePicture);
+			nameTextView.setText(account.getDisplayName());
+			emailTextView.setText(account.getEmail());
+			givenNameTextView.setText(account.getGivenName());
+			familyNameTextView.setText(account.getFamilyName());
+			idTextView.setText(account.getId());
+			Glide.with(this).load(account.getPhotoUrl().toString()).into(profilePicture);
 			updateUI(true);
 		}
 		else updateUI(false);
