@@ -35,7 +35,7 @@ public class HabitSelectActivity extends AppCompatActivity implements HabitSgkSe
 
     @Override
     public void onSuccess(List<HabitSgk> habitSgks) {
-        SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(habitSgks);
+        SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(habitSgks,false);
         recyclerView.setAdapter(selectHabitsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

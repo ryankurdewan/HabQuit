@@ -3,14 +3,25 @@ package com.aquamorph.habquit.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.adapter.SelectHabitsAdapter;
 import com.aquamorph.habquit.model.Habit;
+import com.aquamorph.habquit.model.HabitSgk;
+import com.aquamorph.habquit.provider.HabitSgkServiceProvider;
 import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
+import com.aquamorph.habquit.service.HabitSgkService;
+import com.aquamorph.habquit.utils.HabitParameter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p></p>
@@ -19,14 +30,26 @@ import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
  * @version 2/2/2017
  */
 
-public class HabitFragment extends Fragment {
+public class HabitFragment extends Fragment implements HabitSgkService.OnHabitSgkListener {
+
+	private RecyclerView recyclerView;
+
+
+
+
+
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.habit_fragment, container, false);
+		recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
 
-		CardView cigarette = (CardView) view.findViewById(R.id.habit1);
+
+
+		/*CardView cigarette = (CardView) view.findViewById(R.id.habit1);
 		final TextView smokingCountText = (TextView) view.findViewById(R.id.textView2);
 
 
@@ -63,7 +86,44 @@ public class HabitFragment extends Fragment {
 				return true;
 			}
 		});
-
+*/
 		return view;
 	}
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getHabitSgk();
+    }
+
+
+    private void getHabitSgk() {
+        HabitSgkServiceProvider habitSgkServiceProvider = new HabitSgkServiceProvider();
+        habitSgkServiceProvider.getHabitSgks(this);
+    }
+
+    @Override
+    public void onSuccess(List<HabitSgk> habitSgks) {
+        List<HabitSgk> filtered = new ArrayList<>();
+        HabitParameter habitParameter = HabitParameter.getInstance();
+        for(HabitSgk h : habitSgks)
+        {
+            if(habitParameter.getHabitIds().contains(h.getHabitId()))
+            {
+                filtered.add(h);
+            }
+        }
+
+
+
+
+        SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(filtered,true);
+        recyclerView.setAdapter(selectHabitsAdapter);
+
+    }
+
+    @Override
+    public void onError() {
+
+    }
 }
