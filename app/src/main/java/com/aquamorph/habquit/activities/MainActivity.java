@@ -79,7 +79,9 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.select_habits:
 				openHabitSelectActivity();
 				break;
-
+            case R.id.add_habit:
+                openAddHabitActivity();
+                break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -112,4 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
 	public void openHabitSelectActivity() {startActivity(new Intent(this, HabitSelectActivity.class));}
 
+	public void openAddHabitActivity() {
+        startActivity(new Intent(this, AddHabitActivity.class));
+    }
 }
