@@ -84,38 +84,6 @@ public class AchievementsActivity extends AppCompatActivity implements UserServi
     public void onError() {
 
     }
-
-
-    //Creates and sets options menu
-
-   public void openGraphDisplay(){
-       startActivity(new Intent(this, GraphDisplayActivity.class));
-   }
-
-   public void openMotivation(){
-      // startActivity(new Intent(this, Motivation.class));
-   }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.achievement_drop_down_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.graphDisplay:
-                openGraphDisplay();
-                break;
-            case R.id.motivation:
-                openMotivation();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 }
  /* Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
