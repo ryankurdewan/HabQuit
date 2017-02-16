@@ -1,23 +1,25 @@
 <resources>
+    // Miscellaneous strings
     <string name="app_name">HabQuit</string>
     <string name="count_text">Count</string>
-    <string name="login">Login</string>
 
-    //Bottom navigation
+    // Bottom navigation strings
     <string name="text_favorites">Habits</string>
     <string name="text_schedules">Charts</string>
     <string name="text_music">Savings</string>
 
+    // Drop down menu strings
+    <string name="add_habit">Add Habit</string>
+    <string name="select_habits">Select Habits</string>
+    <string name="achievements">Achievements</string>
+    <string name="motivational_tips">Motivational Tips</string>
+    <string name="statistics">Statistics</string>
+    <string name="login">Login</string>
 
-    //drop down menu strings
-    <string name="achieve">Achievement</string>
-    <string name="motivate">Motivation</string>
-    <string name="graph">Statistics</string>
-    <string name="main">Main Page</string>
-
+    // Default assistant text strings
     <string name="assistant_default_text">Hello, worthless addict human!</string>
 
-    //Widget added by JCW
+    // Widget strings added by JCW
     <string name="appwidget_text">Increment Habit Widget</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
