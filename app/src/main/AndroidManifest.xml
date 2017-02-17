@@ -26,6 +26,7 @@
         <activity android:name=".activities.LineGraphActivity" />
         <activity android:name=".activities.HabitSelectActivity" />
         <activity android:name=".activities.MotivationActivity" />
+        <activity android:name=".activities.AddHabitActivity" />
 
         <receiver android:name="layout.widget_activity">
             <intent-filter>
