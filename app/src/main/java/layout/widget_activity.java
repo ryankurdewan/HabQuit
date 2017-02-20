@@ -4,6 +4,9 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
+import android.content.Intent;
+import android.widget.Toast;
+import android.app.PendingIntent;
 
 import com.aquamorph.habquit.R;
 
@@ -13,6 +16,8 @@ import com.aquamorph.habquit.R;
  */
 //Widget activity added by JCW
 public class widget_activity extends AppWidgetProvider {
+
+    private static final String CLICK_ACTION = "myCustomAction";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -29,8 +34,24 @@ public class widget_activity extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
-        for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
+        System.out.println("on-update widget");
+
+        for (int widgetId : appWidgetIds) {
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
+                    R.layout.widget_activity);
+
+            Intent intent = new Intent(context, widget_activity.class);
+
+            intent.setAction(CLICK_ACTION);
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+                    0, intent, 0);
+
+            remoteViews.setOnClickPendingIntent(R.id.button2,
+                    pendingIntent);
+
+            appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
     }
 
@@ -50,6 +71,21 @@ public class widget_activity extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+
+        String action = intent.getAction();
+
+        System.out.println("onReceive action: " + action);
+
+        if (CLICK_ACTION.equals(action)) {
+            System.out.println("clicked ");
+            Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show();
+        }
+
     }
 }
 
