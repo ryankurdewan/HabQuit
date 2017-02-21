@@ -1,26 +1,29 @@
-package com.aquamorph.habquit.model;
+package com.aquamorph.habquit;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 
-import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.activities.MainActivity;
+import com.aquamorph.habquit.model.Habit;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertEquals;
 
-
 /**
- * Unit Test for the Habit Model
+ * Test for changing habit count
  *
  * @author Christian Colglazier
- * @version 1/23/2017
+ * @version 2/20/2017
  */
-@RunWith(AndroidJUnit4.class)
+@RunWith(RobolectricTestRunner.class)
+@Config( constants = BuildConfig.class, manifest="../../../../../src/main/AndroidManifest.xml",
+		sdk = 21 )
 public class HabitTest {
-	Context context = InstrumentationRegistry.getTargetContext();
+	Context context = Robolectric.setupActivity(MainActivity.class);
 
 	@Test
 	public void setcount() throws Exception {
