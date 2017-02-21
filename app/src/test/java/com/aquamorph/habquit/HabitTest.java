@@ -11,7 +11,8 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
+
 
 /**
  * Test for changing habit count
@@ -23,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 @Config( constants = BuildConfig.class, manifest="../../../../../src/main/AndroidManifest.xml",
 		sdk = 21 )
 public class HabitTest {
-	Context context = Robolectric.setupActivity(MainActivity.class);
+	Context context = Robolectric.buildActivity(MainActivity.class).create().get();
 
 	@Test
 	public void setcount() throws Exception {
