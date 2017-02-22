@@ -87,6 +87,16 @@ public class AssistantFragment extends Fragment {
 	}
 
 	/**
+	 * Allows for all messages to be cleared
+	 */
+	public static void clearMessages() {
+		assistantMessageText.clearAnimation();
+		assistantMessageText.setText("");
+		isMessageDisplayed = false;
+		messageQueue.clear();
+	}
+
+	/**
 	 * Helper function to display messages in a queue
 	 */
 	private static void displayMessage() {
@@ -156,7 +166,7 @@ public class AssistantFragment extends Fragment {
 	/**
 	 * Checks the mood of the AI and changes the design based on its mood.
 	 */
-	public static void checkMood() {
+	protected static void checkMood() {
 		if (assistant != null) {
 			Log.i(TAG, "Checking mood " + getMoodFromValue(getMood()));
 			switch (getMoodFromValue(getMood())) {

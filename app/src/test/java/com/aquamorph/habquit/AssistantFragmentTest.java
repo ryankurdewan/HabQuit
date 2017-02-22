@@ -1,6 +1,7 @@
 package com.aquamorph.habquit;
 
-import android.content.Context;
+import android.app.Activity;
+import android.widget.TextView;
 
 import com.aquamorph.habquit.activities.MainActivity;
 import com.aquamorph.habquit.fragments.AssistantFragment;
@@ -24,7 +25,38 @@ import static junit.framework.Assert.assertEquals;
 @Config( constants = BuildConfig.class, manifest="../../../../../src/main/AndroidManifest.xml",
 		sdk = 21 )
 public class AssistantFragmentTest {
-	Context context = Robolectric.buildActivity(MainActivity.class).create().get();
+	Activity activity = Robolectric.buildActivity(MainActivity.class).create().get();
+
+	@Test
+	public void clearMessages() throws Exception {
+		TextView assistantMessage = (TextView) activity.findViewById(R.id.assistant_message);
+
+		// Tests single message display
+		String expected1 = "";
+		AssistantFragment.sendMessage("Test Message 1");
+		AssistantFragment.clearMessages();
+		assertEquals(expected1, assistantMessage.getText());
+	}
+
+	@Test
+	public void sendMessage() throws Exception {
+		TextView assistantMessage = (TextView) activity.findViewById(R.id.assistant_message);
+
+		// Tests single message display
+		String expected1 = "Test Message 1";
+		AssistantFragment.clearMessages();
+		AssistantFragment.sendMessage(expected1);
+		assertEquals(expected1, assistantMessage.getText());
+
+		// Tests message queue
+		String expected2 = "Test Message 2";
+		AssistantFragment.clearMessages();
+		AssistantFragment.sendMessage(expected2);
+		AssistantFragment.sendMessage("1");
+		AssistantFragment.sendMessage("2");
+		AssistantFragment.sendMessage("3");
+		assertEquals(expected2, assistantMessage.getText());
+	}
 
 	@Test
 	public void changeMood() throws Exception {
