@@ -22,15 +22,14 @@ import static junit.framework.Assert.assertEquals;
  */
 
 @RunWith(RobolectricTestRunner.class)
-@Config( constants = BuildConfig.class, manifest="../../../../../src/main/AndroidManifest.xml",
-		sdk = 21 )
+@Config(constants = BuildConfig.class, manifest = "../../../../../src/main/AndroidManifest.xml",
+		sdk = 21)
 public class AssistantFragmentTest {
-	Activity activity = Robolectric.buildActivity(MainActivity.class).create().get();
+	private Activity activity = Robolectric.buildActivity(MainActivity.class).create().get();
+	private TextView assistantMessage = (TextView) activity.findViewById(R.id.assistant_message);
 
 	@Test
 	public void clearMessages() throws Exception {
-		TextView assistantMessage = (TextView) activity.findViewById(R.id.assistant_message);
-
 		// Tests single message display
 		String expected1 = "";
 		AssistantFragment.sendMessage("Test Message 1");
@@ -40,7 +39,7 @@ public class AssistantFragmentTest {
 
 	@Test
 	public void sendMessage() throws Exception {
-		TextView assistantMessage = (TextView) activity.findViewById(R.id.assistant_message);
+
 
 		// Tests single message display
 		String expected1 = "Test Message 1";
@@ -52,9 +51,9 @@ public class AssistantFragmentTest {
 		String expected2 = "Test Message 2";
 		AssistantFragment.clearMessages();
 		AssistantFragment.sendMessage(expected2);
-		AssistantFragment.sendMessage("1");
-		AssistantFragment.sendMessage("2");
-		AssistantFragment.sendMessage("3");
+		AssistantFragment.sendMessage("1", 0);
+		AssistantFragment.sendMessage("2", 0);
+		AssistantFragment.sendMessage("3", 0);
 		assertEquals(expected2, assistantMessage.getText());
 	}
 
@@ -71,12 +70,12 @@ public class AssistantFragmentTest {
 		assertEquals(expected2, AssistantFragment.getMood());
 
 		// Tests increasing mood
-		double expected3 = 5.0;
-		AssistantFragment.changeMood(5.0);
+		double expected3 = 50.0;
+		AssistantFragment.changeMood(expected3);
 		assertEquals(expected3, AssistantFragment.getMood());
 
 		// Tests decreasing mood
-		double expected4 = 3.0;
+		double expected4 = expected3-2.0;
 		AssistantFragment.changeMood(-2.0);
 		assertEquals(expected4, AssistantFragment.getMood());
 	}

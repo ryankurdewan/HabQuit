@@ -24,7 +24,7 @@ import static com.aquamorph.habquit.fragments.AssistantFragment.Mood.Mad;
  * This fragment creates the assistant.
  *
  * @author Christian Colglazier
- * @version 2/1/2017
+ * @version 2/22/2017
  */
 
 public class AssistantFragment extends Fragment {
@@ -37,7 +37,7 @@ public class AssistantFragment extends Fragment {
 	private static Animation madToNeutral;
 	private static Animation neutralToHappy;
 	private static Animation neutralToMad;
-	private static Queue<String> messageQueue = new LinkedList<String>();
+	private static Queue<Message> messageQueue = new LinkedList<>();
 	private static Boolean isMessageDisplayed = false;
 
 	@Override
@@ -82,7 +82,12 @@ public class AssistantFragment extends Fragment {
 	 * @param text
 	 */
 	public static void sendMessage(String text) {
-		messageQueue.add(text);
+		messageQueue.add(new Message(text));
+		displayMessage();
+	}
+
+	public static void sendMessage(String text, int displayTime) {
+		messageQueue.add(new Message(text, displayTime));
 		displayMessage();
 	}
 
@@ -101,6 +106,8 @@ public class AssistantFragment extends Fragment {
 	 */
 	private static void displayMessage() {
 		if (assistantMessageText != null && !messageQueue.isEmpty() && !isMessageDisplayed) {
+			Message message = messageQueue.poll();
+			int time = message.displayTime;
 			final Animation in = new AlphaAnimation(0.0f, 1.0f);
 			in.setDuration(500);
 			final Animation out = new AlphaAnimation(1.0f, 0.0f);
@@ -108,11 +115,11 @@ public class AssistantFragment extends Fragment {
 
 			AnimationSet as = new AnimationSet(true);
 			as.addAnimation(in);
-			out.setStartOffset(4500);
+			out.setStartOffset(Math.max(time-500,0));
 			as.addAnimation(out);
 
 			isMessageDisplayed = true;
-			assistantMessageText.setText(messageQueue.poll());
+			assistantMessageText.setText(message.message);
 			assistantMessageText.startAnimation(as);
 			assistantMessageText.setVisibility(View.VISIBLE);
 			assistantMessageText.postDelayed(new Runnable() {
@@ -123,7 +130,7 @@ public class AssistantFragment extends Fragment {
 					if (!messageQueue.isEmpty())
 						displayMessage();
 				}
-			}, 5000);
+			}, time);
 		}
 	}
 
@@ -203,5 +210,20 @@ public class AssistantFragment extends Fragment {
 		Happy, Neutral, Mad
 	}
 
+	private static class Message {
+		String message;
+		int displayTime = 5000;
+
+		public Message(String message) {
+			this.message = message;
+		}
+
+		public Message(String message, int displayTime) {
+			this.message = message;
+			this.displayTime = displayTime;
+		}
+	}
 }
+
+
 
