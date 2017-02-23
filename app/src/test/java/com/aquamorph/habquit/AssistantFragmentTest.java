@@ -29,35 +29,6 @@ public class AssistantFragmentTest {
 	private TextView assistantMessage = (TextView) activity.findViewById(R.id.assistant_message);
 
 	@Test
-	public void clearMessages() throws Exception {
-		// Tests single message display
-		String expected1 = "";
-		AssistantFragment.sendMessage("Test Message 1");
-		AssistantFragment.clearMessages();
-		assertEquals(expected1, assistantMessage.getText());
-	}
-
-	@Test
-	public void sendMessage() throws Exception {
-
-
-		// Tests single message display
-		String expected1 = "Test Message 1";
-		AssistantFragment.clearMessages();
-		AssistantFragment.sendMessage(expected1);
-		assertEquals(expected1, assistantMessage.getText());
-
-		// Tests message queue
-		String expected2 = "Test Message 2";
-		AssistantFragment.clearMessages();
-		AssistantFragment.sendMessage(expected2);
-		AssistantFragment.sendMessage("1", 0);
-		AssistantFragment.sendMessage("2", 0);
-		AssistantFragment.sendMessage("3", 0);
-		assertEquals(expected2, assistantMessage.getText());
-	}
-
-	@Test
 	public void changeMood() throws Exception {
 		// Tests mood being set above range
 		double expected1 = 100.0;
@@ -78,5 +49,32 @@ public class AssistantFragmentTest {
 		double expected4 = expected3-2.0;
 		AssistantFragment.changeMood(-2.0);
 		assertEquals(expected4, AssistantFragment.getMood());
+	}
+
+	@Test
+	public void clearMessages() throws Exception {
+		// Tests single message display
+		String expected1 = "";
+		AssistantFragment.sendMessage("Test Message 1");
+		AssistantFragment.clearMessages();
+		assertEquals(expected1, assistantMessage.getText());
+	}
+
+	@Test
+	public void sendMessage() throws Exception {
+		// Tests single message display
+		String expected1 = "Test Message 1";
+		AssistantFragment.clearMessages();
+		AssistantFragment.sendMessage(expected1);
+		assertEquals(expected1, assistantMessage.getText());
+
+		// Tests message queue
+		String expected2 = "Test Message 2";
+		AssistantFragment.clearMessages();
+		AssistantFragment.sendMessage(expected2);
+		AssistantFragment.sendMessage("1", 0);
+		AssistantFragment.sendMessage("2", 0);
+		AssistantFragment.sendMessage("3", 0);
+		assertEquals(expected2, assistantMessage.getText());
 	}
 }
