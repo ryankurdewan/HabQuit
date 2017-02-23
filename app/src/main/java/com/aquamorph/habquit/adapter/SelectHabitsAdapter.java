@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.fragments.AssistantFragment;
 import com.aquamorph.habquit.model.HabitSgk;
+import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 import com.aquamorph.habquit.utils.Counter;
 import com.aquamorph.habquit.utils.HabitParameter;
 
@@ -69,6 +70,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 				listItemViewHolder.type.setText(habitSgk.getType());
 			} else {
 				final Counter counter = Counter.getInstance();
+				final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider();
 				final GridViewHolder gridViewHolder = (GridViewHolder) holder;
 				gridViewHolder.habitName.setText(habitSgk.getType());
 				gridViewHolder.habitCount.setText(String.valueOf(counter.getCountFor(habitSgk.getType())));
@@ -79,6 +81,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 						AssistantFragment.changeMood(-5.0);
 						count++;
 						counter.setCountFor(habitSgk.getType(), count);
+						serviceProvider.postTrackHabit(habitSgk.getHabitId());
 						SelectHabitsAdapter.this.notifyDataSetChanged();
 					}
 				});

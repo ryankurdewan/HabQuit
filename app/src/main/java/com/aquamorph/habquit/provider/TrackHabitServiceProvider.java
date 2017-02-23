@@ -78,4 +78,7 @@ public class TrackHabitServiceProvider {
             }
         });
     }
+    //public void deleteTrackHabit(int trackHabitId){
+     //   Call<TrackHabit> call = trackHabitService.deleteTrackHabit
+   // }
 }

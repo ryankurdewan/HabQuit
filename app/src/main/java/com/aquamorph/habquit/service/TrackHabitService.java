@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -35,6 +36,9 @@ public interface TrackHabitService {
      * it is used to promote loose coupling and reuse of services.  TrackHabitActivity implents this
      * so TrackHabitServiceProvider knows what properties are available
      */
+
+    @DELETE("api/track_habits/(track_habit_id)")
+    Call<TrackHabit> deleteTrackHabit(@Field("track_habit_id") int trackHabitId);
 
     interface OnTrackHabitListener {
         void onSuccess(List<TrackHabit> trackHabits);
