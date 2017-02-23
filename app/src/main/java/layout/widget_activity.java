@@ -2,6 +2,7 @@ package layout;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.widget.RemoteViews;
 import android.content.Intent;
@@ -10,14 +11,19 @@ import android.app.PendingIntent;
 
 import com.aquamorph.habquit.R;
 
+import static android.R.style.Widget;
+
 /**
  * Implementation of App Widget functionality.
  * App Widget Configuration implemented in {@link widget_activityConfigureActivity widget_activityConfigureActivity}
  */
+
+//Current issue: remove widget and the newly added widget does not update correctly
 //Widget activity added by JCW
 public class widget_activity extends AppWidgetProvider {
 
-    private static final String CLICK_ACTION = "myCustomAction";
+    private static final String SYNC_CLICKED    = "automaticWidgetSyncButtonClick";
+    private static int incCount = 0;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -34,24 +40,17 @@ public class widget_activity extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
-        System.out.println("on-update widget");
+        for (int appWidgetId : appWidgetIds) {
+            System.out.println("on-update widget");
 
-        for (int widgetId : appWidgetIds) {
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-                    R.layout.widget_activity);
+            RemoteViews remoteViews;
+            ComponentName watchWidget;
 
-            Intent intent = new Intent(context, widget_activity.class);
+            remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_activity);
+            watchWidget = new ComponentName(context, widget_activity.class);
 
-            intent.setAction(CLICK_ACTION);
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
-
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-                    0, intent, 0);
-
-            remoteViews.setOnClickPendingIntent(R.id.button2,
-                    pendingIntent);
-
-            appWidgetManager.updateAppWidget(widgetId, remoteViews);
+            remoteViews.setOnClickPendingIntent(R.id.widget_inc_button, getPendingSelfIntent(context, SYNC_CLICKED));
+            appWidgetManager.updateAppWidget(watchWidget, remoteViews);
         }
     }
 
@@ -75,17 +74,36 @@ public class widget_activity extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        // TODO Auto-generated method stub
         super.onReceive(context, intent);
+        if(intent != null) {
+            if (SYNC_CLICKED.equals(intent.getAction())) {
 
-        String action = intent.getAction();
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
-        System.out.println("onReceive action: " + action);
+                RemoteViews remoteViews;
+                ComponentName watchWidget;
 
-        if (CLICK_ACTION.equals(action)) {
-            System.out.println("clicked ");
-            Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show();
+                incCount++;
+                String incCountStr = Float.toString(incCount);
+
+                remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_activity);
+                watchWidget = new ComponentName(context, widget_activity.class);
+
+                remoteViews.setTextViewText(R.id.widget_inc_button, incCountStr);
+
+                appWidgetManager.updateAppWidget(watchWidget, remoteViews);
+
+            }
         }
 
+    }
+
+    protected PendingIntent getPendingSelfIntent(Context context, String action) {
+
+        Intent intent = new Intent(context, getClass());
+        intent.setAction(action);
+        return PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 }
 
