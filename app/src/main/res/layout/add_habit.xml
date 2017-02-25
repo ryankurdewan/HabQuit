@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#DBDBDB">
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="110dp"
+        android:id="@+id/add_habit_name"
+        android:layout_width="190dp"
+        android:layout_height="35dp"
+        android:text="Name"
         android:inputType="text"
-        android:text="Price"
-        android:id="@+id/price"
-        android:background="@android:color/background_light"/>
+        android:background="@android:color/background_light"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"/>
+
+    <EditText
+        android:id="@+id/add_habit_price"
+        android:layout_width="190dp"
+        android:layout_height="35dp"
+        android:text="Price Per Unit"
+        android:inputType="text"
+        android:background="@android:color/background_light"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/add_habit_name"/>
+
+    <Button
+        android:id="@+id/add_habit_button"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
+        android:text="Add Habit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/add_habit_price"/>
 
 </RelativeLayout>
