@@ -40,18 +40,21 @@ public class widget_activity extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
+
+        System.out.println("on-update widget");
+
+        RemoteViews remoteViews;
+        ComponentName watchWidget;
+
         for (int appWidgetId : appWidgetIds) {
-            System.out.println("on-update widget");
-
-            RemoteViews remoteViews;
-            ComponentName watchWidget;
-
+            PendingIntent pendingIntent = getPendingSelfIntent(context, SYNC_CLICKED);
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_activity);
             watchWidget = new ComponentName(context, widget_activity.class);
-
-            remoteViews.setOnClickPendingIntent(R.id.widget_inc_button, getPendingSelfIntent(context, SYNC_CLICKED));
+            remoteViews.setOnClickPendingIntent(R.id.widget_inc_button, pendingIntent);
             appWidgetManager.updateAppWidget(watchWidget, remoteViews);
         }
+
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override
@@ -75,7 +78,7 @@ public class widget_activity extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         // TODO Auto-generated method stub
-        super.onReceive(context, intent);
+
         if(intent != null) {
             if (SYNC_CLICKED.equals(intent.getAction())) {
 
@@ -96,6 +99,8 @@ public class widget_activity extends AppWidgetProvider {
 
             }
         }
+
+        //super.onReceive(context, intent);
 
     }
 
