@@ -91,6 +91,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 						int count = counter.getCountFor(habitSgk.getType());
 						AssistantFragment.changeMood(5.0);
 						count--;
+						if (count < 0) count = 0;
 						counter.setCountFor(habitSgk.getType(), count);
 						SelectHabitsAdapter.this.notifyDataSetChanged();
 						return true;
