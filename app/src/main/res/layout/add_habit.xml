@@ -3,34 +3,73 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#DBDBDB">
 
+
+
     <EditText
         android:id="@+id/add_habit_name"
-        android:layout_width="190dp"
-        android:layout_height="35dp"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
         android:text="Name"
         android:inputType="text"
         android:background="@android:color/background_light"
+        android:layout_marginTop="27dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"/>
+         />
+
+    <EditText
+        android:id="@+id/add_habit_goal"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:text="Goal per day"
+        android:inputType="text"
+        android:background="@android:color/background_light"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/add_habit_num_per_day"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/add_habit_goal_date"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:text="Goal Date"
+        android:inputType="text"
+        android:background="@android:color/background_light"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/add_habit_goal"
+        android:layout_centerHorizontal="true"/>
 
     <EditText
         android:id="@+id/add_habit_price"
-        android:layout_width="190dp"
-        android:layout_height="35dp"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
         android:text="Price Per Unit"
         android:inputType="text"
         android:background="@android:color/background_light"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/add_habit_goal_date"
         android:layout_marginTop="30dp"
-        android:layout_below="@id/add_habit_name"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp" />
+    <EditText
+        android:id="@+id/add_habit_num_per_day"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:text="Number per day"
+        android:inputType="text"
+        android:background="@android:color/background_light"
+        android:layout_marginTop="27dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/add_habit_name"
+       />
+
 
     <Button
         android:id="@+id/add_habit_button"
-        android:layout_width="190dp"
-        android:layout_height="45dp"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:text="Add Habit"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@id/add_habit_price"/>
 
 </RelativeLayout>

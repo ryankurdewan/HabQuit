@@ -10,37 +10,42 @@ import android.widget.EditText;
 
 import com.aquamorph.habquit.R;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created by ryansummerlin on 2/16/17.
  */
 
 public class AddHabitActivity extends AppCompatActivity {
-    EditText customHabitName;
-    EditText customHabitPrice;
-    Button customHabitButton;
+    EditText habitName;
+    EditText habitPrice;
+    EditText currentUsage;
+    EditText goalUsage;
+    EditText goalDate;
+
+
+    Button habitButton;
 
     SharedPreferences preferences;
-    final String PREFERENCES_FILE_NAME = "CustomHabitPreferences";
+    final String PREFERENCES_FILE_NAME = "HabitPreferences";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_habit);
 
-        customHabitName = (EditText) findViewById(R.id.add_habit_name);
-        customHabitPrice = (EditText) findViewById(R.id.add_habit_price);
-        customHabitButton = (Button) findViewById(R.id.add_habit_button);
+        habitName = (EditText) findViewById(R.id.add_habit_name);
+        habitPrice = (EditText) findViewById(R.id.add_habit_price);
+        currentUsage = (EditText) findViewById(R.id.add_habit_num_per_day);
+        goalUsage = (EditText) findViewById(R.id.add_habit_goal);
+        goalDate = (EditText) findViewById(R.id.add_habit_goal_date);
+        habitButton = (Button) findViewById(R.id.add_habit_button);
         preferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
 
-        customHabitButton.setOnClickListener(new View.OnClickListener() {
+        habitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addHabit(preferences,
-                         customHabitName.getText().toString(),
-                         customHabitPrice.getText().toString());
+                         habitName.getText().toString(),
+                         habitPrice.getText().toString());
 
             }
         });
