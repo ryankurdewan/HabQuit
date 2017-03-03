@@ -30,7 +30,7 @@ public class AddHabitActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_habit);
+        setContentView(R.layout.add_habit_page_two);
 
         habitName = (EditText) findViewById(R.id.add_habit_name);
         habitPrice = (EditText) findViewById(R.id.add_habit_price);
