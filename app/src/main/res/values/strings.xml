@@ -19,8 +19,10 @@
     // Default assistant text strings
     <string name="assistant_default_text">Hello, worthless addict human!</string>
 
-    // Widget strings added by JCW
-    <string name="appwidget_text">Increment Habit Widget</string>
-    <string name="configure">Configure</string>
+    // Widget strings
+    <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="configure">Configure</string>
+    <string name="appWidgetText">count</string>
+
 </resources>
