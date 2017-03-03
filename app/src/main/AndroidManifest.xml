@@ -28,18 +28,17 @@
         <activity android:name=".activities.MotivationActivity" />
         <activity android:name=".activities.AddHabitActivity" />
 
-        <receiver android:name="layout.AppWidget">
+        <receiver android:name="layout.widget_activity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="layout.automaticWidgetSyncButtonClick" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/app_widget_info" />
+                android:resource="@xml/widget_activity_info" />
         </receiver>
 
-        <activity android:name="layout.AppWidgetConfigureActivity">
+        <activity android:name="layout.widget_activityConfigureActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
