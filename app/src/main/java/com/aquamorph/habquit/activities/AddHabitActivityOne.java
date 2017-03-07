@@ -7,15 +7,16 @@ package com.aquamorph.habquit.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.aquamorph.habquit.R;
 
 public class AddHabitActivityOne extends AppCompatActivity {
 
-    Button addCig;
-    Button addSmokelessTobacco;
-    Button addBeer;
-    Button addSoda;
+    ImageButton addCig;
+    ImageButton addSmokelessTobacco;
+    ImageButton addBeer;
+    ImageButton addSoda;
 
 
     @Override

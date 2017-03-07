@@ -115,6 +115,6 @@ public class MainActivity extends AppCompatActivity {
 	public void openHabitSelectActivity() {startActivity(new Intent(this, HabitSelectActivity.class));}
 
 	public void openAddHabitActivity() {
-        startActivity(new Intent(this, AddHabitActivity.class));
+        startActivity(new Intent(this, AddHabitActivityTwo.class));
     }
 }

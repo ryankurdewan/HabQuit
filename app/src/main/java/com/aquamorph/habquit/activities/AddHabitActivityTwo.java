@@ -14,7 +14,7 @@ import com.aquamorph.habquit.R;
  * Created by ryansummerlin on 2/16/17.
  */
 
-public class AddHabitActivity extends AppCompatActivity {
+public class AddHabitActivityTwo extends AppCompatActivity {
     EditText habitName;
     EditText habitPrice;
     EditText currentUsage;
