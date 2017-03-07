@@ -8,55 +8,75 @@
         android:id="@+id/add_habit_cig"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="67dp"
         app:srcCompat="@drawable/ic_smoke_free"
         tools:ignore="ContentDescription,VectorDrawableCompat"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toLeftOf="@+id/add_habit_smokeless_tobacco"
+        android:layout_toStartOf="@+id/add_habit_smokeless_tobacco" />
 
     <ImageButton
         android:id="@+id/add_habit_beer"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:contentDescription="beer"
+        app:srcCompat="@drawable/ic_booze"
+        android:textAlignment="inherit"
         android:layout_alignTop="@+id/add_habit_cig"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:layout_toEndOf="@+id/add_habit_cig"
-        android:layout_toRightOf="@+id/add_habit_cig"
-        android:contentDescription="beer" />
+        android:layout_alignRight="@+id/add_habit_custom"
+        android:layout_alignEnd="@+id/add_habit_custom"
+        tools:ignore="VectorDrawableCompat" />
 
     <ImageButton
         android:id="@+id/add_habit_soda"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_alignEnd="@+id/add_habit_cig"
 
-        android:layout_alignRight="@+id/add_habit_cig"
+        android:contentDescription="soda"
+        app:srcCompat="@drawable/ic_soda"
         android:layout_below="@+id/add_habit_cig"
-        android:layout_marginTop="48dp"
-        android:contentDescription="soda" />
+        android:layout_alignLeft="@+id/add_habit_cig"
+        android:layout_alignStart="@+id/add_habit_cig"
+        android:layout_marginTop="39dp"
+        tools:ignore="VectorDrawableCompat" />
 
     <ImageButton
         android:id="@+id/add_habit_smokeless_tobacco"
+        app:srcCompat="@drawable/ic_leaf"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_alignLeft="@+id/add_habit_beer"
         android:layout_alignStart="@+id/add_habit_beer"
         android:layout_alignTop="@+id/add_habit_soda"
-        android:contentDescription="smokeless_tobacco" />
+        android:contentDescription="smokeless_tobacco"
+        android:textAlignment="center"
+        tools:ignore="VectorDrawableCompat" />
 
     <Button
         android:id="@+id/add_habit_custom"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="Custom Habit"
+        android:layout_marginBottom="25dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-         />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/page_heading"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:textSize="32sp"
+        android:layout_height="45dp"
+        android:focusable="false"
+        android:text="Select a Habit"
+        android:layout_above="@+id/add_habit_beer"
+        android:layout_alignLeft="@+id/add_habit_cig"
+        android:layout_alignStart="@+id/add_habit_cig"
+        android:layout_marginBottom="10dp"
+        android:layout_alignRight="@+id/add_habit_beer"
+        android:layout_alignEnd="@+id/add_habit_beer" />
 
 
 </RelativeLayout>
