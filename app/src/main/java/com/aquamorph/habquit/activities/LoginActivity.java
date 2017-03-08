@@ -11,9 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
-import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -90,14 +88,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 	private void handleResult(GoogleSignInResult result) {
 		if(result.isSuccess()) {
-			GoogleSignInAccount account = result.getSignInAccount();
-			nameTextView.setText(account.getDisplayName());
-			emailTextView.setText(account.getEmail());
-			givenNameTextView.setText(account.getGivenName());
-			familyNameTextView.setText(account.getFamilyName());
-			idTextView.setText(account.getId());
-			Glide.with(this).load(account.getPhotoUrl().toString()).into(profilePicture);
-			updateUI(true);
+//			GoogleSignInAccount account = result.getSignInAccount();
+//			nameTextView.setText(account.getDisplayName());
+//			emailTextView.setText(account.getEmail());
+//			givenNameTextView.setText(account.getGivenName());
+//			familyNameTextView.setText(account.getFamilyName());
+//			idTextView.setText(account.getId());
+//			Glide.with(this).load(account.getPhotoUrl().toString()).into(profilePicture);
+//			updateUI(true);
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
+			finish();
+
 		}
 		else updateUI(false);
 	}

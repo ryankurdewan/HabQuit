@@ -19,11 +19,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
 	private String TAG = "MainActivity";
 	private ViewPager viewPager;
+	private GoogleApiClient googleApiClient;
 	public static boolean isTesting = false;
 
 	@Override
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 	private void checkLogin() {
 		GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions
 				.DEFAULT_SIGN_IN).requestEmail().build();
-		GoogleApiClient googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage
+		googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage
 				(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
 		OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
 		if (opr.isDone()) {
@@ -91,7 +94,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.login:
-				openLogin();
+				Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+					@Override
+					public void onResult(@NonNull Status status) {
+						Intent i = getBaseContext().getPackageManager()
+								.getLaunchIntentForPackage( getBaseContext().getPackageName() );
+						i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(i);
+						finish();
+					}
+				});
 				break;
 			case R.id.achievements:
 				openAchievement();
