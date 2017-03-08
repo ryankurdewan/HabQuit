@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.aquamorph.habquit.R;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -28,6 +29,11 @@ public class ChartsFragment extends Fragment {
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.bar_graph, container, false);
 		BarChart barChart = (BarChart) view.findViewById(R.id.bar_graph);
+
+        String[] values = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setValueFormatter(new StringDayAxisValueFormatter(values));
 
 		ArrayList<BarEntry> barEntries = new ArrayList<>();
 		barEntries.add(new BarEntry(1f, 4));
