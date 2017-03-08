@@ -1,5 +1,4 @@
 package com.aquamorph.habquit.fragments;
-import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 /**
@@ -17,7 +16,7 @@ public class StringDayAxisValueFormatter implements IAxisValueFormatter {
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         // "value" represents the position of the label on the axis (x or y)
-        return mValues[(int) value];
+        return mValues[((int) value)-1];
     }
 
 }

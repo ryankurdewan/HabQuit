@@ -50,14 +50,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		signIn.setOnClickListener(this);
 		signOut.setOnClickListener(this);
 
-		GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-				.requestEmail()
-				.requestIdToken("309646805683-5md7ohrj3f0j4bpils344ibk7lhtpoc7.apps.googleusercontent.com")
-				.build();
-		googleApiClient = new GoogleApiClient.Builder(this)
-				.enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-				.addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-				.build();
+		GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions
+				.DEFAULT_SIGN_IN).requestEmail().build();
+		googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi
+				(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
 		updateUI(false);
 	}
 

@@ -29,10 +29,11 @@ public class ChartsFragment extends Fragment {
 		View view = inflater.inflate(R.layout.bar_graph, container, false);
 		BarChart barChart = (BarChart) view.findViewById(R.id.bar_graph);
 
-        String[] values = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+        String[] values = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+		        "Saturday", "Sunday"};
 
         XAxis xAxis = barChart.getXAxis();
-//        xAxis.setValueFormatter(new StringDayAxisValueFormatter(values));
+        xAxis.setValueFormatter(new StringDayAxisValueFormatter(values));
 
 		ArrayList<BarEntry> barEntries = new ArrayList<>();
 		barEntries.add(new BarEntry(1f, 4));
