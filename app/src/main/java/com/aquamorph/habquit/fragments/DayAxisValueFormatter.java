@@ -4,7 +4,7 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 /**
- * Created by JuiceBox1 on 3/8/2017.
+ * Created by Joshua Derr on 3/8/2017.
  */
 
 public class DayAxisValueFormatter implements IAxisValueFormatter
