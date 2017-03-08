@@ -5,7 +5,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/add_habit_cig"
+        android:id="@+id/add_habit_smoking"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="67dp"
@@ -18,13 +18,13 @@
         android:layout_toStartOf="@+id/add_habit_smokeless_tobacco" />
 
     <ImageButton
-        android:id="@+id/add_habit_beer"
+        android:id="@+id/add_habit_drinking"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:contentDescription="beer"
+        android:contentDescription="drinking"
         app:srcCompat="@drawable/ic_booze"
         android:textAlignment="inherit"
-        android:layout_alignTop="@+id/add_habit_cig"
+        android:layout_alignTop="@+id/add_habit_smoking"
         android:layout_alignRight="@+id/add_habit_custom"
         android:layout_alignEnd="@+id/add_habit_custom"
         tools:ignore="VectorDrawableCompat" />
@@ -36,9 +36,9 @@
 
         android:contentDescription="soda"
         app:srcCompat="@drawable/ic_soda"
-        android:layout_below="@+id/add_habit_cig"
-        android:layout_alignLeft="@+id/add_habit_cig"
-        android:layout_alignStart="@+id/add_habit_cig"
+        android:layout_below="@+id/add_habit_smoking"
+        android:layout_alignLeft="@+id/add_habit_smoking"
+        android:layout_alignStart="@+id/add_habit_smoking"
         android:layout_marginTop="39dp"
         tools:ignore="VectorDrawableCompat" />
 
@@ -47,8 +47,8 @@
         app:srcCompat="@drawable/ic_leaf"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_alignLeft="@+id/add_habit_beer"
-        android:layout_alignStart="@+id/add_habit_beer"
+        android:layout_alignLeft="@+id/add_habit_drinking"
+        android:layout_alignStart="@+id/add_habit_drinking"
         android:layout_alignTop="@+id/add_habit_soda"
         android:contentDescription="smokeless_tobacco"
         android:textAlignment="center"
@@ -71,12 +71,12 @@
         android:layout_height="45dp"
         android:focusable="false"
         android:text="Select a Habit"
-        android:layout_above="@+id/add_habit_beer"
-        android:layout_alignLeft="@+id/add_habit_cig"
-        android:layout_alignStart="@+id/add_habit_cig"
+        android:layout_above="@+id/add_habit_drinking"
+        android:layout_alignLeft="@+id/add_habit_smoking"
+        android:layout_alignStart="@+id/add_habit_smoking"
         android:layout_marginBottom="10dp"
-        android:layout_alignRight="@+id/add_habit_beer"
-        android:layout_alignEnd="@+id/add_habit_beer" />
+        android:layout_alignRight="@+id/add_habit_drinking"
+        android:layout_alignEnd="@+id/add_habit_drinking" />
 
 
 </RelativeLayout>

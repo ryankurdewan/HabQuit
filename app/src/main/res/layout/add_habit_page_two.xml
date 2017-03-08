@@ -17,14 +17,14 @@
          />
 
     <EditText
-        android:id="@+id/add_habit_goal"
+        android:id="@+id/add_habit_goal_per_day"
         android:layout_width="200dp"
         android:layout_height="45dp"
         android:hint="Goal number per day"
         android:inputType="text"
         android:background="@android:color/background_light"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/add_habit_num_per_day"
+        android:layout_below="@+id/add_habit_curr_per_day"
         android:layout_centerHorizontal="true"/>
 
     <EditText
@@ -35,7 +35,7 @@
         android:inputType="text"
         android:background="@android:color/background_light"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/add_habit_goal"
+        android:layout_below="@+id/add_habit_goal_per_day"
         android:layout_centerHorizontal="true"/>
 
     <EditText
@@ -51,7 +51,7 @@
         android:layout_marginRight="11dp"
         android:layout_marginEnd="11dp" />
     <EditText
-        android:id="@+id/add_habit_num_per_day"
+        android:id="@+id/add_habit_curr_per_day"
         android:layout_width="200dp"
         android:layout_height="45dp"
         android:hint="Current number per day"
