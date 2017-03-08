@@ -9,9 +9,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aquamorph.habquit.R;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -87,8 +89,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void handleResult(GoogleSignInResult result) {
-		if(result.isSuccess()) {
-//			GoogleSignInAccount account = result.getSignInAccount();
+		if (result.isSuccess()) {
+			GoogleSignInAccount account = result.getSignInAccount();
 //			nameTextView.setText(account.getDisplayName());
 //			emailTextView.setText(account.getEmail());
 //			givenNameTextView.setText(account.getGivenName());
@@ -100,12 +102,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 			startActivity(intent);
 			finish();
 
+		} else {
+			updateUI(false);
+			Toast toast = Toast.makeText(getApplicationContext(), "Failed to Login " + result.getStatus(),
+					Toast.LENGTH_SHORT);
+			toast.show();
 		}
-		else updateUI(false);
 	}
 
 	private void updateUI(Boolean isLogin) {
-		if(isLogin) {
+		if (isLogin) {
 			profileSection.setVisibility(View.VISIBLE);
 			signIn.setVisibility(View.GONE);
 		} else {
@@ -118,7 +124,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode == REQ_CODE) {
+		if (requestCode == REQ_CODE) {
 			GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 			handleResult(result);
 		}

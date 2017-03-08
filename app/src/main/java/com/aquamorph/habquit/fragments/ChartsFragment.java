@@ -32,7 +32,7 @@ public class ChartsFragment extends Fragment {
         String[] values = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 
         XAxis xAxis = barChart.getXAxis();
-        xAxis.setValueFormatter(new StringDayAxisValueFormatter(values));
+//        xAxis.setValueFormatter(new StringDayAxisValueFormatter(values));
 
 		ArrayList<BarEntry> barEntries = new ArrayList<>();
 		barEntries.add(new BarEntry(1f, 4));
