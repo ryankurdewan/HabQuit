@@ -49,10 +49,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		profilePicture = (ImageView) findViewById(R.id.profile_picture);
 		signIn.setOnClickListener(this);
 		signOut.setOnClickListener(this);
-		GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions
-				.DEFAULT_SIGN_IN).requestEmail().build();
-		googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi
-				(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
+
+		GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+				.requestEmail()
+				.build();
+		googleApiClient = new GoogleApiClient.Builder(this)
+				.enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+				.addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+				.build();
 		updateUI(false);
 	}
 
