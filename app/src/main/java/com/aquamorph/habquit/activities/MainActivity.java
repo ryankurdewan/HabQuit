@@ -6,16 +6,25 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.BottomNavPagerAdapter;
 import com.aquamorph.habquit.fragments.AssistantFragment;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
+	private String TAG = "MainActivity";
 	private ViewPager viewPager;
+	public static boolean isTesting = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
 
 		);
 		AssistantFragment.sendMessage("Hello, worthless addict human!");
+
+		checkLogin();
+	}
+
+	private void checkLogin() {
+		GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions
+				.DEFAULT_SIGN_IN).requestEmail().build();
+		GoogleApiClient googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage
+				(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
+		OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
+		if (opr.isDone()) {
+			Log.d(TAG, "Got cached sign-in");
+		} else {
+			Log.d(TAG, "Not signed in");
+			if (!isTesting)
+				openLogin();
+		}
 	}
 
 	@Override
@@ -79,9 +105,9 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.select_habits:
 				openHabitSelectActivity();
 				break;
-            case R.id.add_habit:
-                openAddHabitActivity();
-                break;
+			case R.id.add_habit:
+				openAddHabitActivity();
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -112,9 +138,16 @@ public class MainActivity extends AppCompatActivity {
 		startActivity(new Intent(this, GraphDisplayActivity.class));
 	}
 
-	public void openHabitSelectActivity() {startActivity(new Intent(this, HabitSelectActivity.class));}
+	public void openHabitSelectActivity() {
+		startActivity(new Intent(this, HabitSelectActivity.class));
+	}
 
 	public void openAddHabitActivity() {
-        startActivity(new Intent(this, AddHabitActivityOne.class));
-    }
+		startActivity(new Intent(this, AddHabitActivityOne.class));
+	}
+
+	@Override
+	public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+	}
 }
