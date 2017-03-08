@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.aquamorph.habquit.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 /**
  * <p></p>
  *
- * @author Christian Colglazier
+ * @author Josh Derr
  * @version 2/2/2017
  */
 
