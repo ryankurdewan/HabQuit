@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.aquamorph.habquit.R;
 
@@ -23,6 +24,8 @@ public class widget_activityConfigureActivity extends Activity {
     View.OnClickListener mOnClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             final Context context = widget_activityConfigureActivity.this;
+
+            Toast.makeText(context, "HelloWidgetConfig.onClick(): " + String.valueOf(mAppWidgetId) , Toast.LENGTH_LONG).show();
 
             // When the button is clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
