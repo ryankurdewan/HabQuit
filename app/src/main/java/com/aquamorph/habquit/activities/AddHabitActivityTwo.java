@@ -10,55 +10,36 @@ import android.widget.EditText;
 
 import com.aquamorph.habquit.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by ryansummerlin on 2/16/17.
  */
 
 public class AddHabitActivityTwo extends AppCompatActivity {
+
+    final int CUSTOM_ID = -1;
+
     EditText habitName;
     EditText habitPrice;
-    EditText currentUsage;
-    EditText goalUsage;
+    EditText currPerDay;
+    EditText goalPerDay;
     EditText goalDate;
+    Button addHabitButton;
 
-
-    Button habitButton;
-
-    SharedPreferences preferences;
-    final String PREFERENCES_FILE_NAME = "HabitPreferences";
+    int startUpHabitID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_habit_page_two);
 
-        habitName = (EditText) findViewById(R.id.add_habit_name);
-        habitPrice = (EditText) findViewById(R.id.add_habit_price);
-        currentUsage = (EditText) findViewById(R.id.add_habit_num_per_day);
-        goalUsage = (EditText) findViewById(R.id.add_habit_goal);
-        goalDate = (EditText) findViewById(R.id.add_habit_goal_date);
-        habitButton = (Button) findViewById(R.id.add_habit_button);
-        preferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        startUpHabitID = getIntent().getExtras().getInt("HabitID");
 
-        habitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addHabit(preferences,
-                         habitName.getText().toString(),
-                         habitPrice.getText().toString());
-
-            }
-        });
-    }
-
-    private void addHabit(SharedPreferences preferences, String name, String price) {
-//        Set<String> customHabits = preferences.getStringSet("custom", null);
-//
-//        if (customHabits != null) {
-//            customHabits.add(name + ":" + price);
-//        } else {
-//            // TODO: determine how to map 'custom' string to a name->price collection.
-//            customHabits = new HashSet<>();
-//        }
+        if (startUpHabitID != CUSTOM_ID) {
+            habitName.setFocusable(false);
+        }
     }
 }
