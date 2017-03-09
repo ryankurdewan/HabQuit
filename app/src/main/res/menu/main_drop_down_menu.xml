@@ -28,8 +28,13 @@
         android:orderInCategory="99"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/manage_habit"
+        android:title="@string/manage"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/logout"
         android:title="@string/logout"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         app:showAsAction="never"/>
 </menu>
