@@ -27,4 +27,7 @@
     <string name="appWidgetText">+</string>
     <string name="appWidgetButton">Touch meh!</string>
 
+    <string name="login_prompt">Please sign in with your Google account</string>
+    <string name="welcome_message">Welcome to HabQuit</string>
+
 </resources>

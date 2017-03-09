@@ -1,69 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Changed this file to be the login screen.
-        This is the first page seen when you enter the app.
-        TODO not wired up yet it doesn't go anywhere just a layout
--->
-
 <LinearLayout
     android:id="@+id/activity_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/profile_section">
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/profile_picture"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/user_name"
-                android:text="John Smith"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/user_email"
-                android:text="john@smith.com"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/user_given_name"
-                android:text="John"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/user_family_name"
-                android:text="Smith"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/user_id"
-                android:text="ID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Logout Google Account"
-                android:id="@+id/user_logout"/>
-        </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/welcome_message"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="36sp"/>
 
-    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:scaleType="centerInside"
+        android:src="@drawable/ai_logo"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-light"
+        android:gravity="bottom"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/login_prompt"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"/>
 
 </LinearLayout>

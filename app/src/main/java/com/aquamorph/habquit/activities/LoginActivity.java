@@ -5,10 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aquamorph.habquit.R;
@@ -19,18 +15,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,
 		GoogleApiClient.OnConnectionFailedListener {
 
 	private final String TAG = "LoginActivity";
-	private LinearLayout profileSection;
-	private Button signOut;
 	private SignInButton signIn;
-	private TextView nameTextView, emailTextView, givenNameTextView, familyNameTextView, idTextView;
-	private ImageView profilePicture;
 	private GoogleApiClient googleApiClient;
 	private static final int REQ_CODE = 9001;
 
@@ -38,23 +28,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_page);
-		profileSection = (LinearLayout) findViewById(R.id.profile_section);
-		signOut = (Button) findViewById(R.id.user_logout);
+		getSupportActionBar().hide();
 		signIn = (SignInButton) findViewById(R.id.sign_in_button);
-		nameTextView = (TextView) findViewById(R.id.user_name);
-		emailTextView = (TextView) findViewById(R.id.user_email);
-		givenNameTextView = (TextView) findViewById(R.id.user_given_name);
-		familyNameTextView = (TextView) findViewById(R.id.user_family_name);
-		idTextView = (TextView) findViewById(R.id.user_id);
-		profilePicture = (ImageView) findViewById(R.id.profile_picture);
 		signIn.setOnClickListener(this);
-		signOut.setOnClickListener(this);
 
 		GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions
 				.DEFAULT_SIGN_IN).requestEmail().build();
 		googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi
 				(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
-		updateUI(false);
 	}
 
 
@@ -63,9 +44,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		switch (v.getId()) {
 			case R.id.sign_in_button:
 				signIn();
-				break;
-			case R.id.user_logout:
-				signOut();
 				break;
 		}
 	}
@@ -80,14 +58,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		startActivityForResult(intent, REQ_CODE);
 	}
 
-	private void signOut() {
-		Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-			@Override
-			public void onResult(@NonNull Status status) {
-				updateUI(false);
-			}
-		});
-	}
 
 	private void handleResult(GoogleSignInResult result) {
 		if (result.isSuccess()) {
@@ -97,29 +67,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //			givenNameTextView.setText(account.getGivenName());
 //			familyNameTextView.setText(account.getFamilyName());
 //			idTextView.setText(account.getId());
-//			Glide.with(this).load(account.getPhotoUrl().toString()).into(profilePicture);
-//			updateUI(true);
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			finish();
 
 		} else {
-			updateUI(false);
 			Toast toast = Toast.makeText(getApplicationContext(), "Failed to Login " + result.getStatus(),
 					Toast.LENGTH_SHORT);
 			toast.show();
 		}
-	}
-
-	private void updateUI(Boolean isLogin) {
-		if (isLogin) {
-			profileSection.setVisibility(View.VISIBLE);
-			signIn.setVisibility(View.GONE);
-		} else {
-			profileSection.setVisibility(View.GONE);
-			signIn.setVisibility(View.VISIBLE);
-		}
-
 	}
 
 	@Override
