@@ -14,7 +14,7 @@
     <string name="achievements">Achievements</string>
     <string name="motivational_tips">Motivational Tips</string>
     <string name="statistics">Statistics</string>
-    <string name="login">Login</string>
+    <string name="logout">Logout</string>
 
     // Default assistant text strings
     <string name="assistant_default_text">Hello, worthless addict human!</string>
@@ -25,6 +25,5 @@
     <string name="add_widget">Add widget</string>
     <string name="appWidgetText">+</string>
     <string name="appWidgetButton">Touch meh!</string>
-    <string name="server_client_id">309646805683-4tllb34626apv317j7uubr45f5e3lkmu.apps.googleusercontent.com</string>
 
 </resources>

@@ -28,8 +28,8 @@
         android:orderInCategory="99"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/login"
-        android:title="@string/login"
+        android:id="@+id/logout"
+        android:title="@string/logout"
         android:orderInCategory="100"
         app:showAsAction="never"/>
 </menu>
