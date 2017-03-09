@@ -32,6 +32,7 @@
         <activity android:name=".activities.MotivationActivity" />
         <activity android:name=".activities.AddHabitActivityOne" />
         <activity android:name=".activities.AddHabitActivityTwo" />
+        <activity android:name=".activities.ManageHabitActivityOne" />
         <activity android:name=".activities.ManageHabitActivityTwo" />
 
         <receiver android:name="layout.widget_activity">
