@@ -1,7 +1,9 @@
 package com.aquamorph.habquit.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -67,6 +69,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //			givenNameTextView.setText(account.getGivenName());
 //			familyNameTextView.setText(account.getFamilyName());
 //			idTextView.setText(account.getId());
+
+			assert account != null;
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences
+					(getApplicationContext());
+			sharedPreferences.edit().putString("firstName", account.getGivenName()).apply();
+
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			finish();

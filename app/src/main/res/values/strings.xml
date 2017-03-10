@@ -17,9 +17,6 @@
     <string name="manage">Manage Habit</string>
     <string name="logout">Logout</string>
 
-    // Default assistant text strings
-    <string name="assistant_default_text">Hello, worthless addict human!</string>
-
     // Widget strings added by JCW
     <string name="appwidget_text">Increment Habit Widget</string>
     <string name="configure">Configure</string>

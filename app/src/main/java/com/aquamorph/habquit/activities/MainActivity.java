@@ -1,7 +1,9 @@
 package com.aquamorph.habquit.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 	private String TAG = "MainActivity";
 	private ViewPager viewPager;
 	private GoogleApiClient googleApiClient;
+	private SharedPreferences sharedPreferences;
 	public static boolean isTesting = false;
 
 	@Override
@@ -36,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 		BottomNavigationView bottomNavigationView = (BottomNavigationView)
 				findViewById(R.id.bottom_navigation);
+
+		sharedPreferences = PreferenceManager.getDefaultSharedPreferences
+				(getApplicationContext());
 
 		// Creates fragments and allows switching between them
 		viewPager = (ViewPager) findViewById(R.id.fragment);
@@ -64,7 +70,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 				}
 
 		);
-		AssistantFragment.sendMessage("Hello, worthless addict human!");
+		AssistantFragment.sendMessage("Hello, worthless addict " +
+				sharedPreferences.getString("firstName", "Human") + "!");
 
 		checkLogin();
 	}
@@ -98,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 					@Override
 					public void onResult(@NonNull Status status) {
 						Intent i = getBaseContext().getPackageManager()
-								.getLaunchIntentForPackage( getBaseContext().getPackageName() );
+								.getLaunchIntentForPackage(getBaseContext().getPackageName());
 						i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						startActivity(i);
 						finish();
