@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,10 +16,8 @@ import com.aquamorph.habquit.adapter.BottomNavPagerAdapter;
 import com.aquamorph.habquit.fragments.AssistantFragment;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
@@ -30,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 	private ViewPager viewPager;
 	private GoogleApiClient googleApiClient;
 	private SharedPreferences sharedPreferences;
-	public static boolean isTesting = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,19 +72,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 		);
 		AssistantFragment.sendMessage("Hello, worthless addict " +
 				sharedPreferences.getString("firstName", "Human") + "!");
-
-		checkLogin();
-	}
-
-	private void checkLogin() {
-		OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
-		if (opr.isDone()) {
-			Log.d(TAG, "Got cached sign-in");
-		} else {
-			Log.d(TAG, "Not signed in");
-			if (!isTesting)
-				openLogin();
-		}
 	}
 
 	@Override
@@ -133,14 +116,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	/**
-	 * openLogin() starts login activity
-	 */
-	public void openLogin() {
-		startActivity(new Intent(this, LoginActivity.class));
-	}
-
 
 	/**
 	 * Takes user to achievement page

@@ -36,7 +36,6 @@ public class MainActivityTest {
 	@Before
 	public void setup() {
 		activity = Robolectric.buildActivity(MainActivity.class).create().get();
-		MainActivity.isTesting = true;
 	}
 
 	@Test

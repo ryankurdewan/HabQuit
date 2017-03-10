@@ -16,31 +16,19 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            //
-            <!--<ImageView-->
-                <!--android:id="@+id/habitName"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-
-                <!--android:adjustViewBounds="false"-->
-                <!--android:background="@android:color/transparent"-->
-                <!--android:contentDescription="@string/add_habit"-->
-                <!--android:cropToPadding="true"-->
-                <!--android:drawableLeft="@id/add_habit_drinking"-->
-                <!--android:scaleType="fitXY"-->
-                <!--android:srcCompat="@drawable/ic_booze"-->
-                <!--android:visibility="visible"-->
-                <!--and:srcCompat="@drawable/ic_booze" />-->
-
-            <TextView
+            <ImageView
                 android:id="@+id/habitName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Habit"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="36sp"
-                android:textStyle="normal|bold"/>
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:adjustViewBounds="false"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/add_habit"
+                android:cropToPadding="true"
+                android:drawableLeft="@id/add_habit_drinking"
+                android:scaleType="fitXY"
+                android:visibility="visible"
+                android:src="@drawable/ic_booze" />
 
             <TextView
                 android:id="@+id/textView2"
