@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences
 				(getApplicationContext());
+		GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions
+				.DEFAULT_SIGN_IN).requestEmail().build();
+		googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi
+				(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
 
 		// Creates fragments and allows switching between them
 		viewPager = (ViewPager) findViewById(R.id.fragment);
@@ -77,10 +81,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 	}
 
 	private void checkLogin() {
-		GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions
-				.DEFAULT_SIGN_IN).requestEmail().build();
-		googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage
-				(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
 		OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
 		if (opr.isDone()) {
 			Log.d(TAG, "Got cached sign-in");
