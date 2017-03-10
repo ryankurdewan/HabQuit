@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
         setContentView(R.layout.add_habit_page_two);
 
         startUpHabitID = getIntent().getExtras().getInt("HabitID");
+        habitName = (EditText) findViewById(R.id.add_habit_name);
 
         if (startUpHabitID != CUSTOM_ID) {
             habitName.setFocusable(false);
