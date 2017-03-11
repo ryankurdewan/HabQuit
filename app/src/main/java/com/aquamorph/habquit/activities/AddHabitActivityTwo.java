@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.provider.HabitSgkServiceProvider;
+import com.aquamorph.habquit.utils.HabitParameter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +44,20 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 
         if (startUpHabitID != CUSTOM_ID) {
             habitName.setFocusable(false);
+            switch (startUpHabitID) {
+                case HabitParameter.SMOKING_ID:
+                    habitName.setText("Smoking");
+                    break;
+                case HabitParameter.DRINKING_ID:
+                    habitName.setText("Drinking");
+                    break;
+                case HabitParameter.SODA_ID:
+                    habitName.setText("Soda");
+                    break;
+                case HabitParameter.SMOKELESS_ID:
+                    habitName.setText("Smokeless Tobacco");
+                    break;
+            }
         }
     }
 }

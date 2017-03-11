@@ -7,20 +7,14 @@ package com.aquamorph.habquit.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.utils.HabitParameter;
 
 public class AddHabitActivityOne extends AppCompatActivity {
-
-    final int SMOKING_ID = 1;
-    final int SMOKELESS_ID = 2;
-    final int DRINKING_ID = 3;
-    final int SODA_ID = 4;
-    final int CUSTOM_ID = -1;
 
     ImageButton addCig;
     ImageButton addBeer;
@@ -43,35 +37,35 @@ public class AddHabitActivityOne extends AppCompatActivity {
         addCig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", SMOKING_ID);
+                addHabitTwo.putExtra("HabitID", HabitParameter.SMOKING_ID);
                 startActivity(addHabitTwo);
             }
         });
         addBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", DRINKING_ID);
+                addHabitTwo.putExtra("HabitID", HabitParameter.DRINKING_ID);
                 startActivity(addHabitTwo);
             }
         });
         addSoda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", SODA_ID);
+                addHabitTwo.putExtra("HabitID", HabitParameter.SODA_ID);
                 startActivity(addHabitTwo);
             }
         });
         addSmokelessTobacco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", SMOKELESS_ID);
+                addHabitTwo.putExtra("HabitID", HabitParameter.SMOKELESS_ID);
                 startActivity(addHabitTwo);
             }
         });
         addHabitCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", CUSTOM_ID);
+                addHabitTwo.putExtra("HabitID", HabitParameter.CUSTOM_ID);
                 startActivity(addHabitTwo);
             }
         });
