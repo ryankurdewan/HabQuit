@@ -17,6 +17,12 @@ public class HabitParameter {
     private static final String HABITS_PREFS = "habitPreferences";
     private static final String HABITS = "habits";
 
+    public static final int SMOKING_ID = 1;
+    public static final int SMOKELESS_ID = 2;
+    public static final int DRINKING_ID = 3;
+    public static final int SODA_ID = 4;
+    public static final int CUSTOM_ID = -1;
+
     private SharedPreferences sharedPreferences;
 
     public static HabitParameter getInstance() {
