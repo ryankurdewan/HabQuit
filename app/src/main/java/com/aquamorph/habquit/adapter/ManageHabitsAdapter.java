@@ -12,6 +12,7 @@ import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.activities.ManageHabitActivityTwo;
 import com.aquamorph.habquit.model.Habit;
 import com.aquamorph.habquit.model.HabitSgk;
+import com.aquamorph.habquit.utils.ManageHabitListener;
 
 import org.w3c.dom.Text;
 
@@ -21,7 +22,7 @@ import java.util.List;
  * Created by ryansummerlin on 3/9/17.
  */
 
-public class ManageHabitsAdapter extends RecyclerView.Adapter<ManageHabitsAdapter.ManageHabitViewHolder> implements View.OnClickListener {
+public class ManageHabitsAdapter extends RecyclerView.Adapter<ManageHabitsAdapter.ManageHabitViewHolder> {
 
     List<HabitSgk> habitsToManage;
 
@@ -39,14 +40,15 @@ public class ManageHabitsAdapter extends RecyclerView.Adapter<ManageHabitsAdapte
     @Override
     public ManageHabitViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_habit_grid, parent, false);
-        return new ManageHabitViewHolder(view);
+        return new ManageHabitViewHolder(view, parent);
     }
 
     @Override
     public void onBindViewHolder(ManageHabitViewHolder holder, int position) {
         HabitSgk habit = habitsToManage.get(position);
+        ManageHabitListener listener = new ManageHabitListener(holder.parent.getContext(), habit.getHabitId());
         holder.habitName.setText(habit.getType());
-        holder.habitCard.setOnClickListener(this);
+        holder.habitCard.setOnClickListener(listener);
     }
 
     @Override
@@ -54,17 +56,15 @@ public class ManageHabitsAdapter extends RecyclerView.Adapter<ManageHabitsAdapte
         return habitsToManage.size();
     }
 
-    @Override
-    public void onClick(View view) {
-        view.getContext().startActivity(new Intent(view.getContext(), ManageHabitActivityTwo.class));
-    }
-
     public static class ManageHabitViewHolder extends RecyclerView.ViewHolder {
         CardView habitCard;
         TextView habitName;
+        ViewGroup parent;
 
-        public ManageHabitViewHolder(View itemView) {
+        public ManageHabitViewHolder(View itemView, ViewGroup parent) {
             super(itemView);
+
+            this.parent = parent;
             habitCard = (CardView) itemView.findViewById(R.id.habit_cardview);
             habitName = (TextView) itemView.findViewById(R.id.habitName);
         }
