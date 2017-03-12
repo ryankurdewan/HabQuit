@@ -24,16 +24,15 @@ import static android.R.style.Widget;
 public class widget_activity extends AppWidgetProvider {
 
     private static final String SYNC_CLICKED    = "AppWidgetManager.ACTION_APPWIDGET_UPDATE";
-    private static int incCount = 0;
+    public static int incCount = 0;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        System.out.println("updateAppWidget(): widgetId = " + String.valueOf(appWidgetId) + "... Count : " +  String.valueOf(incCount));
+        // System.out.println("updateAppWidget(): widgetId = " + String.valueOf(appWidgetId) + "... Count : " +  String.valueOf(incCount));
+        // Toast.makeText(context, "updateAppWidget(): widgetId = " + String.valueOf(appWidgetId) + "... Count : " +  String.valueOf(incCount), Toast.LENGTH_LONG).show();
 
-        Toast.makeText(context, "updateAppWidget(): widgetId = " + String.valueOf(appWidgetId) + "... Count : " +  String.valueOf(incCount), Toast.LENGTH_LONG).show();
-
-        // set up remote view and set text views
+        // set up remote view and set/update text views
         RemoteViews updateViews = new RemoteViews(context.getPackageName(), R.layout.widget_activity);
         updateViews.setTextViewText(R.id.appWidgetText, String.valueOf(incCount));
         updateViews.setTextViewText(R.id.appwidget_text, "app widget id: [" + String.valueOf(appWidgetId) + "]");
@@ -41,10 +40,12 @@ public class widget_activity extends AppWidgetProvider {
         ComponentName thisWidget = new ComponentName(context, widget_activity.class);
 
         Intent intent = new Intent(context, widget_activity.class);
+        Bundle extras = new Bundle();
+        extras.putInt("ID", appWidgetId);
         intent.setAction(SYNC_CLICKED);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetId);
+        intent.putExtras(extras);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         updateViews.setOnClickPendingIntent(R.id.appWidgetButton, pendingIntent);
 
@@ -58,25 +59,18 @@ public class widget_activity extends AppWidgetProvider {
 
         if (SYNC_CLICKED.equals(intent.getAction())) {
 
-            incCount++;
-
             Bundle extras = intent.getExtras();
 
             if(extras!=null) {
 
+                incCount++;
+
+                int widgetId = extras.getInt("ID", 0);
+
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
-                // ComponentName thisAppWidget = new ComponentName(context, AppWidgetProvider.class);
-
-                RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_activity);
-                CharSequence widgetCount = String.valueOf(incCount);
-                remoteViews.setTextViewText(R.id.appWidgetText, widgetCount);
-
-                int widgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-
-                Toast.makeText(context, "onReceive(): widgetId = " + String.valueOf(widgetId) + "... Count : " +  String.valueOf(incCount), Toast.LENGTH_LONG).show();
-
-                System.out.println("onReceive(): widgetId = " + String.valueOf(widgetId) + "... Count : " +  String.valueOf(incCount));
+                //Toast.makeText(context, "onReceive(): widgetId = " + String.valueOf(widgetId) + "... Count : " +  String.valueOf(incCount), Toast.LENGTH_LONG).show();
+                //System.out.println("onReceive(): widgetId = " + String.valueOf(widgetId) + "... Count : " +  String.valueOf(incCount));
 
                 updateAppWidget(context, appWidgetManager, widgetId);
 
@@ -92,6 +86,7 @@ public class widget_activity extends AppWidgetProvider {
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         // When the user deletes the widget, delete the preference associated with it.
+
         for (int appWidgetId : appWidgetIds) {
 
             widget_activityConfigureActivity.deleteTitlePref(context, appWidgetId);
@@ -102,15 +97,16 @@ public class widget_activity extends AppWidgetProvider {
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
 
-        Toast.makeText(context, "onEnabled()", Toast.LENGTH_LONG).show();
+        // Toast.makeText(context, "onEnabled()", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
 
+        // need to update database here
 
-        Toast.makeText(context, "onDisabled()", Toast.LENGTH_LONG).show();
+        // Toast.makeText(context, "onDisabled()", Toast.LENGTH_LONG).show();
     }
 
 

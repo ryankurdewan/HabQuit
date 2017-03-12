@@ -25,7 +25,7 @@ public class widget_activityConfigureActivity extends Activity {
         public void onClick(View v) {
             final Context context = widget_activityConfigureActivity.this;
 
-            Toast.makeText(context, "HelloWidgetConfig.onClick(): " + String.valueOf(mAppWidgetId) , Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, "HelloWidgetConfig.onClick(): " + String.valueOf(mAppWidgetId) , Toast.LENGTH_LONG).show();
 
             // When the button is clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
