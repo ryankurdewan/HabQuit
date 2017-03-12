@@ -32,6 +32,7 @@
     <string name="add_habit_goal_date_hint">Goal Date</string>
     <string name="add_habit_price_hint">Price Per Unit</string>
     <string name="add_habit_curr_per_day_hint">Current number per day</string>
+    <string name="add_habit_tips_hint">Enable Tips</string>
     <string name="add_habit_button">Add Habit</string>
 
 </resources>
