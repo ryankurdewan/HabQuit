@@ -61,7 +61,7 @@ public class WidgetConfigureActivity extends Activity {
         if (titleValue != null) {
             return titleValue;
         } else {
-            return context.getString(R.string.appwidget_text);
+            return context.getString(R.string.app_widget_title);
         }
     }
 
@@ -80,7 +80,7 @@ public class WidgetConfigureActivity extends Activity {
         setResult(RESULT_CANCELED);
 
         setContentView(R.layout.widget_configure);
-        mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
+        mAppWidgetText = (EditText) findViewById(R.id.app_widget_title);
         findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
 
         // Find the widget id from the intent.

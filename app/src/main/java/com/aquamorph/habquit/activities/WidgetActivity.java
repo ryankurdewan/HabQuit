@@ -31,8 +31,8 @@ public class WidgetActivity extends AppWidgetProvider {
 
         // set up remote view and set/update text views
         RemoteViews updateViews = new RemoteViews(context.getPackageName(), R.layout.widget);
-        updateViews.setTextViewText(R.id.appWidgetText, String.valueOf(incCount));
-        updateViews.setTextViewText(R.id.appwidget_text, "app widget id: [" + String.valueOf(appWidgetId) + "]");
+        updateViews.setTextViewText(R.id.app_widget_text, String.valueOf(incCount));
+        updateViews.setTextViewText(R.id.app_widget_title, "app widget id: [" + String.valueOf(appWidgetId) + "]");
 
         ComponentName thisWidget = new ComponentName(context, WidgetActivity.class);
 
@@ -44,7 +44,7 @@ public class WidgetActivity extends AppWidgetProvider {
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        updateViews.setOnClickPendingIntent(R.id.appWidgetButton, pendingIntent);
+        updateViews.setOnClickPendingIntent(R.id.app_widget_button, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(thisWidget, updateViews);
