@@ -16,58 +16,63 @@ import com.aquamorph.habquit.utils.HabitParameter;
 
 public class AddHabitActivityOne extends AppCompatActivity {
 
-    ImageButton addCig;
-    ImageButton addBeer;
-    ImageButton addSoda;
-    ImageButton addSmokelessTobacco;
-    Button addHabitCustom;
+	ImageButton addCig;
+	ImageButton addBeer;
+	ImageButton addSoda;
+	ImageButton addSmokelessTobacco;
+	Button addHabitCustom;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_habit_page_one);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.add_habit_page_one);
 
-        addCig  = (ImageButton) findViewById(R.id.add_habit_smoking);
-        addBeer = (ImageButton) findViewById(R.id.add_habit_drinking);
-        addSoda = (ImageButton) findViewById(R.id.add_habit_soda);
-        addSmokelessTobacco = (ImageButton) findViewById(R.id.add_habit_smokeless_tobacco);
-        addHabitCustom = (Button) findViewById(R.id.add_habit_custom);
-        final Intent addHabitTwo = new Intent(this, AddHabitActivityTwo.class);
+		addCig = (ImageButton) findViewById(R.id.add_habit_smoking);
+		addBeer = (ImageButton) findViewById(R.id.add_habit_drinking);
+		addSoda = (ImageButton) findViewById(R.id.add_habit_soda);
+		addSmokelessTobacco = (ImageButton) findViewById(R.id.add_habit_smokeless_tobacco);
+		addHabitCustom = (Button) findViewById(R.id.add_habit_custom);
+		final Intent addHabitTwo = new Intent(this, AddHabitActivityTwo.class);
 
-        addCig.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", HabitParameter.SMOKING_ID);
-                startActivity(addHabitTwo);
-            }
-        });
-        addBeer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", HabitParameter.DRINKING_ID);
-                startActivity(addHabitTwo);
-            }
-        });
-        addSoda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", HabitParameter.SODA_ID);
-                startActivity(addHabitTwo);
-            }
-        });
-        addSmokelessTobacco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", HabitParameter.SMOKELESS_ID);
-                startActivity(addHabitTwo);
-            }
-        });
-        addHabitCustom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addHabitTwo.putExtra("HabitID", HabitParameter.CUSTOM_ID);
-                startActivity(addHabitTwo);
-            }
-        });
-    }
+		addCig.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addHabitTwo.putExtra("HabitID", HabitParameter.SMOKING_ID);
+				addHabitTwo.putExtra("isAddHabit", false);
+				startActivity(addHabitTwo);
+			}
+		});
+		addBeer.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addHabitTwo.putExtra("HabitID", HabitParameter.DRINKING_ID);
+				addHabitTwo.putExtra("isAddHabit", false);
+				startActivity(addHabitTwo);
+			}
+		});
+		addSoda.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addHabitTwo.putExtra("HabitID", HabitParameter.SODA_ID);
+				addHabitTwo.putExtra("isAddHabit", false);
+				startActivity(addHabitTwo);
+			}
+		});
+		addSmokelessTobacco.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addHabitTwo.putExtra("HabitID", HabitParameter.SMOKELESS_ID);
+				addHabitTwo.putExtra("isAddHabit", false);
+				startActivity(addHabitTwo);
+			}
+		});
+		addHabitCustom.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addHabitTwo.putExtra("HabitID", HabitParameter.CUSTOM_ID);
+				addHabitTwo.putExtra("isAddHabit", false);
+				startActivity(addHabitTwo);
+			}
+		});
+	}
 }

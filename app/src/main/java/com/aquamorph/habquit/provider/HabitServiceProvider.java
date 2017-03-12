@@ -2,8 +2,8 @@ package com.aquamorph.habquit.provider;
 
 import android.util.Log;
 
-import com.aquamorph.habquit.model.HabitSgk;
-import com.aquamorph.habquit.service.HabitSgkService;
+import com.aquamorph.habquit.model.Habit;
+import com.aquamorph.habquit.service.HabitService;
 
 import java.util.List;
 
@@ -18,20 +18,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Shawn on 2/3/2017.
  */
 
-public class HabitSgkServiceProvider {
-    HabitSgkService habitSgkService;
+public class HabitServiceProvider {
+    HabitService habitService;
 
     /**
      * implementation of service is created here.
      * base url for service is defined here
      * basic service configuration is done here
      */
-    public HabitSgkServiceProvider(){
-        habitSgkService = new Retrofit.Builder()
+    public HabitServiceProvider(){
+        habitService = new Retrofit.Builder()
         .baseUrl("http://habquit.azurewebsites.net/")
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
-        .build().create(HabitSgkService.class);
+        .build().create(HabitService.class);
     }
 
     /**
@@ -39,17 +39,17 @@ public class HabitSgkServiceProvider {
      * a List of Achievement is returned to listener.
      * @param listener
      */
-      public void getHabitSgks (final HabitSgkService.OnHabitSgkListener listener) {
-          Call<List<HabitSgk>> call = habitSgkService.getHabitSgk();
-          call.enqueue(new Callback<List<HabitSgk>>() {
+      public void getHabitSgks (final HabitService.OnHabitSgkListener listener) {
+          Call<List<Habit>> call = habitService.getHabitSgk();
+          call.enqueue(new Callback<List<Habit>>() {
               @Override
-              public void onResponse(Call<List<HabitSgk>> call, Response<List<HabitSgk>> response) {
-                  List<HabitSgk> habitSgks = response.body();
-                  listener.onSuccess(habitSgks);
+              public void onResponse(Call<List<Habit>> call, Response<List<Habit>> response) {
+                  List<Habit> habits = response.body();
+                  listener.onSuccess(habits);
               }
 
               @Override
-              public void onFailure(Call<List<HabitSgk>> call, Throwable t) {
+              public void onFailure(Call<List<Habit>> call, Throwable t) {
                   Log.d("HabitService Fail", t.getMessage());
                   listener.onError();
               }

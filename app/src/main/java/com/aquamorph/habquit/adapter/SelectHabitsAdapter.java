@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.fragments.AssistantFragment;
-import com.aquamorph.habquit.model.HabitSgk;
+import com.aquamorph.habquit.model.Habit;
 import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 import com.aquamorph.habquit.utils.Counter;
 import com.aquamorph.habquit.utils.HabitParameter;
@@ -25,11 +25,11 @@ import java.util.List;
 public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapter.ViewHolder> {
 
 
-	private List<HabitSgk> habitSgks;
+	private List<Habit> habits;
 	private boolean isGrid;
 
-	public SelectHabitsAdapter(List<HabitSgk> habitSgks, boolean isGrid) {
-		this.habitSgks = habitSgks;
+	public SelectHabitsAdapter(List<Habit> habits, boolean isGrid) {
+		this.habits = habits;
 		this.isGrid = isGrid;
 	}
 
@@ -49,50 +49,50 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
-		final HabitSgk habitSgk = habitSgks.get(position);
-		if (habitSgk != null) {
-			holder.habit = habitSgk;
+		final Habit habit = habits.get(position);
+		if (habit != null) {
+			holder.habit = habit;
 			if (!isGrid) {
 				ListItemViewHolder listItemViewHolder = (ListItemViewHolder) holder;
 				listItemViewHolder.habitSwitch.setOnCheckedChangeListener(null);
-				listItemViewHolder.habitSwitch.setChecked(HabitParameter.getInstance().getHabitIds().contains(habitSgk.getHabitId()));
+				listItemViewHolder.habitSwitch.setChecked(HabitParameter.getInstance().getHabitIds().contains(habit.getHabitId()));
 				listItemViewHolder.habitSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 						HabitParameter habitParameter = HabitParameter.getInstance();
 						if (isChecked) {
-							habitParameter.addHabit(habitSgk.getHabitId());
+							habitParameter.addHabit(habit.getHabitId());
 						} else {
-							habitParameter.removeHabit(habitSgk.getHabitId());
+							habitParameter.removeHabit(habit.getHabitId());
 						}
 					}
 				});
-				listItemViewHolder.type.setText(habitSgk.getType());
+				listItemViewHolder.type.setText(habit.getType());
 			} else {
 				final Counter counter = Counter.getInstance();
 				final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider();
 				final GridViewHolder gridViewHolder = (GridViewHolder) holder;
-				gridViewHolder.habitName.setText(habitSgk.getType());
-				gridViewHolder.habitCount.setText(String.valueOf(counter.getCountFor(habitSgk.getType())));
+				gridViewHolder.habitName.setText(habit.getType());
+				gridViewHolder.habitCount.setText(String.valueOf(counter.getCountFor(habit.getType())));
 				gridViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						int count = counter.getCountFor(habitSgk.getType());
+						int count = counter.getCountFor(habit.getType());
 						AssistantFragment.changeMood(-5.0);
 						count++;
-						counter.setCountFor(habitSgk.getType(), count);
-						serviceProvider.postTrackHabit(habitSgk.getHabitId());
+						counter.setCountFor(habit.getType(), count);
+						serviceProvider.postTrackHabit(habit.getHabitId());
 						SelectHabitsAdapter.this.notifyDataSetChanged();
 					}
 				});
 				gridViewHolder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
 					@Override
 					public boolean onLongClick(View v) {
-						int count = counter.getCountFor(habitSgk.getType());
+						int count = counter.getCountFor(habit.getType());
 						AssistantFragment.changeMood(5.0);
 						count--;
 						if (count < 0) count = 0;
-						counter.setCountFor(habitSgk.getType(), count);
+						counter.setCountFor(habit.getType(), count);
 						SelectHabitsAdapter.this.notifyDataSetChanged();
 						return true;
 					}
@@ -103,12 +103,12 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 
 	@Override
 	public int getItemCount() {
-		return habitSgks != null ? habitSgks.size() : 0;
+		return habits != null ? habits.size() : 0;
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
 
-		HabitSgk habit;
+		Habit habit;
 
 		public ViewHolder(View v) {
 			super(v);

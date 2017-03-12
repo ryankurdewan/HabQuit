@@ -3,6 +3,7 @@ package com.aquamorph.habquit.activities;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,6 +17,7 @@ import com.aquamorph.habquit.utils.HabitParameter;
 public class AddHabitActivityTwo extends AppCompatActivity {
 
 	final int CUSTOM_ID = -1;
+	private boolean isAddHabit;
 
 	EditText habitName;
 	EditText habitPrice;
@@ -37,6 +39,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 		setContentView(R.layout.add_habit_page_two);
 
 		startUpHabitID = getIntent().getExtras().getInt("HabitID");
+		isAddHabit = getIntent().getBooleanExtra("isAddHabit", true);
 		habitName = (EditText) findViewById(R.id.addHabitName);
 
 		if (startUpHabitID != CUSTOM_ID) {
@@ -57,6 +60,13 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 			}
 		}
 
+		addHabitButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addActivity();
+			}
+		});
+
 		addHabitNameWrapper = (TextInputLayout) findViewById(R.id.add_habit_name_wrapper);
 		addHabitGoalPerDayWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_per_day_wrapper);
 		addHabitGoalDateWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_date_wrapper);
@@ -67,5 +77,9 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 		addHabitGoalDateWrapper.setHint(getString(R.string.add_habit_goal_date_hint));
 		addHabitPriceWrapper.setHint(getString(R.string.add_habit_price_hint));
 		addHabitCurrPerDayWrapper.setHint(getString(R.string.add_habit_curr_per_day_hint));
+	}
+
+	private void addActivity() {
+
 	}
 }

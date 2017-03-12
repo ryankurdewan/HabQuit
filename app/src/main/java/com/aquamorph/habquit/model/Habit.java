@@ -1,53 +1,68 @@
 package com.aquamorph.habquit.model;
 
-import android.content.Context;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import com.aquamorph.habquit.R;
-
-import java.util.Locale;
+import java.util.Date;
+import java.util.List;
 
 /**
- * Keeps track of information related to a habit
- *
- * @author Christian Colglazier
- * @version 1/23/2017
+ * Created by Shawn on 2/3/2017.
  */
 
 public class Habit {
-	private String name = "";
-	private int count = 0;
-	private Context context;
+    @Expose
+    @SerializedName("habit_id")
+    private int habitId;
+    @Expose
+    @SerializedName("type")
+    private String type;
+    @Expose
+    private List<AchieveList> achieveLists;
+    @Expose
+    @SerializedName("motivation")
+    private List<Motivation> motivations;
+    @Expose
+    @SerializedName("track_habits")
+    private List<TrackHabit> trackHabits;
 
-	public Habit(String name, Context context) {
-		this.name = name;
-		this.context = context;
-	}
+    public int getHabitId() {
+        return habitId;
+    }
 
-	public void setcount(int count) {
-		this.count = count;
-	}
+    public void setHabitId(int habitId) {
+        this.habitId = habitId;
+    }
 
-	public int getCount() {
-		return count;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void incCount() {
-		count++;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void decCount() {
-		if (count > 0) {
-			count--;
-		}
-	}
+    public List<AchieveList> getAchieveLists() {
+        return achieveLists;
+    }
 
-	public String getText() {
-		return String.format(Locale.US, "%s: %d",
-				context.getResources().getString(R.string.count_text),
-				count);
-	}
+    public void setAchieveLists(List<AchieveList> achieveLists) {
+        this.achieveLists = achieveLists;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public List<Motivation> getMotivations() {
+        return motivations;
+    }
+
+    public void setMotivations(List<Motivation> motivations) {
+        this.motivations = motivations;
+    }
+
+    public List<TrackHabit> getTrackHabits() {
+        return trackHabits;
+    }
+
+    public void setTrackHabits(List<TrackHabit> trackHabits) {
+        this.trackHabits = trackHabits;
+    }
 }

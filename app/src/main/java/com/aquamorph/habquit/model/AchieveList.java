@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import rx.annotations.Experimental;
-
 /**
  * Created by Shawn on 2/3/2017.
  */
@@ -32,7 +30,7 @@ public class AchieveList {
     private String condition;
     @Expose
     @SerializedName("habit")
-    private HabitSgk habitSgk;
+    private Habit habit;
     @Expose
     @SerializedName("user_achievements")
     private List<UserAchievement> userAchievements;
@@ -85,12 +83,12 @@ public class AchieveList {
         this.condition = condition;
     }
 
-    public HabitSgk getHabitSgk() {
-        return habitSgk;
+    public Habit getHabit() {
+        return habit;
     }
 
-    public void setHabitSgk(HabitSgk habitSgk) {
-        this.habitSgk = habitSgk;
+    public void setHabit(Habit habit) {
+        this.habit = habit;
     }
 
     public List<UserAchievement> getUserAchievements() {

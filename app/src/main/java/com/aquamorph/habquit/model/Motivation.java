@@ -3,7 +3,6 @@ package com.aquamorph.habquit.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 /**
  * Created by Shawn on 2/3/2017.
  */
@@ -26,7 +25,7 @@ public class Motivation {
     private int typeId;
     @Expose
     @SerializedName("habit")
-    private HabitSgk habitSgk;
+    private Habit habit;
 
     public int getMotivationId() {
         return motivationId;
@@ -60,12 +59,12 @@ public class Motivation {
         this.habitId = habitId;
     }
 
-    public HabitSgk getHabitSgk() {
-        return habitSgk;
+    public Habit getHabit() {
+        return habit;
     }
 
-    public void setHabitSgk(HabitSgk habitSgk) {
-        this.habitSgk = habitSgk;
+    public void setHabit(Habit habit) {
+        this.habit = habit;
     }
 
     public int getTypeId() {

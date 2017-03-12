@@ -81,7 +81,7 @@
         android:hint="@string/add_habit_tips_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:layout_marginTop="@dimen/activity_horizontal_margin"/>
 
     <Space

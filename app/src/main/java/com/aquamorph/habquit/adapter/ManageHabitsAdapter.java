@@ -1,6 +1,5 @@
 package com.aquamorph.habquit.adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,13 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
-import com.aquamorph.habquit.activities.ManageHabitActivityTwo;
 import com.aquamorph.habquit.model.Habit;
-import com.aquamorph.habquit.model.HabitSgk;
 import com.aquamorph.habquit.utils.ManageHabitListener;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 /**
@@ -24,10 +18,10 @@ import java.util.List;
 
 public class ManageHabitsAdapter extends RecyclerView.Adapter<ManageHabitsAdapter.ManageHabitViewHolder> {
 
-    List<HabitSgk> habitsToManage;
+    List<Habit> habitsToManage;
 
     // Creation of this class assumes the list passed is not null!
-    public ManageHabitsAdapter(List<HabitSgk> habitsToManage) {
+    public ManageHabitsAdapter(List<Habit> habitsToManage) {
         if (habitsToManage == null) {
             System.err.println("Passed invalid parameter to constructor of ManageHabitsAdapter. " +
                     "The parameter should be a non-null list.");
@@ -45,7 +39,7 @@ public class ManageHabitsAdapter extends RecyclerView.Adapter<ManageHabitsAdapte
 
     @Override
     public void onBindViewHolder(ManageHabitViewHolder holder, int position) {
-        HabitSgk habit = habitsToManage.get(position);
+        Habit habit = habitsToManage.get(position);
         ManageHabitListener listener = new ManageHabitListener(holder.parent.getContext(), habit.getHabitId());
         holder.habitName.setText(habit.getType());
         holder.habitCard.setOnClickListener(listener);

@@ -7,13 +7,13 @@ import android.support.v7.widget.RecyclerView;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.SelectHabitsAdapter;
-import com.aquamorph.habquit.model.HabitSgk;
-import com.aquamorph.habquit.provider.HabitSgkServiceProvider;
-import com.aquamorph.habquit.service.HabitSgkService;
+import com.aquamorph.habquit.model.Habit;
+import com.aquamorph.habquit.provider.HabitServiceProvider;
+import com.aquamorph.habquit.service.HabitService;
 
 import java.util.List;
 
-public class HabitSelectActivity extends AppCompatActivity implements HabitSgkService.OnHabitSgkListener {
+public class HabitSelectActivity extends AppCompatActivity implements HabitService.OnHabitSgkListener {
 
     private RecyclerView recyclerView;
 
@@ -29,13 +29,13 @@ public class HabitSelectActivity extends AppCompatActivity implements HabitSgkSe
     }
 
     private void getHabitSgk() {
-        HabitSgkServiceProvider habitSgkServiceProvider = new HabitSgkServiceProvider();
-        habitSgkServiceProvider.getHabitSgks(this);
+        HabitServiceProvider habitServiceProvider = new HabitServiceProvider();
+        habitServiceProvider.getHabitSgks(this);
     }
 
     @Override
-    public void onSuccess(List<HabitSgk> habitSgks) {
-        SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(habitSgks,false);
+    public void onSuccess(List<Habit> habits) {
+        SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(habits,false);
         recyclerView.setAdapter(selectHabitsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
