@@ -53,7 +53,7 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitSgkLi
 
 	private void getHabitSgk() {
 		HabitServiceProvider habitServiceProvider = new HabitServiceProvider();
-		habitServiceProvider.getHabitSgks(this);
+		habitServiceProvider.getHabits(this);
 	}
 
 	@Override

@@ -30,7 +30,7 @@ public class HabitSelectActivity extends AppCompatActivity implements HabitServi
 
     private void getHabitSgk() {
         HabitServiceProvider habitServiceProvider = new HabitServiceProvider();
-        habitServiceProvider.getHabitSgks(this);
+        habitServiceProvider.getHabits(this);
     }
 
     @Override

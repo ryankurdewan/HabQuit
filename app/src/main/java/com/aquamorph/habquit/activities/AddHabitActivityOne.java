@@ -38,7 +38,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				addHabitTwo.putExtra("HabitID", HabitParameter.SMOKING_ID);
-				addHabitTwo.putExtra("isAddHabit", false);
+				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
 			}
 		});
@@ -46,7 +46,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				addHabitTwo.putExtra("HabitID", HabitParameter.DRINKING_ID);
-				addHabitTwo.putExtra("isAddHabit", false);
+				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
 			}
 		});
@@ -54,7 +54,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				addHabitTwo.putExtra("HabitID", HabitParameter.SODA_ID);
-				addHabitTwo.putExtra("isAddHabit", false);
+				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
 			}
 		});
@@ -62,7 +62,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				addHabitTwo.putExtra("HabitID", HabitParameter.SMOKELESS_ID);
-				addHabitTwo.putExtra("isAddHabit", false);
+				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
 			}
 		});
@@ -70,7 +70,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				addHabitTwo.putExtra("HabitID", HabitParameter.CUSTOM_ID);
-				addHabitTwo.putExtra("isAddHabit", false);
+				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
 			}
 		});

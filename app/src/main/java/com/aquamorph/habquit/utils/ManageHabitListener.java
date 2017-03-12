@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.aquamorph.habquit.activities.ManageHabitActivityTwo;
+import com.aquamorph.habquit.activities.AddHabitActivityTwo;
 
 /**
  * Created by ryansummerlin on 3/9/17.
@@ -22,8 +22,9 @@ public class ManageHabitListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent manageHabitTwo = new Intent(context, ManageHabitActivityTwo.class);
+        Intent manageHabitTwo = new Intent(context, AddHabitActivityTwo.class);
         manageHabitTwo.putExtra("HabitID", habitID);
+        manageHabitTwo.putExtra("isAddHabit", false);
         context.startActivity(manageHabitTwo);
     }
 }

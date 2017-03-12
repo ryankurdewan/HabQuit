@@ -60,23 +60,30 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 			}
 		}
 
+		addHabitNameWrapper = (TextInputLayout) findViewById(R.id.add_habit_name_wrapper);
+		addHabitGoalPerDayWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_per_day_wrapper);
+		addHabitGoalDateWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_date_wrapper);
+		addHabitPriceWrapper = (TextInputLayout) findViewById(R.id.add_habit_price_wrapper);
+		addHabitCurrPerDayWrapper = (TextInputLayout) findViewById(R.id.add_habit_curr_per_day_wrapper);
+		addHabitButton = (Button) findViewById(R.id.add_habit_button);
+
+		addHabitNameWrapper.setHint(getString(R.string.add_habit_name_hint));
+		addHabitGoalPerDayWrapper.setHint(getString(R.string.add_habit_goal_per_day_hint));
+		addHabitGoalDateWrapper.setHint(getString(R.string.add_habit_goal_date_hint));
+		addHabitPriceWrapper.setHint(getString(R.string.add_habit_price_hint));
+		addHabitCurrPerDayWrapper.setHint(getString(R.string.add_habit_curr_per_day_hint));
+
+		if(isAddHabit)
+			addHabitButton.setText(getString(R.string.add_habit_button));
+		else
+			addHabitButton.setText(getString(R.string.delete_habit_button));
+
 		addHabitButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				addActivity();
 			}
 		});
-
-		addHabitNameWrapper = (TextInputLayout) findViewById(R.id.add_habit_name_wrapper);
-		addHabitGoalPerDayWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_per_day_wrapper);
-		addHabitGoalDateWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_date_wrapper);
-		addHabitPriceWrapper = (TextInputLayout) findViewById(R.id.add_habit_price_wrapper);
-		addHabitCurrPerDayWrapper = (TextInputLayout) findViewById(R.id.add_habit_curr_per_day_wrapper);
-		addHabitNameWrapper.setHint(getString(R.string.add_habit_name_hint));
-		addHabitGoalPerDayWrapper.setHint(getString(R.string.add_habit_goal_per_day_hint));
-		addHabitGoalDateWrapper.setHint(getString(R.string.add_habit_goal_date_hint));
-		addHabitPriceWrapper.setHint(getString(R.string.add_habit_price_hint));
-		addHabitCurrPerDayWrapper.setHint(getString(R.string.add_habit_curr_per_day_hint));
 	}
 
 	private void addActivity() {

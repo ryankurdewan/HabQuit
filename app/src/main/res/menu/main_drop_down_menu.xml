@@ -16,16 +16,19 @@
         android:id="@+id/graphDisplay"
         android:title="@string/statistics"
         android:orderInCategory="97"
+        android:visible="false"
         app:showAsAction="never"/>
     <item
         android:id="@+id/motivations"
         android:title="@string/motivational_tips"
         android:orderInCategory="98"
+        android:visible="false"
         app:showAsAction="never"/>
     <item
         android:id="@+id/achievements"
         android:title="@string/achievements"
         android:orderInCategory="99"
+        android:visible="false"
         app:showAsAction="never"/>
     <item
         android:id="@+id/manage_habit"
