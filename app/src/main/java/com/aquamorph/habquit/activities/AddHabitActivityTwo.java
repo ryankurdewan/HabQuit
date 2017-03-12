@@ -110,22 +110,24 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 	}
 
 	private void addActivity() {
-		if (habitName.getText().toString().trim().equals(""))
-			habitName.setError("Please enter a habit name");
-		else if (habitPrice.getText().toString().trim().equals(""))
-			habitPrice.setError("Please enter a habit price");
-		else if (currPerDay.getText().toString().trim().equals(""))
-			currPerDay.setError("Please enter a current number of habit usage");
-		else if (goalPerDay.getText().toString().trim().equals(""))
-			goalPerDay.setError("Please enter a desired number of habit usage");
-		else if (goalDate.getText().toString().trim().equals(""))
-			goalDate.setError("Please enter a goal date");
-		else {
-			if (isAddHabit) {
-
-			} else {
-
+		HabitParameter habitParameter = HabitParameter.getInstance();
+		if (isAddHabit) {
+			if (habitName.getText().toString().trim().equals(""))
+				habitName.setError("Please enter a habit name");
+			else if (habitPrice.getText().toString().trim().equals(""))
+				habitPrice.setError("Please enter a habit price");
+			else if (currPerDay.getText().toString().trim().equals(""))
+				currPerDay.setError("Please enter a current number of habit usage");
+			else if (goalPerDay.getText().toString().trim().equals(""))
+				goalPerDay.setError("Please enter a desired number of habit usage");
+			else if (goalDate.getText().toString().trim().equals(""))
+				goalDate.setError("Please enter a goal date");
+			else {
+				habitParameter.addHabit(startUpHabitID);
+				finish();
 			}
+		} else {
+			habitParameter.removeHabit(startUpHabitID);
 			finish();
 		}
 	}
