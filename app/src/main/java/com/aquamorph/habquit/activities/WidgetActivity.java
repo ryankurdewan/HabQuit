@@ -1,4 +1,4 @@
-package layout;
+package com.aquamorph.habquit.activities;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -7,21 +7,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.content.Intent;
-import android.widget.Toast;
 import android.app.PendingIntent;
 
 import com.aquamorph.habquit.R;
 
-import static android.R.style.Widget;
-
 /**
  * Implementation of App Widget functionality.
- * App Widget Configuration implemented in {@link widget_activityConfigureActivity widget_activityConfigureActivity}
+ * App Widget Configuration implemented in {@link WidgetConfigureActivity WidgetConfigureActivity}
  */
 
 //Current issue: remove widget and the newly added widget does not update correctly
 //Widget activity added by JCW
-public class widget_activity extends AppWidgetProvider {
+public class WidgetActivity extends AppWidgetProvider {
 
     private static final String SYNC_CLICKED    = "AppWidgetManager.ACTION_APPWIDGET_UPDATE";
     public static int incCount = 0;
@@ -33,13 +30,13 @@ public class widget_activity extends AppWidgetProvider {
         // Toast.makeText(context, "updateAppWidget(): widgetId = " + String.valueOf(appWidgetId) + "... Count : " +  String.valueOf(incCount), Toast.LENGTH_LONG).show();
 
         // set up remote view and set/update text views
-        RemoteViews updateViews = new RemoteViews(context.getPackageName(), R.layout.widget_activity);
+        RemoteViews updateViews = new RemoteViews(context.getPackageName(), R.layout.widget);
         updateViews.setTextViewText(R.id.appWidgetText, String.valueOf(incCount));
         updateViews.setTextViewText(R.id.appwidget_text, "app widget id: [" + String.valueOf(appWidgetId) + "]");
 
-        ComponentName thisWidget = new ComponentName(context, widget_activity.class);
+        ComponentName thisWidget = new ComponentName(context, WidgetActivity.class);
 
-        Intent intent = new Intent(context, widget_activity.class);
+        Intent intent = new Intent(context, WidgetActivity.class);
         Bundle extras = new Bundle();
         extras.putInt("ID", appWidgetId);
         intent.setAction(SYNC_CLICKED);
@@ -89,7 +86,7 @@ public class widget_activity extends AppWidgetProvider {
 
         for (int appWidgetId : appWidgetIds) {
 
-            widget_activityConfigureActivity.deleteTitlePref(context, appWidgetId);
+            WidgetConfigureActivity.deleteTitlePref(context, appWidgetId);
         }
     }
 
