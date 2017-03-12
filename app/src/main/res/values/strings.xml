@@ -27,4 +27,11 @@
     <string name="login_prompt">Please sign in with your Google account</string>
     <string name="welcome_message">Welcome to HabQuit</string>
 
+    <string name="add_habit_name_hint">Name of Habit</string>
+    <string name="add_habit_goal_per_day_hint">Goal number per day</string>
+    <string name="add_habit_goal_date_hint">Goal Date</string>
+    <string name="add_habit_price_hint">Price Per Unit</string>
+    <string name="add_habit_curr_per_day_hint">Current number per day</string>
+    <string name="add_habit_button">Add Habit</string>
+
 </resources>

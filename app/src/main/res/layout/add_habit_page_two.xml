@@ -1,75 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="#DBDBDB">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/activity_horizontal_margin">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_name_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/addHabitName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_name_hint"
+            android:inputType="text"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_goal_per_day_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/add_habit_goal_per_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_goal_per_day_hint"
+            android:inputType="text"/>
+
+    </android.support.design.widget.TextInputLayout>
 
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_goal_date_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/add_habit_name"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:hint="Name of Habit"
-        android:inputType="text"
-        android:background="@android:color/background_light"
-        android:layout_marginTop="27dp"
-        android:layout_centerHorizontal="true"
-         />
+        <EditText
+            android:id="@+id/add_habit_goal_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_goal_date_hint"
+            android:inputType="date"/>
 
-    <EditText
-        android:id="@+id/add_habit_goal_per_day"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:hint="Goal number per day"
-        android:inputType="text"
-        android:background="@android:color/background_light"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/add_habit_curr_per_day"
-        android:layout_centerHorizontal="true"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/add_habit_goal_date"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:hint="Goal Date"
-        android:inputType="text"
-        android:background="@android:color/background_light"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/add_habit_goal_per_day"
-        android:layout_centerHorizontal="true"/>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_price_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/add_habit_price"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:hint="Price Per Unit"
-        android:inputType="text"
-        android:background="@android:color/background_light"
-        android:layout_below="@+id/add_habit_goal_date"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp" />
-    <EditText
-        android:id="@+id/add_habit_curr_per_day"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:hint="Current number per day"
-        android:inputType="text"
-        android:background="@android:color/background_light"
-        android:layout_marginTop="27dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/add_habit_name"
-       />
+        <EditText
+            android:id="@+id/add_habit_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_price_hint"
+            android:inputType="text"/>
 
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_curr_per_day_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/add_habit_curr_per_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_curr_per_day_hint"
+            android:inputType="text"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/add_habit_button"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="Add Habit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_below="@id/add_habit_price"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_habit_button"/>
 
-</RelativeLayout>
+</LinearLayout>
