@@ -78,11 +78,12 @@
 
     <CheckBox
         android:id="@+id/add_habit_tips"
-        android:hint="@string/add_habit_tips_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:checked="true"
+        android:hint="@string/add_habit_tips_hint"
+        android:textSize="18sp"/>
 
     <Space
         android:layout_width="match_parent"
