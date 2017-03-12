@@ -3,6 +3,7 @@ package com.aquamorph.habquit.activities;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +18,9 @@ import com.aquamorph.habquit.utils.HabitParameter;
 
 public class AddHabitActivityTwo extends AppCompatActivity {
 
+	private String TAG = "AddHabitActivityTwo";
 	final int CUSTOM_ID = -1;
 	private boolean isAddHabit;
-
 	EditText habitName;
 	EditText habitPrice;
 	EditText currPerDay;
@@ -31,7 +32,6 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 	TextInputLayout addHabitPriceWrapper;
 	TextInputLayout addHabitCurrPerDayWrapper;
 	Button addHabitButton;
-
 	int startUpHabitID;
 
 	@Override
@@ -42,6 +42,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 		startUpHabitID = getIntent().getExtras().getInt("HabitID");
 		isAddHabit = getIntent().getBooleanExtra("isAddHabit", true);
 
+		Log.i(TAG, " " + startUpHabitID);
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 			if (isAddHabit)

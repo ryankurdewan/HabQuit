@@ -60,9 +60,11 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitSgkLi
 	public void onSuccess(List<Habit> habits) {
 		List<Habit> filtered = new ArrayList<>();
 		HabitParameter habitParameter = HabitParameter.getInstance();
-		for (Habit h : habits) {
-			if (habitParameter.getHabitIds().contains(h.getHabitId())) {
-				filtered.add(h);
+		if (habits != null) {
+			for (Habit h : habits) {
+				if (habitParameter.getHabitIds().contains(h.getHabitId())) {
+					filtered.add(h);
+				}
 			}
 		}
 
@@ -74,5 +76,6 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitSgkLi
 	}
 
 	@Override
-	public void onError() {}
+	public void onError() {
+	}
 }
