@@ -103,7 +103,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				this.finish();
+				finish();
 				break;
 		}
 		return super.onOptionsItemSelected(item);
