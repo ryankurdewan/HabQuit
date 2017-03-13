@@ -1,16 +1,21 @@
 package com.aquamorph.habquit.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.utils.HabitParameter;
+
+import java.util.Locale;
 
 /**
  * Created by ryansummerlin on 2/16/17.
@@ -21,11 +26,13 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 	private String TAG = "AddHabitActivityTwo";
 	final int CUSTOM_ID = -1;
 	private boolean isAddHabit;
+	private SharedPreferences sharedPreferences;
 	EditText habitName;
 	EditText habitPrice;
 	EditText currPerDay;
 	EditText goalPerDay;
 	EditText goalDate;
+	CheckBox enableHints;
 	TextInputLayout addHabitNameWrapper;
 	TextInputLayout addHabitGoalPerDayWrapper;
 	TextInputLayout addHabitGoalDateWrapper;
@@ -42,20 +49,35 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 		startUpHabitID = getIntent().getExtras().getInt("HabitID");
 		isAddHabit = getIntent().getBooleanExtra("isAddHabit", true);
 
+		habitName = (EditText) findViewById(R.id.addHabitName);
+		habitPrice = (EditText) findViewById(R.id.add_habit_price);
+		currPerDay = (EditText) findViewById(R.id.add_habit_curr_per_day);
+		goalPerDay = (EditText) findViewById(R.id.add_habit_goal_per_day);
+		goalDate = (EditText) findViewById(R.id.add_habit_goal_date);
+		enableHints = (CheckBox) findViewById(R.id.add_habit_tips);
+
+		sharedPreferences = PreferenceManager.getDefaultSharedPreferences
+				(getApplicationContext());
+
 		Log.i(TAG, " " + startUpHabitID);
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 			if (isAddHabit)
 				getSupportActionBar().setTitle(getString(R.string.add_habit_button));
-			else
+			else {
 				getSupportActionBar().setTitle("Manage Habit");
+				habitName.setText(sharedPreferences.getString("habitName" + startUpHabitID, ""));
+				habitPrice.setText(String.format(Locale.getDefault(), "%f", sharedPreferences
+						.getFloat("habitPrice" + startUpHabitID, 0.0f)));
+				currPerDay.setText(String.format(Locale.getDefault(), "%s", sharedPreferences
+						.getInt("currPerDay" + startUpHabitID, 0)));
+				goalPerDay.setText(String.format(Locale.getDefault(), "%s", sharedPreferences
+						.getInt("goalPerDay" + startUpHabitID, 0)));
+				goalDate.setText(sharedPreferences.getString("goalDate" + startUpHabitID, ""));
+				enableHints.setChecked(sharedPreferences.getBoolean("enableHints" +
+						startUpHabitID, true));
+			}
 		}
-
-		habitName = (EditText) findViewById(R.id.addHabitName);
-		habitPrice = (EditText) findViewById(R.id.add_habit_goal_per_day);
-		currPerDay = (EditText) findViewById(R.id.add_habit_goal_date);
-		goalPerDay = (EditText) findViewById(R.id.add_habit_price);
-		goalDate = (EditText) findViewById(R.id.add_habit_curr_per_day);
 
 		if (startUpHabitID != CUSTOM_ID) {
 			habitName.setFocusable(false);
@@ -128,6 +150,17 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 					habitParameter.addHabit(15);
 				} else
 					habitParameter.addHabit(startUpHabitID);
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString("habitName" + startUpHabitID, habitName.getText().toString());
+				editor.putFloat("habitPrice" + startUpHabitID, Float.valueOf(habitPrice.getText()
+						.toString()));
+				editor.putInt("currPerDay" + startUpHabitID, Integer.valueOf(currPerDay.getText()
+						.toString()));
+				editor.putInt("goalPerDay" + startUpHabitID, Integer.valueOf(goalPerDay.getText()
+						.toString()));
+				editor.putString("goalDate" + startUpHabitID, goalDate.getText().toString());
+				editor.putBoolean("enableHints" + startUpHabitID, enableHints.isChecked());
+				editor.apply();
 				finish();
 			}
 		} else {
