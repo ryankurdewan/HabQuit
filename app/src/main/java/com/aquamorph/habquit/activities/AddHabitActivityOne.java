@@ -7,6 +7,7 @@ package com.aquamorph.habquit.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -27,6 +28,11 @@ public class AddHabitActivityOne extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_habit_page_one);
 
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setTitle(getString(R.string.add_habit_button));
+		}
+
 		addCig = (ImageButton) findViewById(R.id.add_habit_smoking);
 		addBeer = (ImageButton) findViewById(R.id.add_habit_drinking);
 		addSoda = (ImageButton) findViewById(R.id.add_habit_soda);
@@ -40,6 +46,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 				addHabitTwo.putExtra("HabitID", HabitParameter.SMOKING_ID);
 				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
+				finish();
 			}
 		});
 		addBeer.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +55,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 				addHabitTwo.putExtra("HabitID", HabitParameter.DRINKING_ID);
 				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
+				finish();
 			}
 		});
 		addSoda.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +64,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 				addHabitTwo.putExtra("HabitID", HabitParameter.SODA_ID);
 				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
+				finish();
 			}
 		});
 		addSmokelessTobacco.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +73,7 @@ public class AddHabitActivityOne extends AppCompatActivity {
 				addHabitTwo.putExtra("HabitID", HabitParameter.SMOKELESS_ID);
 				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
+				finish();
 			}
 		});
 		addHabitCustom.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +82,17 @@ public class AddHabitActivityOne extends AppCompatActivity {
 				addHabitTwo.putExtra("HabitID", HabitParameter.CUSTOM_ID);
 				addHabitTwo.putExtra("isAddHabit", true);
 				startActivity(addHabitTwo);
+				finish();
 			}
 		});
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				finish();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

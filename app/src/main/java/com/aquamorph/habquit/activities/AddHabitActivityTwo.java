@@ -3,6 +3,7 @@ package com.aquamorph.habquit.activities;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +18,9 @@ import com.aquamorph.habquit.utils.HabitParameter;
 
 public class AddHabitActivityTwo extends AppCompatActivity {
 
+	private String TAG = "AddHabitActivityTwo";
 	final int CUSTOM_ID = -1;
 	private boolean isAddHabit;
-
 	EditText habitName;
 	EditText habitPrice;
 	EditText currPerDay;
@@ -31,7 +32,6 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 	TextInputLayout addHabitPriceWrapper;
 	TextInputLayout addHabitCurrPerDayWrapper;
 	Button addHabitButton;
-
 	int startUpHabitID;
 
 	@Override
@@ -42,6 +42,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 		startUpHabitID = getIntent().getExtras().getInt("HabitID");
 		isAddHabit = getIntent().getBooleanExtra("isAddHabit", true);
 
+		Log.i(TAG, " " + startUpHabitID);
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 			if (isAddHabit)
@@ -103,29 +104,31 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				this.finish();
+				finish();
 				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 	private void addActivity() {
-		if (habitName.getText().toString().trim().equals(""))
-			habitName.setError("Please enter a habit name");
-		else if (habitPrice.getText().toString().trim().equals(""))
-			habitPrice.setError("Please enter a habit price");
-		else if (currPerDay.getText().toString().trim().equals(""))
-			currPerDay.setError("Please enter a current number of habit usage");
-		else if (goalPerDay.getText().toString().trim().equals(""))
-			goalPerDay.setError("Please enter a desired number of habit usage");
-		else if (goalDate.getText().toString().trim().equals(""))
-			goalDate.setError("Please enter a goal date");
-		else {
-			if (isAddHabit) {
-
-			} else {
-
+		HabitParameter habitParameter = HabitParameter.getInstance();
+		if (isAddHabit) {
+			if (habitName.getText().toString().trim().equals(""))
+				habitName.setError("Please enter a habit name");
+			else if (habitPrice.getText().toString().trim().equals(""))
+				habitPrice.setError("Please enter a habit price");
+			else if (currPerDay.getText().toString().trim().equals(""))
+				currPerDay.setError("Please enter a current number of habit usage");
+			else if (goalPerDay.getText().toString().trim().equals(""))
+				goalPerDay.setError("Please enter a desired number of habit usage");
+			else if (goalDate.getText().toString().trim().equals(""))
+				goalDate.setError("Please enter a goal date");
+			else {
+				habitParameter.addHabit(startUpHabitID);
+				finish();
 			}
+		} else {
+			habitParameter.removeHabit(startUpHabitID);
 			finish();
 		}
 	}

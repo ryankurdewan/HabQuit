@@ -1,4 +1,4 @@
-package layout;
+package com.aquamorph.habquit.activities;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -8,24 +8,23 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.aquamorph.habquit.R;
 
 /**
- * The configuration screen for the {@link widget_activity widget_activity} AppWidget.
+ * The configuration screen for the {@link WidgetActivity widget} AppWidget.
  */
-public class widget_activityConfigureActivity extends Activity {
+public class WidgetConfigureActivity extends Activity {
 
-    private static final String PREFS_NAME = "layout.widget_activity";
+    private static final String PREFS_NAME = "layout.widget";
     private static final String PREF_PREFIX_KEY = "appwidget_";
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetText;
     View.OnClickListener mOnClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            final Context context = widget_activityConfigureActivity.this;
+            final Context context = WidgetConfigureActivity.this;
 
-            Toast.makeText(context, "HelloWidgetConfig.onClick(): " + String.valueOf(mAppWidgetId) , Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, "HelloWidgetConfig.onClick(): " + String.valueOf(mAppWidgetId) , Toast.LENGTH_LONG).show();
 
             // When the button is clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
@@ -33,7 +32,7 @@ public class widget_activityConfigureActivity extends Activity {
 
             // It is the responsibility of the configuration activity to update the app widget
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            widget_activity.updateAppWidget(context, appWidgetManager, mAppWidgetId);
+            WidgetActivity.updateAppWidget(context, appWidgetManager, mAppWidgetId);
 
             // Make sure we pass back the original appWidgetId
             Intent resultValue = new Intent();
@@ -43,7 +42,7 @@ public class widget_activityConfigureActivity extends Activity {
         }
     };
 
-    public widget_activityConfigureActivity() {
+    public WidgetConfigureActivity() {
         super();
     }
 
@@ -62,7 +61,7 @@ public class widget_activityConfigureActivity extends Activity {
         if (titleValue != null) {
             return titleValue;
         } else {
-            return context.getString(R.string.appwidget_text);
+            return context.getString(R.string.app_widget_title);
         }
     }
 
@@ -80,8 +79,8 @@ public class widget_activityConfigureActivity extends Activity {
         // out of the widget placement if the user presses the back button.
         setResult(RESULT_CANCELED);
 
-        setContentView(R.layout.widget_activity_configure);
-        mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
+        setContentView(R.layout.widget_configure);
+        mAppWidgetText = (EditText) findViewById(R.id.app_widget_title);
         findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
 
         // Find the widget id from the intent.
@@ -98,7 +97,7 @@ public class widget_activityConfigureActivity extends Activity {
             return;
         }
 
-        mAppWidgetText.setText(loadTitlePref(widget_activityConfigureActivity.this, mAppWidgetId));
+        mAppWidgetText.setText(loadTitlePref(WidgetConfigureActivity.this, mAppWidgetId));
     }
 }
 
