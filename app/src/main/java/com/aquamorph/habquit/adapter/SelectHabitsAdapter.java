@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
@@ -15,6 +16,7 @@ import com.aquamorph.habquit.model.Habit;
 import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 import com.aquamorph.habquit.utils.Counter;
 import com.aquamorph.habquit.utils.HabitParameter;
+import com.pixplicity.sharp.Sharp;
 
 import java.util.List;
 
@@ -27,7 +29,8 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 
 	private List<Habit> habits;
 	private boolean isGrid;
-
+	//	private PhotoViewAttacher mAttacher;
+	private Sharp mSvg;
 	public SelectHabitsAdapter(List<Habit> habits, boolean isGrid) {
 		this.habits = habits;
 		this.isGrid = isGrid;
@@ -72,7 +75,18 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 				final Counter counter = Counter.getInstance();
 				final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider();
 				final GridViewHolder gridViewHolder = (GridViewHolder) holder;
-				gridViewHolder.habitName.setText(habit.getType());
+//				gridViewHolder.habitName.setText(habit.getType());
+				if(habit.getType().equals("Smoking")){
+					gridViewHolder.habitName.setBackgroundResource(R.drawable.ic_smoking);
+				}else  if(habit.getType().equals("Smokeless Tobacco")){
+					gridViewHolder.habitName.setBackgroundResource(R.drawable.ic_smoke_free);
+				}else if(habit.getType().equals("Drinking")){
+					gridViewHolder.habitName.setBackgroundResource(R.drawable.ic_booze);
+				}else if(habit.getType().equals("Soft Drinks")){
+					gridViewHolder.habitName.setBackgroundResource(R.drawable.ic_soda);
+				}
+
+				System.out.println("ikfgiugfiga    " + habit.getType());
 				gridViewHolder.habitCount.setText(String.valueOf(counter.getCountFor(habit.getType())));
 				gridViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
 					@Override
@@ -128,13 +142,13 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 	}
 
 	public static class GridViewHolder extends ViewHolder {
-		TextView habitName;
+		ImageView habitName;
 		TextView habitCount;
 		CardView cardView;
 
 		public GridViewHolder(View v) {
 			super(v);
-			habitName = (TextView) v.findViewById(R.id.habitName);
+			habitName = (ImageView) v.findViewById(R.id.imageView);
 			habitCount = (TextView) v.findViewById(R.id.habitCount);
 			cardView = (CardView) v.findViewById(R.id.habit_cardview);
 		}
