@@ -16,7 +16,6 @@ import com.aquamorph.habquit.model.Habit;
 import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 import com.aquamorph.habquit.utils.Counter;
 import com.aquamorph.habquit.utils.HabitParameter;
-import com.pixplicity.sharp.Sharp;
 
 import java.util.List;
 
@@ -30,7 +29,6 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 	private List<Habit> habits;
 	private boolean isGrid;
 	//	private PhotoViewAttacher mAttacher;
-	private Sharp mSvg;
 	public SelectHabitsAdapter(List<Habit> habits, boolean isGrid) {
 		this.habits = habits;
 		this.isGrid = isGrid;

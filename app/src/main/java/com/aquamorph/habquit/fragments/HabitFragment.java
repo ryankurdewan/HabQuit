@@ -47,11 +47,11 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitSgkLi
 	@Override
 	public void onResume() {
 		super.onResume();
-		getHabitSgk();
+		getHabit();
 	}
 
 
-	private void getHabitSgk() {
+	private void getHabit() {
 		HabitServiceProvider habitServiceProvider = new HabitServiceProvider();
 		habitServiceProvider.getHabits(this);
 	}
@@ -60,12 +60,9 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitSgkLi
 	public void onSuccess(List<Habit> habits) {
 		List<Habit> filtered = new ArrayList<>();
 		HabitParameter habitParameter = HabitParameter.getInstance();
-		if (habits != null) {
-			for (Habit h : habits) {
-				if (habitParameter.getHabitIds().contains(h.getHabitId())) {
-					filtered.add(h);
-				}
-			}
+		for (Habit h : habits) {
+			if (habitParameter.getHabitIds().contains(h.getHabitId()))
+				filtered.add(h);
 		}
 
 		empty.setVisibility(filtered.size() == 0 ? View.VISIBLE : View.GONE);

@@ -124,7 +124,10 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 			else if (goalDate.getText().toString().trim().equals(""))
 				goalDate.setError("Please enter a goal date");
 			else {
-				habitParameter.addHabit(startUpHabitID);
+				if (startUpHabitID == CUSTOM_ID) {
+					habitParameter.addHabit(15);
+				} else
+					habitParameter.addHabit(startUpHabitID);
 				finish();
 			}
 		} else {

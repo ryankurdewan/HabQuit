@@ -38,8 +38,8 @@
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="60dp"
-                        android:layout_marginLeft="30dp"
-                        android:background="@drawable/ic_smoke_free"
+                        android:src="@drawable/ic_smoke_free"
+                        android:tint="@color/white"
                         android:layout_height="60dp" />
 
                 </LinearLayout>
@@ -53,7 +53,6 @@
                         android:id="@+id/habitCount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:gravity="center"
                         android:text="0"
                         android:textColor="@color/white"
