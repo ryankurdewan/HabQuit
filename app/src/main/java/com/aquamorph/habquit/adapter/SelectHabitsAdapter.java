@@ -28,6 +28,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 
 	private List<Habit> habits;
 	private boolean isGrid;
+
 	//	private PhotoViewAttacher mAttacher;
 	public SelectHabitsAdapter(List<Habit> habits, boolean isGrid) {
 		this.habits = habits;
@@ -73,15 +74,15 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 				final Counter counter = Counter.getInstance();
 				final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider();
 				final GridViewHolder gridViewHolder = (GridViewHolder) holder;
-//				gridViewHolder.habitName.setText(habit.getType());
-				if(habit.getType().equals("Smoking")){
-					gridViewHolder.habitName.setBackgroundResource(R.drawable.ic_smoking);
-				}else  if(habit.getType().equals("Smokeless Tobacco")){
-					gridViewHolder.habitName.setBackgroundResource(R.drawable.ic_smoke_free);
-				}else if(habit.getType().equals("Drinking")){
-					gridViewHolder.habitName.setBackgroundResource(R.drawable.ic_booze);
-				}else if(habit.getType().equals("Soft Drinks")){
-					gridViewHolder.habitName.setBackgroundResource(R.drawable.ic_soda);
+				gridViewHolder.habitName.setText(habit.getType());
+				if (habit.getType().equals("Smoking")) {
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoke_free);
+				} else if (habit.getType().equals("Smokeless Tobacco")) {
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_leaf);
+				} else if (habit.getType().equals("Drinking")) {
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_booze);
+				} else if (habit.getType().equals("Soft Drinks")) {
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_soda);
 				}
 
 				System.out.println("ikfgiugfiga    " + habit.getType());
@@ -140,13 +141,15 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 	}
 
 	public static class GridViewHolder extends ViewHolder {
-		ImageView habitName;
+		TextView habitName;
+		ImageView habitImage;
 		TextView habitCount;
 		CardView cardView;
 
 		public GridViewHolder(View v) {
 			super(v);
-			habitName = (ImageView) v.findViewById(R.id.imageView);
+			habitName = (TextView) v.findViewById(R.id.habitName);
+			habitImage = (ImageView) v.findViewById(R.id.imageView);
 			habitCount = (TextView) v.findViewById(R.id.habitCount);
 			cardView = (CardView) v.findViewById(R.id.habit_cardview);
 		}

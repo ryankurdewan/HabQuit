@@ -10,4 +10,6 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="add_habit_button">4dp</dimen>
     <dimen name="add_habit_button_image">24dp</dimen>
+
+    <dimen name="habit_icon_padding">4dp</dimen>
 </resources>
