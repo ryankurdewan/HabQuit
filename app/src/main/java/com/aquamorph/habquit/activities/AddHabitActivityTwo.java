@@ -39,6 +39,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 	TextInputLayout addHabitPriceWrapper;
 	TextInputLayout addHabitCurrPerDayWrapper;
 	Button addHabitButton;
+	Button saveHabitButton;
 	int startUpHabitID;
 
 	@Override
@@ -55,6 +56,8 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 		goalPerDay = (EditText) findViewById(R.id.add_habit_goal_per_day);
 		goalDate = (EditText) findViewById(R.id.add_habit_goal_date);
 		enableHints = (CheckBox) findViewById(R.id.add_habit_tips);
+		addHabitButton = (Button) findViewById(R.id.add_habit_button);
+		saveHabitButton = (Button) findViewById(R.id.add_habit_save_button);
 
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences
 				(getApplicationContext());
@@ -76,6 +79,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 				goalDate.setText(sharedPreferences.getString("goalDate" + startUpHabitID, ""));
 				enableHints.setChecked(sharedPreferences.getBoolean("enableHints" +
 						startUpHabitID, true));
+				saveHabitButton.setVisibility(View.VISIBLE);
 			}
 		}
 
@@ -102,7 +106,6 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 		addHabitGoalDateWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_date_wrapper);
 		addHabitPriceWrapper = (TextInputLayout) findViewById(R.id.add_habit_price_wrapper);
 		addHabitCurrPerDayWrapper = (TextInputLayout) findViewById(R.id.add_habit_curr_per_day_wrapper);
-		addHabitButton = (Button) findViewById(R.id.add_habit_button);
 
 		addHabitNameWrapper.setHint(getString(R.string.add_habit_name_hint));
 		addHabitGoalPerDayWrapper.setHint(getString(R.string.add_habit_goal_per_day_hint));
@@ -119,6 +122,13 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				addActivity();
+			}
+		});
+		saveHabitButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				saveHabitSettings();
+				finish();
 			}
 		});
 	}
@@ -150,22 +160,26 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 					habitParameter.addHabit(15);
 				} else
 					habitParameter.addHabit(startUpHabitID);
-				SharedPreferences.Editor editor = sharedPreferences.edit();
-				editor.putString("habitName" + startUpHabitID, habitName.getText().toString());
-				editor.putFloat("habitPrice" + startUpHabitID, Float.valueOf(habitPrice.getText()
-						.toString()));
-				editor.putInt("currPerDay" + startUpHabitID, Integer.valueOf(currPerDay.getText()
-						.toString()));
-				editor.putInt("goalPerDay" + startUpHabitID, Integer.valueOf(goalPerDay.getText()
-						.toString()));
-				editor.putString("goalDate" + startUpHabitID, goalDate.getText().toString());
-				editor.putBoolean("enableHints" + startUpHabitID, enableHints.isChecked());
-				editor.apply();
-				finish();
+					saveHabitSettings();
 			}
 		} else {
 			habitParameter.removeHabit(startUpHabitID);
 			finish();
 		}
+	}
+
+	private void saveHabitSettings() {
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+		editor.putString("habitName" + startUpHabitID, habitName.getText().toString());
+		editor.putFloat("habitPrice" + startUpHabitID, Float.valueOf(habitPrice.getText()
+				.toString()));
+		editor.putInt("currPerDay" + startUpHabitID, Integer.valueOf(currPerDay.getText()
+				.toString()));
+		editor.putInt("goalPerDay" + startUpHabitID, Integer.valueOf(goalPerDay.getText()
+				.toString()));
+		editor.putString("goalDate" + startUpHabitID, goalDate.getText().toString());
+		editor.putBoolean("enableHints" + startUpHabitID, enableHints.isChecked());
+		editor.apply();
+		finish();
 	}
 }
