@@ -52,8 +52,8 @@ public class ManageHabitActivityOne extends AppCompatActivity implements HabitSe
 		ManageHabitsAdapter adapter = new ManageHabitsAdapter(currentlyTracked);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext
 				());
-		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-				linearLayoutManager.getOrientation());
+		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView
+				.getContext(), linearLayoutManager.getOrientation());
 		recyclerView.addItemDecoration(dividerItemDecoration);
 		recyclerView.setLayoutManager(linearLayoutManager);
 		recyclerView.setAdapter(adapter);
