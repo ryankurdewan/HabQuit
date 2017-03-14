@@ -83,6 +83,8 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 			}
 		}
 
+		// TODO: Remove hardcoded habit name values.
+		// TODO: Make call to web api to get habit id.
 		if (startUpHabitID != CUSTOM_ID) {
 			habitName.setFocusable(false);
 			switch (startUpHabitID) {
@@ -93,7 +95,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 					habitName.setText("Drinking");
 					break;
 				case HabitParameter.SODA_ID:
-					habitName.setText("Soda");
+					habitName.setText("Soft Drinks");
 					break;
 				case HabitParameter.SMOKELESS_ID:
 					habitName.setText("Smokeless Tobacco");
