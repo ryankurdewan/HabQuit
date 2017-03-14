@@ -11,4 +11,5 @@
     <color name="white">#FFFFFF</color>
     <color name="lightBlue">#90CAF9</color>
     <color name="blue">#40C4FF</color>
+    <color name="minusPrimary">#29B6F6</color>
 </resources>
