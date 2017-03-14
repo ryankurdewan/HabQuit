@@ -18,11 +18,12 @@
     <string name="logout">Logout</string>
 
     // Widget strings added by JCW
-    <string name="app_widget_title">App widget name</string>
     <string name="configure_widget">Configure</string>
     <string name="add_widget">Add widget</string>
-    <string name="app_widget_text">0</string>
-    <string name="app_widget_button">Touch meh!</string>
+    <string name="app_widget_title">App widget name</string>
+    <string name="widget_count">0</string>
+    <string name="widget_habit">Habit</string>
+    <string name="widget_view_desc">Symbol Representing Habit</string>
 
     <string name="login_prompt">Please sign in with your Google account</string>
     <string name="welcome_message">Welcome to HabQuit</string>
