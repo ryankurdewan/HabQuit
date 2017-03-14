@@ -76,9 +76,9 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 				final GridViewHolder gridViewHolder = (GridViewHolder) holder;
 				gridViewHolder.habitName.setText(habit.getType());
 				if (habit.getType().equals("Smoking")) {
-					gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoke_free);
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoking);
 				} else if (habit.getType().equals("Smokeless Tobacco")) {
-					gridViewHolder.habitImage.setImageResource(R.drawable.ic_leaf);
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoke_free_tobacco);
 				} else if (habit.getType().equals("Drinking")) {
 					gridViewHolder.habitImage.setImageResource(R.drawable.ic_booze);
 				} else if (habit.getType().equals("Soft Drinks")) {

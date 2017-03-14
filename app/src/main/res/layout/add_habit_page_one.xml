@@ -33,7 +33,7 @@
             android:padding="@dimen/add_habit_button_image"
             android:scaleType="fitCenter"
             android:tint="@color/white"
-            app:srcCompat="@drawable/ic_smoke_free"
+            app:srcCompat="@drawable/ic_smoking"
             tools:ignore="ContentDescription,VectorDrawableCompat"/>
 
         <ImageButton
@@ -82,7 +82,7 @@
             android:scaleType="fitCenter"
             android:textAlignment="center"
             android:tint="@color/white"
-            app:srcCompat="@drawable/ic_leaf"
+            app:srcCompat="@drawable/ic_smoke_free_tobacco"
             tools:ignore="VectorDrawableCompat"/>
 
     </LinearLayout>

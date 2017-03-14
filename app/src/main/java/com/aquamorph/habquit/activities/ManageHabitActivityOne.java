@@ -2,7 +2,8 @@ package com.aquamorph.habquit.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.aquamorph.habquit.R;
@@ -21,41 +22,46 @@ import java.util.List;
 
 public class ManageHabitActivityOne extends AppCompatActivity implements HabitService.OnHabitSgkListener {
 
-    RecyclerView recyclerView;
+	RecyclerView recyclerView;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.manage_habit_page_one);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.manage_habit_page_one);
 
-        recyclerView = (RecyclerView) findViewById(R.id.manage_recycler_view);
-        getHabits();
-    }
+		recyclerView = (RecyclerView) findViewById(R.id.manage_recycler_view);
+		getHabits();
+	}
 
-    private void getHabits() {
-        HabitServiceProvider provider = new HabitServiceProvider();
-        provider.getHabits(this);
-    }
+	private void getHabits() {
+		HabitServiceProvider provider = new HabitServiceProvider();
+		provider.getHabits(this);
+	}
 
-    @Override
-    public void onSuccess(List<Habit> habits) {
-        List<Habit> currentlyTracked = new ArrayList<>();
-        HabitParameter habitParameter = HabitParameter.getInstance();
+	@Override
+	public void onSuccess(List<Habit> habits) {
+		List<Habit> currentlyTracked = new ArrayList<>();
+		HabitParameter habitParameter = HabitParameter.getInstance();
 
-        for (Habit habit : habits) {
-            if (habitParameter.getHabitIds().contains(habit.getHabitId())) {
-                currentlyTracked.add(habit);
-            }
-        }
+		for (Habit habit : habits) {
+			if (habitParameter.getHabitIds().contains(habit.getHabitId())) {
+				currentlyTracked.add(habit);
+			}
+		}
 
-        ManageHabitsAdapter adapter = new ManageHabitsAdapter(currentlyTracked);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        recyclerView.setAdapter(adapter);
-    }
+		ManageHabitsAdapter adapter = new ManageHabitsAdapter(currentlyTracked);
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext
+				());
+		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+				linearLayoutManager.getOrientation());
+		recyclerView.addItemDecoration(dividerItemDecoration);
+		recyclerView.setLayoutManager(linearLayoutManager);
+		recyclerView.setAdapter(adapter);
+	}
 
-    @Override
-    public void onError() {
-    }
+	@Override
+	public void onError() {
+	}
 
 
 }
