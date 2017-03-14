@@ -84,7 +84,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 		}
 
 		// TODO: Remove hardcoded habit name values.
-		// TODO: Make call to web api to get habit id.
+
 		if (startUpHabitID != CUSTOM_ID) {
 			habitName.setFocusable(false);
 			switch (startUpHabitID) {
