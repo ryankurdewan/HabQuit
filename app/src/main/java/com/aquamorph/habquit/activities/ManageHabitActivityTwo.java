@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +25,7 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 	private String TAG = "ManageHabitActivityTwo";
 	final int CUSTOM_ID = -1;
 	private boolean isAddHabit;
+	private String habitNameText;
 	private SharedPreferences sharedPreferences;
 	EditText habitName;
 	EditText habitPrice;
@@ -49,6 +49,8 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 
 		startUpHabitID = getIntent().getExtras().getInt("HabitID");
 		isAddHabit = getIntent().getBooleanExtra("isAddHabit", true);
+		habitNameText = getIntent().getStringExtra("habitName");
+
 
 		habitName = (EditText) findViewById(R.id.addHabitName);
 		habitPrice = (EditText) findViewById(R.id.add_habit_price);
@@ -62,7 +64,8 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences
 				(getApplicationContext());
 
-		Log.i(TAG, " " + startUpHabitID);
+		habitName.setText(habitNameText);
+
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 			if (isAddHabit)
@@ -85,23 +88,23 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 
 		// TODO: Remove hardcoded habit name values.
 
-		if (startUpHabitID != CUSTOM_ID) {
-			habitName.setFocusable(false);
-			switch (startUpHabitID) {
-				case HabitParameter.SMOKING_ID:
-					habitName.setText("Smoking");
-					break;
-				case HabitParameter.DRINKING_ID:
-					habitName.setText("Drinking");
-					break;
-				case HabitParameter.SODA_ID:
-					habitName.setText("Soft Drinks");
-					break;
-				case HabitParameter.SMOKELESS_ID:
-					habitName.setText("Smokeless Tobacco");
-					break;
-			}
-		}
+//		if (startUpHabitID != CUSTOM_ID) {
+//			habitName.setFocusable(false);
+//			switch (startUpHabitID) {
+//				case HabitParameter.SMOKING_ID:
+//					habitName.setText("Smoking");
+//					break;
+//				case HabitParameter.DRINKING_ID:
+//					habitName.setText("Drinking");
+//					break;
+//				case HabitParameter.SODA_ID:
+//					habitName.setText("Soft Drinks");
+//					break;
+//				case HabitParameter.SMOKELESS_ID:
+//					habitName.setText("Smokeless Tobacco");
+//					break;
+//			}
+//		}
 
 		addHabitNameWrapper = (TextInputLayout) findViewById(R.id.add_habit_name_wrapper);
 		addHabitGoalPerDayWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_per_day_wrapper);

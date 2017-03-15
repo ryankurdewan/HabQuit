@@ -44,7 +44,7 @@ public class ManageHabitsAdapter
 	public void onBindViewHolder(ManageHabitViewHolder holder, int position) {
 		Habit habit = habitsToManage.get(position);
 		ManageHabitListener listener = new ManageHabitListener(holder.parent.getContext(),
-				habit.getHabitId(), isAddHabit);
+				habit.getHabitId(), isAddHabit, habit.getType());
 		holder.habitName.setText(habit.getType());
 		holder.habitName.setOnClickListener(listener);
 	}

@@ -67,7 +67,7 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitSgkLi
 
 		empty.setVisibility(filtered.size() == 0 ? View.VISIBLE : View.GONE);
 
-		SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(filtered, true);
+		SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(filtered);
 		recyclerView.setAdapter(selectHabitsAdapter);
 
 	}

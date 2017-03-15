@@ -13,22 +13,25 @@ import com.aquamorph.habquit.activities.ManageHabitActivityTwo;
 
 public class ManageHabitListener implements View.OnClickListener {
 
-    Context context;
-    int habitID;
+    private Context context;
+    private int habitID;
     private boolean isAddHabit;
+    private String habitName;
 
-    public ManageHabitListener(Context context, int habitID, boolean isAddHabit) {
+    public ManageHabitListener(Context context, int habitID, boolean isAddHabit, String habitName) {
         this.context = context;
         this.habitID = habitID;
         this.isAddHabit = isAddHabit;
+        this.habitName = habitName;
     }
 
     @Override
     public void onClick(View v) {
-        Intent manageHabitTwo = new Intent(context, ManageHabitActivityTwo.class);
-        manageHabitTwo.putExtra("HabitID", habitID);
-        manageHabitTwo.putExtra("isAddHabit", isAddHabit);
-        context.startActivity(manageHabitTwo);
+        Intent intent = new Intent(context, ManageHabitActivityTwo.class);
+        intent.putExtra("HabitID", habitID);
+        intent.putExtra("isAddHabit", isAddHabit);
+        intent.putExtra("habitName", habitName);
+        context.startActivity(intent);
 	    ((Activity) context).finish();
     }
 }

@@ -104,9 +104,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 			case R.id.graphDisplay:
 				openGraphDisplay();
 				break;
-			case R.id.select_habits:
-				openHabitSelectActivity();
-				break;
 			case R.id.add_habit:
 				openAddHabitActivity();
 				break;
@@ -133,10 +130,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 	public void openGraphDisplay() {
 		startActivity(new Intent(this, GraphDisplayActivity.class));
-	}
-
-	public void openHabitSelectActivity() {
-		startActivity(new Intent(this, HabitSelectActivity.class));
 	}
 
 	public void openManageHabitActivityTwo() {
