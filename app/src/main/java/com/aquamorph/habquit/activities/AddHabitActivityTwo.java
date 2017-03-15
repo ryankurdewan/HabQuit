@@ -68,7 +68,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 			if (isAddHabit)
 				getSupportActionBar().setTitle(getString(R.string.add_habit_button));
 			else {
-				getSupportActionBar().setTitle("Manage Habit");
+				getSupportActionBar().setTitle(getString(R.string.manage));
 				habitName.setText(sharedPreferences.getString("habitName" + startUpHabitID, ""));
 				habitPrice.setText(String.format(Locale.getDefault(), "%f", sharedPreferences
 						.getFloat("habitPrice" + startUpHabitID, 0.0f)));

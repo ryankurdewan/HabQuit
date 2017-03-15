@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.ManageHabitsAdapter;
@@ -29,8 +30,22 @@ public class ManageHabitActivityOne extends AppCompatActivity implements HabitSe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.manage_habit_page_one);
 
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setTitle(getString(R.string.manage));
+		}
+
 		recyclerView = (RecyclerView) findViewById(R.id.manage_recycler_view);
 		getHabits();
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				finish();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	private void getHabits() {
