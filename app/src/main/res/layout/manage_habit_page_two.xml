@@ -1,71 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/activity_horizontal_margin">
 
-    <EditText
-        android:id="@+id/change_goal_per_day"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:hint="Old goal per day"
-        android:inputType="text"
-        android:background="@android:color/background_light"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/manage_habit_header"
-        android:layout_alignLeft="@+id/change_goal_date"
-        android:layout_alignStart="@+id/change_goal_date" />
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_name_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/change_goal_date"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:hint="Old goal date"
-        android:inputType="text"
-        android:background="@android:color/background_light"
-        android:layout_marginTop="60dp"
-        android:layout_below="@+id/change_goal_per_day"
-        android:layout_alignLeft="@+id/tip"
-        android:layout_alignStart="@+id/tip" />
+        <EditText
+            android:id="@+id/addHabitName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_name_hint"
+            android:inputType="text"/>
 
-    <TextView
-        android:id="@+id/tip"
-        android:textSize="20sp"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/change_goal_date"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:text="Tips" />
+    </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/delete_habit"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_goal_per_day_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/add_habit_goal_per_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_goal_per_day_hint"
+            android:inputType="number"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_goal_date_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/add_habit_goal_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_goal_date_hint"
+            android:inputType="date"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_price_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/add_habit_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_price_hint"
+            android:inputType="numberDecimal"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_habit_curr_per_day_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/add_habit_curr_per_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_habit_curr_per_day_hint"
+            android:inputType="number"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/add_habit_tips"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="72dp"
-        android:text="Delete Habit" />
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:checked="true"
+        android:hint="@string/add_habit_tips_hint"
+        android:textSize="18sp"/>
 
-    <TextView
-        android:id="@+id/manage_habit_header"
-        android:gravity="center"
-        android:textSize="32sp"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:text="Habit X"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/change_goal_per_day"
-        android:layout_alignStart="@+id/change_goal_per_day"
-        android:layout_marginTop="15dp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-    <Switch
-        android:id="@+id/tip_switch"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/tip"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp" />
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/add_habit_save_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/add_habit_button"/>
+
+        <Button
+            android:id="@+id/add_habit_button"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/save_habit_button"/>
+    </LinearLayout>
+
+</LinearLayout>

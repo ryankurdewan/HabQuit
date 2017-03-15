@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
-import com.aquamorph.habquit.activities.AddHabitActivityOne;
 import com.aquamorph.habquit.activities.MainActivity;
+import com.aquamorph.habquit.activities.ManageHabitActivityOne;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -56,7 +56,7 @@ public class MainActivityTest {
 		// Tests the add habit menu button
 		MenuItem addHabit = new RoboMenuItem(R.id.add_habit);
 		activity.onOptionsItemSelected(addHabit);
-		Intent expectedIntent = new Intent(activity, AddHabitActivityOne.class);
+		Intent expectedIntent = new Intent(activity, ManageHabitActivityOne.class);
 		ShadowActivity shadowActivity = Shadows.shadowOf(activity);
 		Intent actualIntent = shadowActivity.getNextStartedActivity();
 		assertTrue(actualIntent.filterEquals(expectedIntent));

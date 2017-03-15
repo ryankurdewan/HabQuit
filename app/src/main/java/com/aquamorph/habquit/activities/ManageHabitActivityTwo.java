@@ -21,9 +21,9 @@ import java.util.Locale;
  * Created by ryansummerlin on 2/16/17.
  */
 
-public class AddHabitActivityTwo extends AppCompatActivity {
+public class ManageHabitActivityTwo extends AppCompatActivity {
 
-	private String TAG = "AddHabitActivityTwo";
+	private String TAG = "ManageHabitActivityTwo";
 	final int CUSTOM_ID = -1;
 	private boolean isAddHabit;
 	private SharedPreferences sharedPreferences;
@@ -45,7 +45,7 @@ public class AddHabitActivityTwo extends AppCompatActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.add_habit_page_two);
+		setContentView(R.layout.manage_habit_page_two);
 
 		startUpHabitID = getIntent().getExtras().getInt("HabitID");
 		isAddHabit = getIntent().getBooleanExtra("isAddHabit", true);

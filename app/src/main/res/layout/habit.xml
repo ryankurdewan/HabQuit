@@ -25,7 +25,6 @@
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/add_habit"
                 android:cropToPadding="true"
-                android:drawableLeft="@id/add_habit_drinking"
                 android:scaleType="fitXY"
                 android:visibility="visible"
                 android:src="@drawable/ic_booze" />

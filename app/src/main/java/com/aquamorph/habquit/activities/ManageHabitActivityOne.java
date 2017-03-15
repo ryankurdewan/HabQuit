@@ -23,16 +23,22 @@ import java.util.List;
 
 public class ManageHabitActivityOne extends AppCompatActivity implements HabitService.OnHabitSgkListener {
 
-	RecyclerView recyclerView;
+	private RecyclerView recyclerView;
+	private boolean isAddHabit;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.manage_habit_page_one);
+		isAddHabit = getIntent().getBooleanExtra("isAddHabit", true);
 
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-			getSupportActionBar().setTitle(getString(R.string.manage));
+			if (isAddHabit)
+				getSupportActionBar().setTitle(getString(R.string.add_habit_button));
+			else
+				getSupportActionBar().setTitle(getString(R.string.manage));
 		}
 
 		recyclerView = (RecyclerView) findViewById(R.id.manage_recycler_view);
@@ -59,12 +65,12 @@ public class ManageHabitActivityOne extends AppCompatActivity implements HabitSe
 		HabitParameter habitParameter = HabitParameter.getInstance();
 
 		for (Habit habit : habits) {
-			if (habitParameter.getHabitIds().contains(habit.getHabitId())) {
+			if (habitParameter.getHabitIds().contains(habit.getHabitId()) != isAddHabit) {
 				currentlyTracked.add(habit);
 			}
 		}
 
-		ManageHabitsAdapter adapter = new ManageHabitsAdapter(currentlyTracked);
+		ManageHabitsAdapter adapter = new ManageHabitsAdapter(currentlyTracked, isAddHabit);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext
 				());
 		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView

@@ -30,8 +30,7 @@
         <activity android:name=".activities.LineGraphActivity" />
         <activity android:name=".activities.HabitSelectActivity" />
         <activity android:name=".activities.MotivationActivity" />
-        <activity android:name=".activities.AddHabitActivityOne" />
-        <activity android:name=".activities.AddHabitActivityTwo" />
+        <activity android:name=".activities.ManageHabitActivityTwo" />
         <activity android:name=".activities.ManageHabitActivityOne" />
 
         <receiver android:name=".activities.WidgetActivity">

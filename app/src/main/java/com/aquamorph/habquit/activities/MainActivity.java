@@ -140,11 +140,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 	}
 
 	public void openManageHabitActivityTwo() {
-		startActivity(new Intent(this, ManageHabitActivityOne.class));
+		Intent intent = new Intent(this, ManageHabitActivityOne.class);
+		intent.putExtra("isAddHabit", false);
+		startActivity(intent);
 	}
 
 	public void openAddHabitActivity() {
-		startActivity(new Intent(this, AddHabitActivityOne.class));
+		Intent intent = new Intent(this, ManageHabitActivityOne.class);
+		intent.putExtra("isAddHabit", true);
+		startActivity(intent);
 	}
 
 	@Override
