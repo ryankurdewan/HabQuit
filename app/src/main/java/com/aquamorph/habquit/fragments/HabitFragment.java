@@ -23,7 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * <p></p>
+ * Displays list of habits so that user can keep track of how many times they partake in their
+ * selected habits.
  *
  * @author Christian Colglazier
  * @version 2/2/2017
@@ -74,6 +75,5 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitSgkLi
 	}
 
 	@Override
-	public void onError() {
-	}
+	public void onError() {}
 }

@@ -20,7 +20,7 @@ import java.util.List;
 public class ManageHabitsAdapter
 		extends RecyclerView.Adapter<ManageHabitsAdapter.ManageHabitViewHolder> {
 
-	List<Habit> habitsToManage;
+	private List<Habit> habitsToManage;
 	private SharedPreferences preferences;
 	private boolean isAddHabit;
 

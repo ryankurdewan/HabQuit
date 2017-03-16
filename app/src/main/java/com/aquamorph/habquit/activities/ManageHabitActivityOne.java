@@ -66,15 +66,13 @@ public class ManageHabitActivityOne extends AppCompatActivity implements HabitSe
 		HabitParameter habitParameter = HabitParameter.getInstance();
 
 		for (Habit habit : habits) {
-			if (habitParameter.getHabitIds().contains(habit.getHabitId()) != isAddHabit) {
+			if (habitParameter.getHabitIds().contains(habit.getHabitId()) != isAddHabit)
 				currentlyTracked.add(habit);
-			}
 		}
 
 		ManageHabitsAdapter adapter = new ManageHabitsAdapter(currentlyTracked,
 				PreferenceManager.getDefaultSharedPreferences(getApplicationContext()), isAddHabit);
-		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext
-				());
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
 		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView
 				.getContext(), linearLayoutManager.getOrientation());
 		recyclerView.addItemDecoration(dividerItemDecoration);
@@ -83,8 +81,5 @@ public class ManageHabitActivityOne extends AppCompatActivity implements HabitSe
 	}
 
 	@Override
-	public void onError() {
-	}
-
-
+	public void onError() {}
 }

@@ -1,12 +1,9 @@
 package com.aquamorph.habquit.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.adapter.AchievementAdapter;
@@ -15,25 +12,14 @@ import com.aquamorph.habquit.provider.UserServiceProvider;
 import com.aquamorph.habquit.service.UserService;
 
 /**
+ * Achievement class page for listing achievements won by user.
+ *
  * Created by Shawn on 1/17/2017.
  */
 
-//Achievement class page for listing achievements
-//won by user.
-
-
 public class AchievementsActivity extends AppCompatActivity implements UserService.OnAchievementListener {
 
-    /* The @Bind is part of the butterknife from Jake Horton, It allows
-    for allows for more convenience and cuts out boiler plate code.
-    In this class the lines of code no longer needed will have a comment at that line
-
-    @BindView(R.id.achievements) RecyclerView mRecyclerView;
-    ButterKnife.bind(this);   */
-
     private RecyclerView recyclerView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstancestate) {
@@ -42,20 +28,7 @@ public class AchievementsActivity extends AppCompatActivity implements UserServi
 
         recyclerView = (RecyclerView) findViewById(R.id.achievements);
         getAchievement();
-        /* This is for testing of data. Later this will call rest service for data.
-
-        ArrayList<Achievement> achievements = new ArrayList<>();
-        for(int i=0;i<10;i++){
-            Achievement achievements1 = new Achievement();
-            achievements1.setAchievementTitle("Title" + i);
-            achievements1.setMessage("Message" + i);
-            achievements1.setPoints(i);
-            achievements.add(achievements1);
-        } */
-
-        //This instantiates the adapter and sets the data.
     }
-
 
     /**
      *   Calls achievementServiceProvider passing reference of self (implements OnAchievementListener)
@@ -66,11 +39,10 @@ public class AchievementsActivity extends AppCompatActivity implements UserServi
         userServiceProvider.getUserRegs(this);
     }
 
-
     /**
      * this function is called when the achievementServiceProvider successfully makes a service call
      * to get a list of achievements from remote server (http status 200)
-     * @param achievements
+     * @param userReg user id
      */
     @Override
     public void onSuccess(UserReg userReg) {
@@ -81,21 +53,5 @@ public class AchievementsActivity extends AppCompatActivity implements UserServi
     }
 
     @Override
-    public void onError() {
-
-    }
+    public void onError() {}
 }
- /* Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(AchievementsActivity.this,"I have been clicked",Toast.LENGTH_LONG).show();
-            }
-        }); */
-
- /* @OnClick(R.id.button)
-    public void onButtonClick(){
-        Toast.makeText(AchievementsActivity.this,"Me too",Toast.LENGTH_LONG).show();
-    } */
-
-

@@ -14,8 +14,7 @@ import com.aquamorph.habquit.R;
  */
 
 public class GraphDisplayActivity extends AppCompatActivity {
-
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
