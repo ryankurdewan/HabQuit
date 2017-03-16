@@ -39,8 +39,8 @@ public class HabitServiceProvider {
      * a List of Achievement is returned to listener.
      * @param listener
      */
-      public void getHabits(final HabitService.OnHabitSgkListener listener) {
-          Call<List<Habit>> call = habitService.getHabitSgk();
+      public void getHabits(final HabitService.OnHabitListener listener) {
+          Call<List<Habit>> call = habitService.getHabit();
           call.enqueue(new Callback<List<Habit>>() {
               @Override
               public void onResponse(Call<List<Habit>> call, Response<List<Habit>> response) {

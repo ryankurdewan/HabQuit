@@ -22,7 +22,7 @@ import java.util.List;
  * Created by ryansummerlin on 3/9/17.
  */
 
-public class ManageHabitActivityOne extends AppCompatActivity implements HabitService.OnHabitSgkListener {
+public class ManageHabitActivityOne extends AppCompatActivity implements HabitService.OnHabitListener {
 
 	private RecyclerView recyclerView;
 	private boolean isAddHabit;

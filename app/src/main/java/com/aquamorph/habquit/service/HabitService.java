@@ -19,7 +19,7 @@ public interface HabitService {
      * @return
      */
     @GET ("/api/habits/")
-    Call<List<Habit>> getHabitSgk();
+    Call<List<Habit>> getHabit();
 
 
     /**
@@ -27,7 +27,7 @@ public interface HabitService {
      * it is used to promote loose coupling and reuse of services.  AchievemntActivity implents this
      * so HabitServiceProvider knows what properties are available
      */
-    interface OnHabitSgkListener {
+    interface OnHabitListener {
         void onSuccess(List<Habit> habits);
         void onError();
     }

@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
  * @version 2/2/2017
  */
 
-public class HabitFragment extends Fragment implements HabitService.OnHabitSgkListener {
+public class HabitFragment extends Fragment implements HabitService.OnHabitListener {
 
 	private RecyclerView recyclerView;
 	@BindView(R.id.empty)
