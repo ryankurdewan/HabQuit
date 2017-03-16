@@ -1,8 +1,8 @@
 package com.aquamorph.habquit.adapter;
 
+import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +23,12 @@ import java.util.List;
 
 public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapter.ViewHolder> {
 
-
 	private List<Habit> habits;
+	private SharedPreferences preferences;
 
-	//	private PhotoViewAttacher mAttacher;
-	public SelectHabitsAdapter(List<Habit> habits) {
+	public SelectHabitsAdapter(List<Habit> habits, SharedPreferences preferences) {
 		this.habits = habits;
+		this.preferences = preferences;
 	}
 
 	@Override
@@ -47,15 +47,22 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 			final Counter counter = Counter.getInstance();
 			final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider();
 			final GridViewHolder gridViewHolder = (GridViewHolder) holder;
-			gridViewHolder.habitName.setText(habit.getType());
-			if (habit.getType().equals("Smoking")) {
-				gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoking);
-			} else if (habit.getType().equals("Smokeless Tobacco")) {
-				gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoke_free_tobacco);
-			} else if (habit.getType().equals("Drinking")) {
-				gridViewHolder.habitImage.setImageResource(R.drawable.ic_booze);
-			} else if (habit.getType().equals("Soft Drinks")) {
-				gridViewHolder.habitImage.setImageResource(R.drawable.ic_soda);
+			gridViewHolder.habitName.setText(preferences.getString("habitName" +
+					habit.getHabitId(), habit.getType()));
+
+			switch (habit.getHabitId()) {
+				case 1:
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoking);
+					break;
+				case 2:
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoke_free_tobacco);
+					break;
+				case 3:
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_booze);
+					break;
+				case 4:
+					gridViewHolder.habitImage.setImageResource(R.drawable.ic_soda);
+					break;
 			}
 
 			gridViewHolder.habitCount.setText(String.valueOf(counter.getCountFor(habit.getType())));
@@ -90,24 +97,12 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 		return habits != null ? habits.size() : 0;
 	}
 
-	public static class ViewHolder extends RecyclerView.ViewHolder {
+	static class ViewHolder extends RecyclerView.ViewHolder {
 
 		Habit habit;
 
-		public ViewHolder(View v) {
+		ViewHolder(View v) {
 			super(v);
-		}
-	}
-
-	public static class ListItemViewHolder extends ViewHolder {
-
-		SwitchCompat habitSwitch;
-		TextView type;
-
-		public ListItemViewHolder(View v) {
-			super(v);
-			habitSwitch = (SwitchCompat) v.findViewById(R.id.habitSwitch);
-			type = (TextView) v.findViewById(R.id.type);
 		}
 	}
 
@@ -117,7 +112,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 		TextView habitCount;
 		CardView cardView;
 
-		public GridViewHolder(View v) {
+		GridViewHolder(View v) {
 			super(v);
 			habitName = (TextView) v.findViewById(R.id.habitName);
 			habitImage = (ImageView) v.findViewById(R.id.imageView);

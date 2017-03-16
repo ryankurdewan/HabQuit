@@ -35,7 +35,7 @@
     <string name="add_habit_curr_per_day_hint">Current number per day</string>
     <string name="add_habit_tips_hint">Enable Tips</string>
     <string name="add_habit_button">Add Habit</string>
-    <string name="save_habit_button">Save Habit</string>
+    <string name="save_habit_button">Save Changes</string>
     <string name="delete_habit_button">Delete Habit</string>
 
 </resources>

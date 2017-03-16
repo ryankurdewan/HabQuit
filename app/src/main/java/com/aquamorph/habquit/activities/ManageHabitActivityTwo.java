@@ -51,7 +51,6 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 		isAddHabit = getIntent().getBooleanExtra("isAddHabit", true);
 		habitNameText = getIntent().getStringExtra("habitName");
 
-
 		habitName = (EditText) findViewById(R.id.addHabitName);
 		habitPrice = (EditText) findViewById(R.id.add_habit_price);
 		currPerDay = (EditText) findViewById(R.id.add_habit_curr_per_day);
@@ -85,27 +84,6 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 				saveHabitButton.setVisibility(View.VISIBLE);
 			}
 		}
-
-		// TODO: Remove hardcoded habit name values.
-
-//		if (startUpHabitID != CUSTOM_ID) {
-//			habitName.setFocusable(false);
-//			switch (startUpHabitID) {
-//				case HabitParameter.SMOKING_ID:
-//					habitName.setText("Smoking");
-//					break;
-//				case HabitParameter.DRINKING_ID:
-//					habitName.setText("Drinking");
-//					break;
-//				case HabitParameter.SODA_ID:
-//					habitName.setText("Soft Drinks");
-//					break;
-//				case HabitParameter.SMOKELESS_ID:
-//					habitName.setText("Smokeless Tobacco");
-//					break;
-//			}
-//		}
-
 		addHabitNameWrapper = (TextInputLayout) findViewById(R.id.add_habit_name_wrapper);
 		addHabitGoalPerDayWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_per_day_wrapper);
 		addHabitGoalDateWrapper = (TextInputLayout) findViewById(R.id.add_habit_goal_date_wrapper);

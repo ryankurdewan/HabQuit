@@ -101,14 +101,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:text="@string/add_habit_button"/>
+            android:text="@string/save_habit_button"/>
 
         <Button
             android:id="@+id/add_habit_button"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/save_habit_button"/>
+            android:text="@string/add_habit_button"/>
     </LinearLayout>
 
 </LinearLayout>

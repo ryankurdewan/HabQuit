@@ -1,5 +1,6 @@
 package com.aquamorph.habquit.adapter;
 
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +21,19 @@ public class ManageHabitsAdapter
 		extends RecyclerView.Adapter<ManageHabitsAdapter.ManageHabitViewHolder> {
 
 	List<Habit> habitsToManage;
+	private SharedPreferences preferences;
 	private boolean isAddHabit;
 
 	// Creation of this class assumes the list passed is not null!
-	public ManageHabitsAdapter(List<Habit> habitsToManage, boolean isAddHabit) {
+	public ManageHabitsAdapter(List<Habit> habitsToManage, SharedPreferences preferences,
+	                           boolean isAddHabit) {
 		if (habitsToManage == null) {
 			System.err.println("Passed invalid parameter to constructor of ManageHabitsAdapter. " +
 					"The parameter should be a non-null list.");
 			System.exit(1);
 		}
 		this.isAddHabit = isAddHabit;
+		this.preferences = preferences;
 		this.habitsToManage = habitsToManage;
 	}
 
@@ -45,7 +49,8 @@ public class ManageHabitsAdapter
 		Habit habit = habitsToManage.get(position);
 		ManageHabitListener listener = new ManageHabitListener(holder.parent.getContext(),
 				habit.getHabitId(), isAddHabit, habit.getType());
-		holder.habitName.setText(habit.getType());
+		holder.habitName.setText(preferences.getString("habitName" + habit.getHabitId(),
+				habit.getType()));
 		holder.habitName.setOnClickListener(listener);
 	}
 

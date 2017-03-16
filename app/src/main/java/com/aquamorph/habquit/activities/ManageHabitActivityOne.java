@@ -1,6 +1,7 @@
 package com.aquamorph.habquit.activities;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -70,7 +71,8 @@ public class ManageHabitActivityOne extends AppCompatActivity implements HabitSe
 			}
 		}
 
-		ManageHabitsAdapter adapter = new ManageHabitsAdapter(currentlyTracked, isAddHabit);
+		ManageHabitsAdapter adapter = new ManageHabitsAdapter(currentlyTracked,
+				PreferenceManager.getDefaultSharedPreferences(getApplicationContext()), isAddHabit);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext
 				());
 		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView
