@@ -132,12 +132,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 		startActivity(new Intent(this, GraphDisplayActivity.class));
 	}
 
+	/**
+	 * Starts activity to manage a habit
+	 */
 	public void openManageHabitActivityTwo() {
 		Intent intent = new Intent(this, ManageHabitActivityOne.class);
 		intent.putExtra("isAddHabit", false);
 		startActivity(intent);
 	}
 
+	/**
+	 * Starts activity to add a habit
+	 */
 	public void openAddHabitActivity() {
 		Intent intent = new Intent(this, ManageHabitActivityOne.class);
 		intent.putExtra("isAddHabit", true);
@@ -145,7 +151,5 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 	}
 
 	@Override
-	public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-	}
+	public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {}
 }

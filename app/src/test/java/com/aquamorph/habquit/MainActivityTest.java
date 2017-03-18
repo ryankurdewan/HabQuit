@@ -61,4 +61,15 @@ public class MainActivityTest {
 		Intent actualIntent = shadowActivity.getNextStartedActivity();
 		assertTrue(actualIntent.filterEquals(expectedIntent));
 	}
+
+	@Test
+	public void manageHabitMenuButton() {
+		// Tests the add habit menu button
+		MenuItem manageHabit = new RoboMenuItem(R.id.manage_habit);
+		activity.onOptionsItemSelected(manageHabit);
+		Intent expectedIntent = new Intent(activity, ManageHabitActivityOne.class);
+		ShadowActivity shadowActivity = Shadows.shadowOf(activity);
+		Intent actualIntent = shadowActivity.getNextStartedActivity();
+		assertTrue(actualIntent.filterEquals(expectedIntent));
+	}
 }
