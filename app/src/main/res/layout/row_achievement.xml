@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="48dp"
         android:src="@drawable/ic_star"
-        android:id="@+id/imageView"
+        android:id="@+id/habitIcon"
         android:layout_height="wrap_content" />
 
     <TextView

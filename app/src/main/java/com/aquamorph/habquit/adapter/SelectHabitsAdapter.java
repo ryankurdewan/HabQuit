@@ -14,6 +14,7 @@ import com.aquamorph.habquit.fragments.AssistantFragment;
 import com.aquamorph.habquit.model.Habit;
 import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 import com.aquamorph.habquit.utils.Counter;
+import com.aquamorph.habquit.utils.HabitIcon;
 
 import java.util.List;
 
@@ -50,20 +51,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 			gridViewHolder.habitName.setText(preferences.getString("habitName" +
 					habit.getHabitId(), habit.getType()));
 
-			switch (habit.getHabitId()) {
-				case 1:
-					gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoking);
-					break;
-				case 2:
-					gridViewHolder.habitImage.setImageResource(R.drawable.ic_smoke_free_tobacco);
-					break;
-				case 3:
-					gridViewHolder.habitImage.setImageResource(R.drawable.ic_booze);
-					break;
-				case 4:
-					gridViewHolder.habitImage.setImageResource(R.drawable.ic_soda);
-					break;
-			}
+			HabitIcon.setIcon(habit, gridViewHolder.habitImage);
 
 			gridViewHolder.habitCount.setText(String.valueOf(counter.getCountFor(habit.getType())));
 			gridViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +103,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 		GridViewHolder(View v) {
 			super(v);
 			habitName = (TextView) v.findViewById(R.id.habitName);
-			habitImage = (ImageView) v.findViewById(R.id.imageView);
+			habitImage = (ImageView) v.findViewById(R.id.habitIcon);
 			habitCount = (TextView) v.findViewById(R.id.habitCount);
 			cardView = (CardView) v.findViewById(R.id.habit_cardview);
 		}
