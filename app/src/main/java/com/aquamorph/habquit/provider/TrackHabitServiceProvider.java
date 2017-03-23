@@ -65,7 +65,8 @@ public class TrackHabitServiceProvider {
     }
 
     public void postTrackHabit(int habitId){
-        Call<TrackHabit> call = trackHabitService.postTrackHabit(LoginServiceProvider.getInstance().getUserId(),habitId);
+        LoginServiceProvider provider = new LoginServiceProvider();
+        Call<TrackHabit> call = trackHabitService.postTrackHabit(provider.getUserId(),habitId);
         call.enqueue(new Callback<TrackHabit>() {
             @Override
             public void onResponse(Call<TrackHabit> call, Response<TrackHabit> response) {

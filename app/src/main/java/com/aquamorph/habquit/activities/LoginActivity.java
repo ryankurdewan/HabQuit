@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.provider.LoginServiceProvider;
+import com.aquamorph.habquit.service.LoginService;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -35,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		signIn.setOnClickListener(this);
 
 		GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions
-				.DEFAULT_SIGN_IN).requestEmail().build();
+				.DEFAULT_SIGN_IN).requestProfile().build();
 		googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi
 				(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
 	}
@@ -74,6 +77,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences
 					(getApplicationContext());
 			sharedPreferences.edit().putString("firstName", account.getGivenName()).apply();
+            sharedPreferences.edit().putString("googleID", account.getId()).apply();
+            sharedPreferences.edit().putString("userName", account.getGivenName()).apply();
+            sharedPreferences.edit().putString("email", account.getEmail()).apply();
+
+			Log.i(TAG, "googleID: " + account.getId());
+
+            LoginServiceProvider loginServiceProvider = new LoginServiceProvider();
+            loginServiceProvider.postLoginInfo(Double.parseDouble(sharedPreferences.getString("googleID", "Error w/ googleID")),
+                    sharedPreferences.getString("userName", "Error w/ userName"), sharedPreferences.getString("email", "Error w/ email"));
 
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
