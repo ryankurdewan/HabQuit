@@ -2,17 +2,29 @@ package com.aquamorph.habquit.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.model.DailyCountHabit;
+import com.aquamorph.habquit.model.DailyCounts;
+import com.aquamorph.habquit.model.StatAvg;
+import com.aquamorph.habquit.provider.DailyHabitCountServiceProvider;
+import com.aquamorph.habquit.provider.LoginServiceProvider;
+import com.aquamorph.habquit.provider.MotivationServiceProvider;
+import com.aquamorph.habquit.provider.StatAvgServiceProvider;
+import com.aquamorph.habquit.service.LoginService;
+import com.aquamorph.habquit.service.StatAvgService;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.aquamorph.habquit.service.DailyHabitCountService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p></p>
@@ -21,7 +33,8 @@ import java.util.ArrayList;
  * @version 2/2/2017
  */
 
-public class ChartsFragment extends Fragment {
+public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvgListener, DailyHabitCountService.OnDailyHabitCountListener{
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +44,9 @@ public class ChartsFragment extends Fragment {
 
         String[] values = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
 		        "Saturday", "Sunday"};
+
+
+
 
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(new StringDayAxisValueFormatter(values));
@@ -50,6 +66,36 @@ public class ChartsFragment extends Fragment {
 		barChart.setDragEnabled(true);
 		barChart.setTouchEnabled(true);
 		barChart.setScaleEnabled(true);
+		getStatAvg();
+		getDailyHabitCounts();
 		return view;
+	}
+
+	public void getStatAvg(){
+		StatAvgServiceProvider statAvgServiceProvider = new StatAvgServiceProvider();
+		statAvgServiceProvider.getStatAvg(this);
+	}
+
+	public void getDailyHabitCounts() {
+		DailyHabitCountServiceProvider dailyHabitCountServiceProvider = new DailyHabitCountServiceProvider();
+		dailyHabitCountServiceProvider.getDailyHabitCounts(this);
+
+	}
+
+
+	@Override
+	public void onSuccess(StatAvg statAvg) {
+
+
+	}
+
+	@Override
+	public void onSuccess(DailyCountHabit dailycounts) {
+
+	}
+
+	@Override
+	public void onError() {
+
 	}
 }
