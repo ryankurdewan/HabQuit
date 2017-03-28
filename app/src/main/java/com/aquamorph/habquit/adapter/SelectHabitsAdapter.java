@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.fragments.AssistantFragment;
+import com.aquamorph.habquit.model.DeleteRecordId;
 import com.aquamorph.habquit.model.Habit;
 import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 import com.aquamorph.habquit.utils.Counter;
@@ -68,11 +69,15 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 			gridViewHolder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View v) {
+					DeleteRecordId toDelete = new DeleteRecordId();
+					toDelete.setHabitId(habit.getHabitId());
+					//toDelete.getUserId();
 					int count = counter.getCountFor(habit.getType());
 					AssistantFragment.changeMood(5.0);
 					count--;
 					if (count < 0) count = 0;
 					counter.setCountFor(habit.getType(), count);
+					serviceProvider.deleteTrackHabit(toDelete);
 					SelectHabitsAdapter.this.notifyDataSetChanged();
 					return true;
 				}

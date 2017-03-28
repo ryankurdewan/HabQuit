@@ -2,10 +2,13 @@ package com.aquamorph.habquit.provider;
 
 import android.util.Log;
 
+import com.aquamorph.habquit.model.DeleteRecordId;
 import com.aquamorph.habquit.model.IdResponse;
 import com.aquamorph.habquit.model.TrackHabit;
 import com.aquamorph.habquit.service.TrackHabitService;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -25,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class TrackHabitServiceProvider {
+    public static String TAG = "TrackHabitServiceProv";
     TrackHabitService trackHabitService;
 
     /**
@@ -79,7 +83,23 @@ public class TrackHabitServiceProvider {
             }
         });
     }
-    //public void deleteTrackHabit(int trackHabitId){
-     //   Call<TrackHabit> call = trackHabitService.deleteTrackHabit
-   // }
+    public void deleteTrackHabit(DeleteRecordId toDelete){
+        LoginServiceProvider provider = new LoginServiceProvider();
+        toDelete.setUserId(provider.getUserId());
+        Call<TrackHabit> call = trackHabitService.deleteTrackHabit(toDelete);
+        call.enqueue(new Callback<TrackHabit>(){
+            @Override
+            public void onResponse(Call<TrackHabit> call, Response<TrackHabit> response) {
+                //TrackHabit trackResponse = response.message();
+                //Log.d(TAG, trackResponse.toString());
+                Log.d(TAG, "Success");
+            }
+
+            @Override
+            public void onFailure(Call<TrackHabit> call, Throwable t) {
+                Log.d("Shit",t.getMessage());
+            }
+        });
+
+    }
 }
