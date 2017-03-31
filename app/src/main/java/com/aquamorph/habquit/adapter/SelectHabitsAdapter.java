@@ -11,8 +11,9 @@ import android.widget.TextView;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.fragments.AssistantFragment;
-import com.aquamorph.habquit.model.DeleteRecordId;
+import com.aquamorph.habquit.model.UserRecord;
 import com.aquamorph.habquit.model.Habit;
+import com.aquamorph.habquit.provider.LoginServiceProvider;
 import com.aquamorph.habquit.provider.TrackHabitServiceProvider;
 import com.aquamorph.habquit.utils.Counter;
 import com.aquamorph.habquit.utils.HabitIcon;
@@ -27,7 +28,8 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 
 	private List<Habit> habits;
 	private SharedPreferences preferences;
-
+	LoginServiceProvider provider = new LoginServiceProvider();
+	UserRecord userInfo = new UserRecord();
 	public SelectHabitsAdapter(List<Habit> habits, SharedPreferences preferences) {
 		this.habits = habits;
 		this.preferences = preferences;
@@ -43,6 +45,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
 		final Habit habit = habits.get(position);
+
 		if (habit != null) {
 			holder.habit = habit;
 
@@ -61,23 +64,26 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 					int count = counter.getCountFor(habit.getType());
 					AssistantFragment.changeMood(-5.0);
 					count++;
+					userInfo.setHabitId(habit.getHabitId());
+					userInfo.setUserId(provider.getUserId());
 					counter.setCountFor(habit.getType(), count);
-					serviceProvider.postTrackHabit(habit.getHabitId());
+					serviceProvider.postTrackHabit(userInfo);
 					SelectHabitsAdapter.this.notifyDataSetChanged();
 				}
 			});
 			gridViewHolder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View v) {
-					DeleteRecordId toDelete = new DeleteRecordId();
-					toDelete.setHabitId(habit.getHabitId());
+
+					userInfo.setHabitId(habit.getHabitId());
+					userInfo.setUserId(provider.getUserId());
 					//toDelete.getUserId();
 					int count = counter.getCountFor(habit.getType());
 					AssistantFragment.changeMood(5.0);
 					count--;
 					if (count < 0) count = 0;
 					counter.setCountFor(habit.getType(), count);
-					serviceProvider.deleteTrackHabit(toDelete);
+					serviceProvider.deleteTrackHabit(userInfo);
 					SelectHabitsAdapter.this.notifyDataSetChanged();
 					return true;
 				}
