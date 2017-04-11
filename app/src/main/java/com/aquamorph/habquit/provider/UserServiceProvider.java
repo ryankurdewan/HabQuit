@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserServiceProvider {
     UserService achievementService;
-
+    LoginServiceProvider provider = new LoginServiceProvider();
     /**
      * implementation of service is created here.
      * base url for service is defined here
@@ -39,7 +39,7 @@ public class UserServiceProvider {
      * @param listener
      */
     public void  getUserRegs (final UserService.OnAchievementListener listener){
-        Call<UserReg> call = achievementService.getUserReg(1); //THis is where we'll user id
+        Call<UserReg> call = achievementService.getUserReg(provider.getUserId()); //THis is where we'll user id
         call.enqueue(new Callback<UserReg>() {
             @Override
             public void onResponse(Call<UserReg> call, Response<UserReg> response) {
