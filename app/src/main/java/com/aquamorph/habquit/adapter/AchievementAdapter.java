@@ -38,9 +38,10 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
         UserAchievement userAchievement = userAchievements.get(position);
         if(userAchievement != null){
             //load view holder
-            holder.title.setText(userAchievement.getAchieveLists().getTitle());
+            holder.title.setText("TITLE");
             holder.points.setText(String.valueOf(userAchievement.getAchieveLists().getPoints()));
             holder.description.setText(userAchievement.getAchieveLists().getDescription());
+
         }
     }
 

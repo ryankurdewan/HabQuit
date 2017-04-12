@@ -29,7 +29,7 @@
         android:id="@+id/achievements"
         android:title="@string/achievements"
         android:orderInCategory="99"
-        android:visible="false"
+        android:visible="true"
         app:showAsAction="never"/>
     <item
         android:id="@+id/manage_habit"

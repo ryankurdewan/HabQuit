@@ -48,6 +48,7 @@ public class HabitServiceProvider {
                   listener.onSuccess(habits);
               }
 
+
               @Override
               public void onFailure(Call<List<Habit>> call, Throwable t) {
                   Log.d("HabitService Fail", t.getMessage());

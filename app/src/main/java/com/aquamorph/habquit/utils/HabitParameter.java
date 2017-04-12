@@ -21,6 +21,7 @@ public class HabitParameter {
     public static final int SMOKELESS_ID = 2;
     public static final int DRINKING_ID = 3;
     public static final int SODA_ID = 4;
+
     public static final int CUSTOM_ID = -1;
 
     private SharedPreferences sharedPreferences;

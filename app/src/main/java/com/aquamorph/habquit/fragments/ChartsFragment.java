@@ -35,14 +35,15 @@ import java.util.List;
 
 public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvgListener, DailyHabitCountService.OnDailyHabitCountListener{
 
+	  private BarChart barChart;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.bar_graph, container, false);
-		BarChart barChart = (BarChart) view.findViewById(R.id.bar_graph);
+		 barChart = (BarChart) view.findViewById(R.id.bar_graph);
 
-        String[] values = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+       /* String[] values = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
 		        "Saturday", "Sunday"};
 
 
@@ -65,7 +66,7 @@ public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvg
 		barChart.setData(theData);
 		barChart.setDragEnabled(true);
 		barChart.setTouchEnabled(true);
-		barChart.setScaleEnabled(true);
+		barChart.setScaleEnabled(true); */
 		getStatAvg();
 		getDailyHabitCounts();
 		return view;
@@ -87,10 +88,21 @@ public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvg
 	public void onSuccess(StatAvg statAvg) {
 
 
+
 	}
 
 	@Override
 	public void onSuccess(DailyCountHabit dailycounts) {
+		ArrayList<BarEntry> barEntries = new ArrayList<>();
+		if(dailycounts.getCounts() != null){
+			for(int i=0;i<dailycounts.getCounts().size();i++){
+				DailyCounts dc = dailycounts.getCounts().get(i);
+				barEntries.add(new BarEntry((i+1)/1.0f, dc.getCount()));
+			}
+			BarDataSet barDataSet = new BarDataSet(barEntries, "Cigarettes This Week");
+			BarData theData = new BarData(barDataSet);
+			barChart.setData(theData);
+		}
 
 	}
 
