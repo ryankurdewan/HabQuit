@@ -35,7 +35,7 @@ public class AchievementsActivity extends AppCompatActivity implements UserServi
      *   to communicate properly with service
      */
     private void getAchievement(){
-        UserServiceProvider userServiceProvider = new UserServiceProvider();
+        UserServiceProvider userServiceProvider = new UserServiceProvider(this);
         userServiceProvider.getUserRegs(this);
     }
 

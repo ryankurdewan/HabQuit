@@ -1,5 +1,6 @@
 package com.aquamorph.habquit.provider;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.util.Log;
@@ -24,6 +25,7 @@ public class StatAvgServiceProvider {
 
 
     StatAvgService statAvgService;
+    Context context;
     int id = getUserId() ;
     int habitId= getHabitId();
     int daysback = getDaysBack();
@@ -39,12 +41,13 @@ public class StatAvgServiceProvider {
     private int getUserId() {
         return 1;
     }
-    public StatAvgServiceProvider(){
+    public StatAvgServiceProvider(Context context){
         statAvgService = new Retrofit.Builder()
         .baseUrl("http://habquit.azurewebsites.net/")
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build().create(StatAvgService.class);
+        this.context = context;
     }
 
     public void getStatAvg(final StatAvgService.OnStatAvgListener listener) {

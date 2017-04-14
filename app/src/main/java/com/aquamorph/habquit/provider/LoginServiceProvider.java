@@ -1,5 +1,6 @@
 package com.aquamorph.habquit.provider;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.aquamorph.habquit.service.LoginService;
@@ -17,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class LoginServiceProvider {
     private LoginService loginService;
+    Context context;
 
     private static final String TAG = "LoginServiceProvider";
 
@@ -34,12 +36,13 @@ public class LoginServiceProvider {
 //
 //    }
 
-    public LoginServiceProvider() {
+    public LoginServiceProvider(Context context) {
         loginService = new Retrofit.Builder()
                 .baseUrl("http://habquit.azurewebsites.net/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(LoginService.class);
+        this.context = context;
     }
 
     public void postLoginInfo(double googleID, String userName, String email) {

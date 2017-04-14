@@ -54,7 +54,7 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitListe
 
 
 	private void getHabit() {
-		HabitServiceProvider habitServiceProvider = new HabitServiceProvider();
+		HabitServiceProvider habitServiceProvider = new HabitServiceProvider(getActivity());
 		habitServiceProvider.getHabits(this);
 	}
 
@@ -69,7 +69,7 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitListe
 
 		empty.setVisibility(filtered.size() == 0 ? View.VISIBLE : View.GONE);
 
-		SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(filtered,
+		SelectHabitsAdapter selectHabitsAdapter = new SelectHabitsAdapter(getActivity(), filtered,
 				PreferenceManager.getDefaultSharedPreferences(getContext()));
 		recyclerView.setAdapter(selectHabitsAdapter);
 	}

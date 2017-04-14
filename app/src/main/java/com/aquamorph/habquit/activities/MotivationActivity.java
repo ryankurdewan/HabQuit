@@ -42,7 +42,7 @@ public class MotivationActivity extends AppCompatActivity implements MotivationS
 	 */
 
 	private void getMotivation() {
-		MotivationServiceProvider motivationServiceProvider = new MotivationServiceProvider();
+		MotivationServiceProvider motivationServiceProvider = new MotivationServiceProvider(this);
 		motivationServiceProvider.getMotivations(this);
 	}
 

@@ -1,5 +1,6 @@
 package com.aquamorph.habquit.provider;
 
+import android.content.Context;
 import android.util.Log;
 
 
@@ -19,18 +20,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserServiceProvider {
     UserService achievementService;
-    LoginServiceProvider provider = new LoginServiceProvider();
+    Context context;
+    LoginServiceProvider provider = new LoginServiceProvider(this.context);
     /**
      * implementation of service is created here.
      * base url for service is defined here
      * basic service configuration is done here
      */
-    public UserServiceProvider(){
+    public UserServiceProvider(Context context){
         achievementService = new Retrofit.Builder()
         .baseUrl("http://habquit.azurewebsites.net/")
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build().create(UserService.class);
+        this.context = context;
     }
 
     /**

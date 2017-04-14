@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 			Log.i(TAG, "googleID: " + account.getId());
 
-            LoginServiceProvider loginServiceProvider = new LoginServiceProvider();
+            LoginServiceProvider loginServiceProvider = new LoginServiceProvider(this);
             loginServiceProvider.postLoginInfo(Double.parseDouble(sharedPreferences.getString("googleID", "Error w/ googleID")),
                     sharedPreferences.getString("userName", "Error w/ userName"), sharedPreferences.getString("email", "Error w/ email"));
 

@@ -73,12 +73,12 @@ public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvg
 	}
 
 	public void getStatAvg(){
-		StatAvgServiceProvider statAvgServiceProvider = new StatAvgServiceProvider();
+		StatAvgServiceProvider statAvgServiceProvider = new StatAvgServiceProvider(getActivity());
 		statAvgServiceProvider.getStatAvg(this);
 	}
 
 	public void getDailyHabitCounts() {
-		DailyHabitCountServiceProvider dailyHabitCountServiceProvider = new DailyHabitCountServiceProvider();
+		DailyHabitCountServiceProvider dailyHabitCountServiceProvider = new DailyHabitCountServiceProvider(getActivity());
 		dailyHabitCountServiceProvider.getDailyHabitCounts(this);
 
 	}

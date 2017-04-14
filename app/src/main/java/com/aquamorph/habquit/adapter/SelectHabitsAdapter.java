@@ -1,5 +1,6 @@
 package com.aquamorph.habquit.adapter;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -28,9 +29,11 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 
 	private List<Habit> habits;
 	private SharedPreferences preferences;
-	LoginServiceProvider provider = new LoginServiceProvider();
+	Context context;
+	LoginServiceProvider provider = new LoginServiceProvider(this.context);
 	UserRecord userInfo = new UserRecord();
-	public SelectHabitsAdapter(List<Habit> habits, SharedPreferences preferences) {
+	public SelectHabitsAdapter(Context context, List<Habit> habits, SharedPreferences preferences) {
+        this.context = context;
 		this.habits = habits;
 		this.preferences = preferences;
 	}
@@ -50,7 +53,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 			holder.habit = habit;
 
 			final Counter counter = Counter.getInstance();
-			final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider();
+			final TrackHabitServiceProvider serviceProvider = new TrackHabitServiceProvider(this.context);
 			final GridViewHolder gridViewHolder = (GridViewHolder) holder;
 			gridViewHolder.habitName.setText(preferences.getString("habitName" +
 					habit.getHabitId(), habit.getType()));

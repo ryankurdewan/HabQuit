@@ -1,5 +1,6 @@
 package com.aquamorph.habquit.provider;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.aquamorph.habquit.model.UserRecord;
@@ -22,18 +23,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TrackHabitServiceProvider {
     public static String TAG = "TrackHabitServiceProv";
     TrackHabitService trackHabitService;
+    Context context;
     /**
      * implementation of service is created here.
      * base url for service is defined here
      * basic service configuration is done here
      */
 
-    public TrackHabitServiceProvider(){
+    public TrackHabitServiceProvider(Context context){
         trackHabitService = new Retrofit.Builder()
         .baseUrl("http://habquit.azurewebsites.net/")
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build().create(TrackHabitService.class);
+        this.context = context;
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.aquamorph.habquit.provider;
 
+import android.content.Context;
+
 import com.aquamorph.habquit.model.DailyCountHabit;
 import com.aquamorph.habquit.model.DailyCounts;
 import com.aquamorph.habquit.service.DailyHabitCountService;
@@ -20,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DailyHabitCountServiceProvider {
 
     DailyHabitCountService dailyHabitCountService;
+    Context context;
     int id = getUserId();
     int habitId = getHabitId();
     int daysBack = getDaysBack();
@@ -56,12 +59,13 @@ public class DailyHabitCountServiceProvider {
         this.daysBack = daysBack;
     }
 
-    public DailyHabitCountServiceProvider() {
+    public DailyHabitCountServiceProvider(Context context) {
         dailyHabitCountService = new Retrofit.Builder()
                 .baseUrl("http://habquit.azurewebsites.net/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(DailyHabitCountService.class);
+        this.context = context;
     }
     public void getDailyHabitCounts(final DailyHabitCountService.OnDailyHabitCountListener listener) {
         Call<DailyCountHabit> call = dailyHabitCountService.getDailyCounts(id, habitId, daysBack);

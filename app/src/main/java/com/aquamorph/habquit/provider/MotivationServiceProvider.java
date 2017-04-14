@@ -1,5 +1,6 @@
 package com.aquamorph.habquit.provider;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.aquamorph.habquit.model.Motivation;
@@ -21,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MotivationServiceProvider {
 
 	MotivationService motivationService;
+	Context context;
 
 	/**
 	 * implementation of service is created here.
@@ -28,12 +30,13 @@ public class MotivationServiceProvider {
 	 * basic service configuration is done here
 	 */
 
-	public MotivationServiceProvider(){
+	public MotivationServiceProvider(Context context){
 		motivationService = new Retrofit.Builder()
 				.baseUrl("http://habquit.azurewebsites.net/")
 				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
 				.addConverterFactory(GsonConverterFactory.create())
 				.build().create(MotivationService.class);
+        this.context = context;
 	}
 	/**
 	 * dispatches a GET request to remote server and informs listener of response.  If successful,
