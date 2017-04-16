@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.provider.LoginServiceProvider;
-import com.aquamorph.habquit.service.LoginService;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -67,11 +66,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	private void handleResult(GoogleSignInResult result) {
 		if (result.isSuccess()) {
 			GoogleSignInAccount account = result.getSignInAccount();
-//			nameTextView.setText(account.getDisplayName());
-//			emailTextView.setText(account.getEmail());
-//			givenNameTextView.setText(account.getGivenName());
-//			familyNameTextView.setText(account.getFamilyName());
-//			idTextView.setText(account.getId());
 
 			assert account != null;
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences
