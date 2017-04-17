@@ -56,7 +56,7 @@ public class ManageHabitActivityOne extends AppCompatActivity implements HabitSe
 	}
 
 	private void getHabits() {
-		HabitServiceProvider provider = new HabitServiceProvider(this);
+		HabitServiceProvider provider = new HabitServiceProvider();
 		provider.getHabits(this);
 	}
 

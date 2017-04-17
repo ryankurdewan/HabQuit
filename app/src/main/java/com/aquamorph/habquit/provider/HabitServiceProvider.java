@@ -1,6 +1,5 @@
 package com.aquamorph.habquit.provider;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.aquamorph.habquit.model.Habit;
@@ -20,44 +19,42 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class HabitServiceProvider {
-    HabitService habitService;
-    Context context;
+	private HabitService habitService;
 
-    /**
-     * implementation of service is created here.
-     * base url for service is defined here
-     * basic service configuration is done here
-     */
-    public HabitServiceProvider(Context context){
-        habitService = new Retrofit.Builder()
-        .baseUrl("http://habquit.azurewebsites.net/")
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-        .addConverterFactory(GsonConverterFactory.create())
-        .build().create(HabitService.class);
+	/**
+	 * implementation of service is created here.
+	 * base url for service is defined here
+	 * basic service configuration is done here
+	 */
+	public HabitServiceProvider() {
+		habitService = new Retrofit.Builder()
+				.baseUrl("http://habquit.azurewebsites.net/")
+				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+				.addConverterFactory(GsonConverterFactory.create())
+				.build().create(HabitService.class);
+	}
 
-        this.context = context;
-    }
-
-    /**
-     * dispatches a GET request to remote server and informs listener of response.  If successful,
-     * a List of Achievement is returned to listener.
-     * @param listener
-     */
-      public void getHabits(final HabitService.OnHabitListener listener) {
-          Call<List<Habit>> call = habitService.getHabit();
-          call.enqueue(new Callback<List<Habit>>() {
-              @Override
-              public void onResponse(Call<List<Habit>> call, Response<List<Habit>> response) {
-                  List<Habit> habits = response.body();
-                  listener.onSuccess(habits);
-              }
+	/**
+	 * dispatches a GET request to remote server and informs listener of response.  If successful,
+	 * a List of Achievement is returned to listener.
+	 *
+	 * @param listener
+	 */
+	public void getHabits(final HabitService.OnHabitListener listener) {
+		Call<List<Habit>> call = habitService.getHabit();
+		call.enqueue(new Callback<List<Habit>>() {
+			@Override
+			public void onResponse(Call<List<Habit>> call, Response<List<Habit>> response) {
+				List<Habit> habits = response.body();
+				listener.onSuccess(habits);
+			}
 
 
-              @Override
-              public void onFailure(Call<List<Habit>> call, Throwable t) {
-                  Log.d("HabitService Fail", t.getMessage());
-                  listener.onError();
-              }
-          });
-      }
+			@Override
+			public void onFailure(Call<List<Habit>> call, Throwable t) {
+				Log.d("HabitService Fail", t.getMessage());
+				listener.onError();
+			}
+		});
+	}
 }

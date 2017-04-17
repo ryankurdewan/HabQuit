@@ -54,7 +54,7 @@ public class HabitFragment extends Fragment implements HabitService.OnHabitListe
 
 
 	private void getHabit() {
-		HabitServiceProvider habitServiceProvider = new HabitServiceProvider(getActivity());
+		HabitServiceProvider habitServiceProvider = new HabitServiceProvider();
 		habitServiceProvider.getHabits(this);
 	}
 
