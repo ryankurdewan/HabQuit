@@ -1,7 +1,5 @@
 package com.aquamorph.habquit.provider;
 
-import android.content.Context;
-
 import com.aquamorph.habquit.model.StatAvg;
 import com.aquamorph.habquit.service.StatAvgService;
 
@@ -18,46 +16,45 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StatAvgServiceProvider {
 
-    StatAvgService statAvgService;
-    Context context;
-    int id = getUserId() ;
-    int habitId= getHabitId();
-    int daysback = getDaysBack();
+	StatAvgService statAvgService;
+	int id;
+	int habitId;
+	int daysback;
 
-    private int getDaysBack() {
-        return 30;
-    }
+	public StatAvgServiceProvider(int id, int habitId, int daysback) {
+		statAvgService = new Retrofit.Builder()
+				.baseUrl("http://habquit.azurewebsites.net/")
+				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+				.addConverterFactory(GsonConverterFactory.create())
+				.build().create(StatAvgService.class);
+	}
 
-    private int getHabitId() {
-        return 1;
-    }
+	private int getDaysBack() {
+		return daysback;
+	}
 
-    private int getUserId() {
-        return 1;
-    }
-    public StatAvgServiceProvider(Context context){
-        statAvgService = new Retrofit.Builder()
-        .baseUrl("http://habquit.azurewebsites.net/")
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-        .addConverterFactory(GsonConverterFactory.create())
-        .build().create(StatAvgService.class);
-        this.context = context;
-    }
+	private int getHabitId() {
+		return habitId;
+	}
 
-    public void getStatAvg(final StatAvgService.OnStatAvgListener listener) {
-        Call<StatAvg> call = statAvgService.getStatAvg(id, habitId, daysback );
-        String str = "";
-        call.enqueue(new Callback<StatAvg>() {
-            @Override
-            public void onResponse(Call<StatAvg> call, Response<StatAvg> response) {
-                StatAvg statAvg = response.body();
-                listener.onSuccess(statAvg);
-            }
+	private int getUserId() {
+		return id;
+	}
 
-            @Override
-            public void onFailure(Call<StatAvg> call, Throwable t) {
+	public void getStatAvg(final StatAvgService.OnStatAvgListener listener) {
+		Call<StatAvg> call = statAvgService.getStatAvg(id, habitId, daysback);
+		String str = "";
+		call.enqueue(new Callback<StatAvg>() {
+			@Override
+			public void onResponse(Call<StatAvg> call, Response<StatAvg> response) {
+				StatAvg statAvg = response.body();
+				listener.onSuccess(statAvg);
+			}
 
-            }
-        });
-    }
+			@Override
+			public void onFailure(Call<StatAvg> call, Throwable t) {
+
+			}
+		});
+	}
 }

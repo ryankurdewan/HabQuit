@@ -49,7 +49,7 @@ public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvg
 	}
 
 	public void getStatAvg() {
-		StatAvgServiceProvider statAvgServiceProvider = new StatAvgServiceProvider(getActivity());
+		StatAvgServiceProvider statAvgServiceProvider = new StatAvgServiceProvider(1, 1, 30);
 		statAvgServiceProvider.getStatAvg(this);
 	}
 

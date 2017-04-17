@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MotivationServiceProvider {
 
-	MotivationService motivationService;
+	private MotivationService motivationService;
 	Context context;
 
 	/**
