@@ -17,53 +17,44 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Shawn on 2/4/2017.
  */
 public class LoginServiceProvider {
-    private LoginService loginService;
-    Context context;
+	private LoginService loginService;
+	Context context;
 
-    private static final String TAG = "LoginServiceProvider";
+	private static final String TAG = "LoginServiceProvider";
 
-//    private static LoginServiceProvider ourInstance = new LoginServiceProvider();
-//
-//    public static LoginServiceProvider getInstance() {
-//        return ourInstance;
-//    }
+	public Integer getUserId() {
+		return 1;//this is shawn for now
+	}
 
-    public Integer getUserId(){
-        return 1;//this is shawn for now
-    }
 
-//    private LoginServiceProvider() {
-//
-//    }
+	public LoginServiceProvider(Context context) {
+		loginService = new Retrofit.Builder()
+				.baseUrl("http://habquit.azurewebsites.net/")
+				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+				.addConverterFactory(GsonConverterFactory.create())
+				.build().create(LoginService.class);
+		this.context = context;
+	}
 
-    public LoginServiceProvider(Context context) {
-        loginService = new Retrofit.Builder()
-                .baseUrl("http://habquit.azurewebsites.net/")
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build().create(LoginService.class);
-        this.context = context;
-    }
+	public void postLoginInfo(double googleID, String userName, String email) {
+		Call<ResponseBody> call = loginService.postLoginInfo(googleID, userName, email);
+		call.enqueue(new Callback<ResponseBody>() {
+			@Override
+			public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+				Log.i(TAG, call.request().body().toString());
+				if (response.isSuccessful()) {
+					Log.i(TAG, "Response Successful");
+					Log.i(TAG, String.valueOf(response.body()));
+				} else {
+					Log.i(TAG, "Bad Response Code!");
+					Log.i(TAG, String.valueOf(response.body()));
+				}
+			}
 
-    public void postLoginInfo(double googleID, String userName, String email) {
-        Call<ResponseBody> call = loginService.postLoginInfo(googleID, userName, email);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.i(TAG, call.request().body().toString());
-                if (response.isSuccessful()) {
-                    Log.i(TAG, "Response Successful");
-                    Log.i(TAG, String.valueOf(response.body()));
-                } else {
-                    Log.i(TAG, "Bad Response Code!");
-                    Log.i(TAG, String.valueOf(response.body()));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i(TAG, "Failed to call to REST API successfully");
-            }
-        });
-    }
+			@Override
+			public void onFailure(Call<ResponseBody> call, Throwable t) {
+				Log.i(TAG, "Failed to call to REST API successfully");
+			}
+		});
+	}
 }

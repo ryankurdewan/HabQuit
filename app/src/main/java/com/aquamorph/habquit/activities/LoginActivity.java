@@ -71,23 +71,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences
 					(getApplicationContext());
 			sharedPreferences.edit().putString("firstName", account.getGivenName()).apply();
-            sharedPreferences.edit().putString("googleID", account.getId()).apply();
-            sharedPreferences.edit().putString("userName", account.getGivenName()).apply();
-            sharedPreferences.edit().putString("email", account.getEmail()).apply();
+			sharedPreferences.edit().putString("googleID", account.getId()).apply();
+			sharedPreferences.edit().putString("userName", account.getGivenName()).apply();
+			sharedPreferences.edit().putString("email", account.getEmail()).apply();
 
 			Log.i(TAG, "googleID: " + account.getId());
 
-            LoginServiceProvider loginServiceProvider = new LoginServiceProvider(this);
-            loginServiceProvider.postLoginInfo(Double.parseDouble(sharedPreferences.getString("googleID", "Error w/ googleID")),
-                    sharedPreferences.getString("userName", "Error w/ userName"), sharedPreferences.getString("email", "Error w/ email"));
+			LoginServiceProvider loginServiceProvider = new LoginServiceProvider(this);
+			loginServiceProvider.postLoginInfo(Double.parseDouble(sharedPreferences
+							.getString("googleID", "Error w/ googleID")),
+					sharedPreferences.getString("userName", "Error w/ userName"),
+					sharedPreferences.getString("email", "Error w/ email"));
 
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			finish();
 
 		} else {
-			Toast toast = Toast.makeText(getApplicationContext(), "Failed to Login " + result.getStatus(),
-					Toast.LENGTH_SHORT);
+			Toast toast = Toast.makeText(getApplicationContext(), "Failed to Login " +
+							result.getStatus(),	Toast.LENGTH_SHORT);
 			toast.show();
 		}
 	}

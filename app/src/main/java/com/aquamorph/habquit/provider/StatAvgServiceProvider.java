@@ -1,13 +1,9 @@
 package com.aquamorph.habquit.provider;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.nfc.Tag;
-import android.util.Log;
 
 import com.aquamorph.habquit.model.StatAvg;
 import com.aquamorph.habquit.service.StatAvgService;
-import com.aquamorph.habquit.utils.HabitParameter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,8 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class StatAvgServiceProvider {
-
-
 
     StatAvgService statAvgService;
     Context context;
@@ -58,8 +52,6 @@ public class StatAvgServiceProvider {
             public void onResponse(Call<StatAvg> call, Response<StatAvg> response) {
                 StatAvg statAvg = response.body();
                 listener.onSuccess(statAvg);
-
-
             }
 
             @Override
@@ -68,6 +60,4 @@ public class StatAvgServiceProvider {
             }
         });
     }
-
-
 }
