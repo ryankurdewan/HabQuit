@@ -6,10 +6,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 
 import com.aquamorph.habquit.R;
+import com.aquamorph.habquit.adapter.ManageHabitsAdapter;
+import com.aquamorph.habquit.model.Habit;
+import com.aquamorph.habquit.provider.HabitServiceProvider;
+import com.aquamorph.habquit.utils.HabitParameter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.aquamorph.habquit.R.id.recyclerView;
 
 /**
  * The configuration screen for the {@link WidgetActivity widget} AppWidget.
@@ -20,11 +33,15 @@ public class WidgetConfigureActivity extends Activity {
     private static final String PREF_PREFIX_KEY = "appwidget_";
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetText;
+
+    private RecyclerView recyclerView;
+    private boolean isAddHabit;
+
     View.OnClickListener mOnClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             final Context context = WidgetConfigureActivity.this;
 
-            //Toast.makeText(context, "HelloWidgetConfig.onClick(): " + String.valueOf(mAppWidgetId) , Toast.LENGTH_LONG).show();
+            // Toast.makeText(context, "HelloWidgetConfig.onClick(): " + String.valueOf(mAppWidgetId) , Toast.LENGTH_LONG).show();
 
             // When the button is clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
@@ -98,6 +115,9 @@ public class WidgetConfigureActivity extends Activity {
         }
 
         mAppWidgetText.setText(loadTitlePref(WidgetConfigureActivity.this, mAppWidgetId));
+
+
+
     }
 }
 

@@ -18,9 +18,9 @@
     <string name="logout">Logout</string>
 
     // Widget strings added by JCW
-    <string name="configure_widget">Configure</string>
+    <string name="configure_widget">Habit name</string>
     <string name="add_widget">Add widget</string>
-    <string name="app_widget_title">App widget name</string>
+    <string name="app_widget_title">Smoking</string>
     <string name="widget_count">0</string>
     <string name="widget_habit">Habit</string>
     <string name="widget_view_desc">Symbol Representing Habit</string>

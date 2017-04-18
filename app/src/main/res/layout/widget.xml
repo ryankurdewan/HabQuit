@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:gravity="center_horizontal"
-            android:text="@string/widget_habit"
+            android:text="@string/app_widget_title"
             android:lines="2"
             android:textColor="@color/white"
             android:textSize="24sp"

@@ -11,12 +11,12 @@ import android.app.PendingIntent;
 
 import com.aquamorph.habquit.R;
 
+
 /**
  * Implementation of App Widget functionality.
  * App Widget Configuration implemented in {@link WidgetConfigureActivity WidgetConfigureActivity}
  */
 
-//Current issue: remove widget and the newly added widget does not update correctly
 //Widget activity added by JCW
 public class WidgetActivity extends AppWidgetProvider {
 
@@ -26,7 +26,6 @@ public class WidgetActivity extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        // System.out.println("updateAppWidget(): widgetId = " + String.valueOf(appWidgetId) + "... Count : " +  String.valueOf(incCount));
         // Toast.makeText(context, "updateAppWidget(): widgetId = " + String.valueOf(appWidgetId) + "... Count : " +  String.valueOf(incCount), Toast.LENGTH_LONG).show();
 
         // set up remote view and set/update text views
@@ -68,7 +67,6 @@ public class WidgetActivity extends AppWidgetProvider {
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
                 //Toast.makeText(context, "onReceive(): widgetId = " + String.valueOf(widgetId) + "... Count : " +  String.valueOf(incCount), Toast.LENGTH_LONG).show();
-                //System.out.println("onReceive(): widgetId = " + String.valueOf(widgetId) + "... Count : " +  String.valueOf(incCount));
 
                 updateAppWidget(context, appWidgetManager, widgetId);
 
@@ -93,17 +91,11 @@ public class WidgetActivity extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
-
         // Toast.makeText(context, "onEnabled()", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
-
-        // need to update database here
-
         // Toast.makeText(context, "onDisabled()", Toast.LENGTH_LONG).show();
     }
 
