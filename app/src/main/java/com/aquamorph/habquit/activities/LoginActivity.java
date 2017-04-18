@@ -72,10 +72,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 					(getApplicationContext());
 			sharedPreferences.edit().putString("firstName", account.getGivenName()).apply();
 			sharedPreferences.edit().putString("googleID", account.getId()).apply();
-			sharedPreferences.edit().putString("userName", account.getGivenName()).apply();
+			sharedPreferences.edit().putString("userName", account.getDisplayName()).apply();
 			sharedPreferences.edit().putString("email", account.getEmail()).apply();
 
-			Log.i(TAG, "googleID: " + account.getId());
+            Log.i(TAG, "handleResult: googleID = " + account.getId());
+            Log.i(TAG, "handleResult: userName = " + account.getGivenName());
+            Log.i(TAG, "handleResult: firstName = " + account.getDisplayName());
+            Log.i(TAG, "handleResult: email = " + account.getEmail());
 
 			LoginServiceProvider loginServiceProvider = new LoginServiceProvider(this);
 			loginServiceProvider.postLoginInfo(Double.parseDouble(sharedPreferences

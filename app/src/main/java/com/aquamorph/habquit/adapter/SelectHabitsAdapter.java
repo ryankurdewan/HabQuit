@@ -2,6 +2,8 @@ package com.aquamorph.habquit.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.annotation.IntegerRes;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,13 +31,16 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 
 	private List<Habit> habits;
 	private SharedPreferences preferences;
-	Context context;
-	LoginServiceProvider provider = new LoginServiceProvider(this.context);
-	UserRecord userInfo = new UserRecord();
+	private Context context;
+	private LoginServiceProvider provider;
+	private UserRecord userInfo;
+
 	public SelectHabitsAdapter(Context context, List<Habit> habits, SharedPreferences preferences) {
         this.context = context;
 		this.habits = habits;
 		this.preferences = preferences;
+        this.provider = new LoginServiceProvider(this.context);
+        this.userInfo = new UserRecord();
 	}
 
 	@Override
@@ -68,7 +73,7 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 					AssistantFragment.changeMood(-5.0);
 					count++;
 					userInfo.setHabitId(habit.getHabitId());
-					userInfo.setUserId(provider.getUserId());
+					userInfo.setUserId(preferences.getInt("userID", 0));
 					counter.setCountFor(habit.getType(), count);
 					serviceProvider.postTrackHabit(userInfo);
 					SelectHabitsAdapter.this.notifyDataSetChanged();
@@ -77,10 +82,8 @@ public class SelectHabitsAdapter extends RecyclerView.Adapter<SelectHabitsAdapte
 			gridViewHolder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View v) {
-
 					userInfo.setHabitId(habit.getHabitId());
 					userInfo.setUserId(provider.getUserId());
-					//toDelete.getUserId();
 					int count = counter.getCountFor(habit.getType());
 					AssistantFragment.changeMood(5.0);
 					count--;

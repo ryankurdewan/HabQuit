@@ -1,8 +1,10 @@
 package com.aquamorph.habquit.provider;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.aquamorph.habquit.model.UserReg;
 import com.aquamorph.habquit.service.LoginService;
 
 import okhttp3.ResponseBody;
@@ -37,22 +39,23 @@ public class LoginServiceProvider {
 	}
 
 	public void postLoginInfo(double googleID, String userName, String email) {
-		Call<ResponseBody> call = loginService.postLoginInfo(googleID, userName, email);
-		call.enqueue(new Callback<ResponseBody>() {
+		Call<UserReg> call = loginService.postLoginInfo(googleID, userName, email);
+		call.enqueue(new Callback<UserReg>() {
 			@Override
-			public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+			public void onResponse(Call<UserReg> call, Response<UserReg> response) {
 				Log.i(TAG, call.request().body().toString());
 				if (response.isSuccessful()) {
-					Log.i(TAG, "Response Successful");
-					Log.i(TAG, String.valueOf(response.body()));
+					Log.i(TAG, "OK Response Code!");
+					PreferenceManager.getDefaultSharedPreferences(context).edit()
+							.putInt("userID", response.body().getUserId()).
+							apply();
 				} else {
 					Log.i(TAG, "Bad Response Code!");
-					Log.i(TAG, String.valueOf(response.body()));
 				}
 			}
 
 			@Override
-			public void onFailure(Call<ResponseBody> call, Throwable t) {
+			public void onFailure(Call<UserReg> call, Throwable t) {
 				Log.i(TAG, "Failed to call to REST API successfully");
 			}
 		});

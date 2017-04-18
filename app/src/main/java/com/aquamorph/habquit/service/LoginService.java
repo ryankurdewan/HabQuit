@@ -1,6 +1,7 @@
 package com.aquamorph.habquit.service;
 
-import okhttp3.ResponseBody;
+import com.aquamorph.habquit.model.UserReg;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -14,6 +15,6 @@ public interface LoginService {
 
     @FormUrlEncoded
     @POST("/api/login")
-    Call<ResponseBody> postLoginInfo(@Field("google_id") double googleID, @Field("user_name") String userName,
-                               @Field("email") String email);
+    Call<UserReg> postLoginInfo(@Field("google_id") double googleID, @Field("user_name") String userName,
+                                @Field("email") String email);
 }
