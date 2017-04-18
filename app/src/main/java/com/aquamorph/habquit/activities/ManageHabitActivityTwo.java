@@ -1,5 +1,6 @@
 package com.aquamorph.habquit.activities;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,9 +12,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-
 
 import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.utils.HabitParameter;
@@ -25,16 +23,13 @@ import java.util.Locale;
  * Created by ryansummerlin on 2/16/17.
  */
 
-public class ManageHabitActivityTwo extends AppCompatActivity {
+public class ManageHabitActivityTwo extends AppCompatActivity implements View.OnClickListener {
 
 	private String TAG = "ManageHabitActivityTwo";
 	final int CUSTOM_ID = -1;
 	private boolean isAddHabit;
 	private String habitNameText;
 	private SharedPreferences sharedPreferences;
-    private int manage_goal_year;
-    private  int manage_goal_day;
-    private int manage_goal_month;
 	EditText habitName;
 	EditText habitPrice;
 	EditText currPerDay;
@@ -49,8 +44,7 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 	Button addHabitButton;
 	Button saveHabitButton;
 	int startUpHabitID;
-	DatePicker date_picker;
-    static final int DATE_DIALOG_ID = 0;
+	private int mYear, mMonth, mDay;
 
 
 	@Override
@@ -70,34 +64,11 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 		enableHints = (CheckBox) findViewById(R.id.add_habit_tips);
 		addHabitButton = (Button) findViewById(R.id.add_habit_button);
 		saveHabitButton = (Button) findViewById(R.id.add_habit_save_button);
-		date_picker = (DatePicker) findViewById(R.id.add_habit_calendar);
 
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences
 				(getApplicationContext());
 
 		habitName.setText(habitNameText);
-
-
-		goalDate.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				date_picker.setVisibility(View.VISIBLE);
-                Calendar c = Calendar.getInstance();
-				date_picker.init(manage_goal_year, manage_goal_month, manage_goal_day, null);
-
-				//Set minimum date to current day
-				date_picker.setMinDate(c.getTimeInMillis());
-                manage_goal_year  = c.get(Calendar.YEAR);
-                manage_goal_month = c.get(Calendar.MONTH);
-                manage_goal_day   = c.get(Calendar.DAY_OF_MONTH);
-
-			}
-		});
-        /*TODO
-        1) store dates
-        2) set datePicker to invisible after date is selected
-         */
-
 
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -148,6 +119,7 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 				finish();
 			}
 		});
+		goalDate.setOnClickListener(this);
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -177,7 +149,7 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 					habitParameter.addHabit(15);
 				} else
 					habitParameter.addHabit(startUpHabitID);
-					saveHabitSettings();
+				saveHabitSettings();
 			}
 		} else {
 			habitParameter.removeHabit(startUpHabitID);
@@ -200,8 +172,26 @@ public class ManageHabitActivityTwo extends AppCompatActivity {
 		editor.apply();
 		finish();
 	}
-	public void setDate(){
-		final Calendar c = Calendar.getInstance();
-	}
 
+	@Override
+	public void onClick(View v) {
+		// Get Current Date
+		final Calendar c = Calendar.getInstance();
+		mYear = c.get(Calendar.YEAR);
+		mMonth = c.get(Calendar.MONTH);
+		mDay = c.get(Calendar.DAY_OF_MONTH);
+
+		DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+				new DatePickerDialog.OnDateSetListener() {
+
+					@Override
+					public void onDateSet(DatePicker view, int year,
+					                      int monthOfYear, int dayOfMonth) {
+
+						goalDate.setText((monthOfYear + 1) + "-" + dayOfMonth + "-" + year);
+
+					}
+				}, mYear, mMonth, mDay);
+		datePickerDialog.show();
+	}
 }

@@ -12,6 +12,7 @@ import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.model.DailyCountHabit;
 import com.aquamorph.habquit.model.DailyCounts;
 import com.aquamorph.habquit.model.StatAvg;
+import com.aquamorph.habquit.model.UserRecord;
 import com.aquamorph.habquit.provider.DailyHabitCountServiceProvider;
 import com.aquamorph.habquit.provider.StatAvgServiceProvider;
 import com.aquamorph.habquit.service.DailyHabitCountService;
@@ -34,6 +35,7 @@ public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvg
 
 	private BarChart barChart;
 	private SharedPreferences sharedPreferences;
+	private UserRecord userInfo = new UserRecord();
 
 	@Override
 
