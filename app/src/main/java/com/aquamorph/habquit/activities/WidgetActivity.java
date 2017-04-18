@@ -23,7 +23,7 @@ public class WidgetActivity extends AppWidgetProvider {
     private static final String SYNC_CLICKED    = "AppWidgetManager.ACTION_APPWIDGET_UPDATE";
     public static int incCount = 0;
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
         // Toast.makeText(context, "updateAppWidget(): widgetId = " + String.valueOf(appWidgetId) + "... Count : " +  String.valueOf(incCount), Toast.LENGTH_LONG).show();

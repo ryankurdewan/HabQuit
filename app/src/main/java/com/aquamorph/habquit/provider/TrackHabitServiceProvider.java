@@ -1,6 +1,8 @@
 package com.aquamorph.habquit.provider;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.aquamorph.habquit.model.UserRecord;
@@ -23,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TrackHabitServiceProvider {
     public static String TAG = "TrackHabitServiceProv";
     TrackHabitService trackHabitService;
-    Context context;
+    SharedPreferences preferences;
     /**
      * implementation of service is created here.
      * base url for service is defined here
@@ -36,7 +38,7 @@ public class TrackHabitServiceProvider {
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build().create(TrackHabitService.class);
-        this.context = context;
+        preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     /**

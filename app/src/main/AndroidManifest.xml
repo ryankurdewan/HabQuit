@@ -26,7 +26,6 @@
         <activity android:name=".activities.AchievementsActivity"/>
         <activity android:name=".activities.GraphDisplayActivity"/>
         <activity android:name=".activities.BarGraphActivity"/>
-        <activity android:name=".activities.LineGraphActivity"/>
         <activity android:name=".activities.MotivationActivity"/>
         <activity android:name=".activities.ManageHabitActivityTwo"/>
         <activity android:name=".activities.ManageHabitActivityOne"/>

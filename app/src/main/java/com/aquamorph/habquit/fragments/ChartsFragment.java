@@ -12,7 +12,6 @@ import com.aquamorph.habquit.R;
 import com.aquamorph.habquit.model.DailyCountHabit;
 import com.aquamorph.habquit.model.DailyCounts;
 import com.aquamorph.habquit.model.StatAvg;
-import com.aquamorph.habquit.model.UserRecord;
 import com.aquamorph.habquit.provider.DailyHabitCountServiceProvider;
 import com.aquamorph.habquit.provider.StatAvgServiceProvider;
 import com.aquamorph.habquit.service.DailyHabitCountService;
@@ -35,7 +34,6 @@ public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvg
 
 	private BarChart barChart;
 	private SharedPreferences sharedPreferences;
-	private UserRecord userInfo = new UserRecord();
 
 	@Override
 
@@ -51,13 +49,14 @@ public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvg
 	}
 
 	public void getStatAvg() {
-		StatAvgServiceProvider statAvgServiceProvider = new StatAvgServiceProvider(1, 1, 30);
+		StatAvgServiceProvider statAvgServiceProvider = new StatAvgServiceProvider
+				(sharedPreferences.getInt("userID", 0), 1, 30);
 		statAvgServiceProvider.getStatAvg(this);
 	}
 
 	public void getDailyHabitCounts() {
 		DailyHabitCountServiceProvider dailyHabitCountServiceProvider = new
-				DailyHabitCountServiceProvider(1, 1, 30);
+				DailyHabitCountServiceProvider(sharedPreferences.getInt("userID", 0), 1, 30);
 		dailyHabitCountServiceProvider.getDailyHabitCounts(this);
 
 	}
@@ -65,8 +64,6 @@ public class ChartsFragment extends Fragment implements StatAvgService.OnStatAvg
 
 	@Override
 	public void onSuccess(StatAvg statAvg) {
-
-
 	}
 
 	@Override
